@@ -1,16 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
+import "./Layout.css";
+import Header from "./Header";
 
 export default function Layout() {
     return (
         <div>
-            <nav>
-                <Link to="/" className="btn btn-primary">
-                    Home
-                </Link>
-            </nav>
-            <Outlet />
+            <Header />
+            <div className={"body"}>
+                <Outlet />
+            </div>
         </div>
     );
 }
