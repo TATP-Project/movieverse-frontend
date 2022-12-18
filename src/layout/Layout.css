@@ -1,7 +1,3 @@
-.homeIcon {
-    font-size: 72px;
-    color: #7289ee;
-}
 .header {
     height: 100px;
     display: flex;
@@ -28,7 +24,7 @@
     padding: 20px;
 }
 .button {
-    background-color: #7289ee;
+    background-color: #ff8036;
 }
 .logo {
     margin: 0 8px;

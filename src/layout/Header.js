@@ -4,7 +4,7 @@ import "./Layout.css";
 import { Button } from "antd";
 import { ReactComponent as LanguageLogo } from "../icons/Language.svg";
 import { ReactComponent as LocationLogo } from "../icons/Location.svg";
-import { ReactComponent as DiscordLogo } from "../icons/DiscordLogo.svg";
+import { ReactComponent as Logo } from "../icons/Logo.svg";
 
 export default function Header() {
     return (
@@ -12,7 +12,7 @@ export default function Header() {
             <div></div>
             <div className={"centerDiv"}>
                 <Link to="/">
-                    <DiscordLogo />
+                    <Logo />
                 </Link>
             </div>
             <div className={"rightDiv"}>
