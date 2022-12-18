@@ -1,18 +1,21 @@
-/* .fill {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    height: 310px;
-    width: 800px;
-}
-.fill img {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%;
-} */
-img {
+.imageOne > img {
     object-fit: cover;
-    width: 500px;
-    height: 300px;
+    width: 600px;
+    height: 200px;
+}
+.imageTwo > img {
+    object-fit: cover;
+    height: 200px;
+}
+
+.imageOne {
+    z-index: 1;
+}
+
+.imageTwo {
+    z-index: 0;
+    margin-top: -200px;
+}
+img {
+    border-radius: 5px;
 }

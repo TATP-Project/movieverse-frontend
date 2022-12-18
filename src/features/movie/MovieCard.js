@@ -5,15 +5,20 @@ export default function MovieCard(props) {
     const { movie } = props;
     return (
         <div>
-            <div>{movie.name}</div>
-            <div>{movie.tags[0].name}</div>
-            <div className={"fill"}>
+            <div className={"image imageOne"}>
                 <img
-                    className={"image stretch"}
+                    src={"data:image/png;base64," + movie.image.data}
+                    alt={movie.name + " stretched"}
+                />
+            </div>
+            <div className={"image imageTwo"}>
+                <img
                     src={"data:image/png;base64," + movie.image.data}
                     alt={movie.name}
                 />
             </div>
+            <div>{movie.name}</div>
+            <div>{movie.tags[0].name}</div>
         </div>
     );
 }
