@@ -34,3 +34,18 @@
     width: 1000px;
     margin: auto;
 }
+
+.stage-uncomplete > .ellipse{
+    opacity: 30%;
+}
+
+.stage-uncomplete > p{
+    opacity: 30%;
+}
+
+.stage-uncomplete + .statusbar-line{
+    opacity: 30%;
+}
+.statusbar-line:has(+.stage-uncomplete){
+    opacity: 30%;
+}
