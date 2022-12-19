@@ -12,10 +12,13 @@ export default function MovieList() {
         });
     }, []);
     return (
-        <div className={"list"}>
-            {movies.map((movie, index) => {
-                return <MovieCard movie={movie} key={index} />;
-            })}
+        <div>
+            <div className={"title"}>Now on cinemas</div>
+            <div className={"list"}>
+                {movies.map((movie, index) => {
+                    return <MovieCard movie={movie} key={index} />;
+                })}
+            </div>
         </div>
     );
 }

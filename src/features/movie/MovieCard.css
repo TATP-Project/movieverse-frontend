@@ -1,11 +1,11 @@
 .imageOne > img {
     object-fit: cover;
-    width: 600px;
-    height: 200px;
+    width: 671.5px;
+    height: 230px;
 }
 .imageTwo > img {
     object-fit: cover;
-    height: 200px;
+    height: 230px;
 }
 
 .imageOne {
@@ -14,8 +14,20 @@
 
 .imageTwo {
     z-index: 0;
-    margin-top: -200px;
+    margin-top: -230px;
 }
 img {
     border-radius: 5px;
+}
+.movieCard {
+    margin: 20px;
+}
+
+.movieName {
+    margin-top: 10px;
+    font-size: 16px;
+}
+.tag {
+    font-size: 14px;
+    color: #637394;
 }
