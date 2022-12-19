@@ -1,0 +1,36 @@
+.ellipse{
+    background-color: black;
+    border: 1px solid white;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 7px;
+    margin: auto;
+    margin-bottom: 7px;
+    font-family: 'Bebas Neue';
+}
+.stage{
+    width: 100px;
+    align-content: center;
+    text-align: center; 
+    font-family: 'Bebas Neue';   
+}
+.statusbar{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+    max-width: 1400px;
+}
+
+.statusbar-line{
+    margin-top: 30px;
+    height: 1px;
+    width: 20%;
+    background-color: #ff8036;
+}
+.statusbar-container{
+    width: 1000px;
+    margin: auto;
+}
