@@ -1,5 +1,10 @@
 import React from "react";
+import MovieList from "../features/movie/MovieList";
 
 export default function ListOfMoviesPage() {
-    return <div>List of Movies</div>;
+    return (
+        <div>
+            <MovieList />
+        </div>
+    );
 }
