@@ -14,7 +14,7 @@ export default function CompletePage() {
                     "margin-top": "50px"
                 }}>
                     <img src={CompleteLogo} alt={"Ticket Reservated"} />
-                    <h1>Completed</h1>
+                    <h1 style={{ 'font-family': 'Bebas Neue' }}>Completed</h1>
                 </div>
             </div>
         </>
