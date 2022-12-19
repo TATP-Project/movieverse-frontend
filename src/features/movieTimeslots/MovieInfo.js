@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./MovieInfo.css";
+import MovieInfoItem from "./MovieInfoItem";
 
 export default function MovieInfo() {
     const movie = useSelector((state) => state.movie);
@@ -28,31 +29,33 @@ export default function MovieInfo() {
                     <div className={"movieTitle"}>{movie.name}</div>
                     <hr />
                     <div className={"infoItems"}>
-                        <div>
-                            <img src={genreLogo} alt="genre" />
-                        </div>
-                        <div className={"tableHeader"}>Genre</div>
-                        <div>{movie.tags[0].name}</div>
-                        <div>
-                            <img src={timeLogo} alt="time" />
-                        </div>
-                        <div className={"tableHeader"}>RunningTime</div>
-                        <div>
-                            {movie.releaseDate.slice(
+                        <MovieInfoItem
+                            logo={genreLogo}
+                            alt="genre"
+                            header="Genre"
+                            value={movie.tags[0].name}
+                        />
+                        <MovieInfoItem
+                            logo={dateLogo}
+                            alt="date"
+                            header="Release Date"
+                            value={movie.releaseDate.slice(
                                 0,
                                 movie.releaseDate.indexOf("T")
                             )}
-                        </div>
-                        <div>
-                            <img src={dateLogo} alt="date" />
-                        </div>
-                        <div className={"tableHeader"}>ReleaseDate</div>
-                        <div>{movie.runningTime}</div>
-                        <div>
-                            <img src={languageLogo} alt="language" />
-                        </div>
-                        <div className={"tableHeader"}>Language</div>
-                        <div>{movie.language}</div>
+                        />
+                        <MovieInfoItem
+                            logo={timeLogo}
+                            alt="time"
+                            header="Running Time"
+                            value={movie.runningTime + "Minutes"}
+                        />
+                        <MovieInfoItem
+                            logo={languageLogo}
+                            alt="language"
+                            header="Language"
+                            value={movie.language}
+                        />
                     </div>
                 </div>
             </div>
