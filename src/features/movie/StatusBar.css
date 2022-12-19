@@ -1,3 +1,6 @@
+.statusbar-container >span,p,div{
+    font-family: 'Bebas Neue';
+}
 .ellipse{
     background-color: black;
     border: 1px solid white;
@@ -8,14 +11,12 @@
     text-align: center;
     padding-top: 7px;
     margin: auto;
-    margin-bottom: 7px;
-    font-family: 'Bebas Neue';
+    margin-bottom: 7px;    
 }
 .stage{
     width: 100px;
     align-content: center;
     text-align: center; 
-    font-family: 'Bebas Neue';   
 }
 .statusbar{
     display: flex;
