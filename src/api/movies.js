@@ -1,11 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8080/",
+    baseURL: "http://localhost:9999/",
 });
 
 export const getMovies = () => {
     return api.get("/movies");
 };
-
-// export const 

@@ -6,7 +6,7 @@
   text-align: center;
   vertical-align: middle;
   line-height: 40px;
-  cursor: pointer;
+  
 }
 
 .seatNumber {
@@ -19,6 +19,7 @@
 
 .seatAvailable:hover {
    background: #15695F;
+   cursor: pointer;
 }
 
 .seatSelected {

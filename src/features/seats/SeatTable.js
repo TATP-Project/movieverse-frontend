@@ -1,5 +1,6 @@
-import { Row } from "antd";
 import React from "react";
+import { Row, Col } from "antd";
+import Seat from "./Seat";
 
 export default function SeatTable({ seats }) {
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
@@ -19,7 +20,7 @@ export default function SeatTable({ seats }) {
               <Seat
                 key={seat.id}
                 row={seat.row}
-                col={seat.column}
+                column={seat.column}
                 status={seat.status}
               />
             </Col>
