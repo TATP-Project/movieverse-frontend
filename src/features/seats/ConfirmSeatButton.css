@@ -1,0 +1,29 @@
+.button {
+  width: 220px;
+  height: 60px;
+  margin: 20px;
+  padding: 0;
+  border-width: 0;
+  background: #15695f;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 60px;
+  vertical-align: middle;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.buttonText {
+  display: inline-block;
+  text-align: center;
+  width: 160px;
+}
+
+.buttonIcon {
+  display: inline-block;
+  width: 60px;
+  left: 160px;
+  background: #0d403a;
+}

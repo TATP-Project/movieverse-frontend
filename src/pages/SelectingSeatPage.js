@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getSeatsByMovieSessionId } from "../api/movieSessions";
-import Seat from "../features/seats/Seat";
 import SeatTable from "../features/seats/SeatTable";
+import ConfirmSeatButton from "../features/seats/ConfirmSeatButton";
+import { Row, Col } from "antd";
 
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
@@ -45,7 +46,19 @@ export default function SelectingSeatPage() {
   };
   return (
     <div>
-      <SeatTable seatsIn2DList={seatsIn2DList} onSeatClick={handleClickAvailbleSeat} />
+      <Row justify="center">
+        <Col>
+          <SeatTable
+            seatsIn2DList={seatsIn2DList}
+            onSeatClick={handleClickAvailbleSeat}
+          />
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <ConfirmSeatButton />
+        </Col>
+      </Row>
     </div>
   );
 }
