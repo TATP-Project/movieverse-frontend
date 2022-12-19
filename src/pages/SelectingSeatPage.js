@@ -3,12 +3,15 @@ import { getSeatsByMovieSessionId } from "../api/movieSessions";
 import SeatTable from "../features/seats/SeatTable";
 import ConfirmSeatButton from "../features/seats/ConfirmSeatButton";
 import { Row, Col } from "antd";
+import { useDispatch } from "react-redux";
+import { setSeatSelection } from "../features/seats/seatSelectionSlice";
 
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
 
 export default function SelectingSeatPage() {
   const [seats, setSeats] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getSeatsByMovieSessionId("63a01924a773310c1b950d12").then((response) => {
@@ -44,6 +47,13 @@ export default function SelectingSeatPage() {
       })
     );
   };
+
+  const handleConfirmSeatClick = () => {
+    dispatch(
+      setSeatSelection(seats.filter((seat) => seat.status === RESERVED))
+    );
+  };
+
   return (
     <div>
       <Row justify="center">
@@ -56,7 +66,7 @@ export default function SelectingSeatPage() {
       </Row>
       <Row justify="center">
         <Col>
-          <ConfirmSeatButton />
+          <ConfirmSeatButton onClick={handleConfirmSeatClick} />
         </Col>
       </Row>
     </div>

@@ -2,9 +2,9 @@ import React from "react";
 import { RightOutlined } from "@ant-design/icons";
 import "./ConfirmSeatButton.css";
 
-export default function confirmSeatButton() {
+export default function confirmSeatButton({ onClick }) {
   return (
-    <button className="button">
+    <button className="button" onClick={onClick}>
       <span className="buttonText">Confirm</span>
       <span className="buttonIcon">
         <RightOutlined />
