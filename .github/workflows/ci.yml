@@ -24,3 +24,6 @@ jobs:
             - run: npm run build --if-present
 
             - run: npm test
+            
+            - name: Deploy react app to github pages
+            uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
