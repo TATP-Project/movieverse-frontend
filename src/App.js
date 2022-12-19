@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import ListOfMoviesPage from "./pages/ListOfMoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
 
 function App() {
     return (
@@ -9,6 +10,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ListOfMoviesPage />} />
+                    <Route
+                        path="/movie-timeslots"
+                        element={<MovieTimeslotsPage />}
+                    />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
