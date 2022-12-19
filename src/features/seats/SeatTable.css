@@ -6,10 +6,10 @@
   margin-right: 40px;
 }
 
-.topMargin {
-  margin-top: 40px;
-}
-
 .bottomMargin {
   margin-bottom: 40px;
+}
+
+.row {
+    width: 100%;
 }
