@@ -1,0 +1,37 @@
+.seatBox {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 2px solid #15695F;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.seatNumber {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.seatAvailable:hover {
+   background: #15695F;
+}
+
+.seatSelected {
+    background: #15695F;
+}
+
+.seatSold {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    color: rgba(255, 255, 255, 0.1);
+}
