@@ -4,7 +4,7 @@ const AVAILABLE = "AVAILABLE";
 const RESERVED = "RESERVED";
 const SOLD = "SOLD";
 
-export default function Seat({ row, col, seatStatus }) {
+export default function Seat({ row, column, seatStatus }) {
   return (
     <div
       className={`seatBox seatNumber ${
@@ -15,7 +15,7 @@ export default function Seat({ row, col, seatStatus }) {
           : "seatAvailable"
       }`}
     >
-      {seatStatus === SOLD ? "x" : col}
+      {seatStatus === SOLD ? "x" : column}
     </div>
   );
 }
