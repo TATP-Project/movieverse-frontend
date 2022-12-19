@@ -4,18 +4,25 @@ const AVAILABLE = "AVAILABLE";
 const RESERVED = "RESERVED";
 const SOLD = "SOLD";
 
-export default function Seat({ row, column, seatStatus }) {
+export default function Seat({ id, column, status, onSeatClick, className }) {
+  const handleSeatClick = () => {
+    if (status !== SOLD) {
+      onSeatClick(id);
+    }
+  };
+
   return (
     <div
       className={`seatBox seatNumber ${
-        seatStatus === SOLD
+        status === SOLD
           ? "seatSold"
-          : seatStatus === RESERVED
+          : status === RESERVED
           ? "seatSelected"
           : "seatAvailable"
-      }`}
+      } ${className}`}
+      onClick={() => {handleSeatClick()}}
     >
-      {seatStatus === SOLD ? "x" : column}
+      {status === SOLD ? "x" : column}
     </div>
   );
 }
