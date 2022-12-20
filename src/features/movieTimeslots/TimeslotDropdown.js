@@ -45,7 +45,7 @@ export default function TimeslotDropdown(props) {
                     </div>
                 ) : null}
                 <div className={"dropdownItem"}>
-                    <div className={"dropdownBox"}>
+                    <div className={"sessionDropdownBox"}>
                         <div>
                             {date.getDate() + "/" + (date.getMonth() + 1)}
                         </div>
