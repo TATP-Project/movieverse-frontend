@@ -54,17 +54,15 @@ export default function FoodPage() {
                 </Row>
                 <Row>
                     {foods.map((food, index) => {
-                        if (food.type === "hotdog") {
-                            return (
-                                <Col>
-                                    <FoodCard
-                                        food={food}
-                                        key={food.id}
-                                        updateSelectedFood={updateSelectedFood}
-                                    />
-                                </Col>
-                            );
-                        }
+                        return food.type === "hotdog" ? (
+                            <Col>
+                                <FoodCard
+                                    food={food}
+                                    key={food.id}
+                                    updateSelectedFood={updateSelectedFood}
+                                />
+                            </Col>
+                        ) : null;
                     })}
                 </Row>
                 <Row>
@@ -72,17 +70,15 @@ export default function FoodPage() {
                 </Row>
                 <Row>
                     {foods.map((food, index) => {
-                        if (food.type === "popcorn") {
-                            return (
-                                <>
-                                    <FoodCard
-                                        food={food}
-                                        key={food.id}
-                                        updateSelectedFood={updateSelectedFood}
-                                    />
-                                </>
-                            );
-                        }
+                        return food.type === "popcorn" ? (
+                            <>
+                                <FoodCard
+                                    food={food}
+                                    key={food.id}
+                                    updateSelectedFood={updateSelectedFood}
+                                />
+                            </>
+                        ) : null;
                     })}
                 </Row>
                 <Row>
@@ -90,17 +86,15 @@ export default function FoodPage() {
                 </Row>
                 <Row>
                     {foods.map((food, index) => {
-                        if (food.type === "drink") {
-                            return (
-                                <>
-                                    <FoodCard
-                                        food={food}
-                                        key={food.id}
-                                        updateSelectedFood={updateSelectedFood}
-                                    />
-                                </>
-                            );
-                        }
+                        return food.type === "drink" ? (
+                            <>
+                                <FoodCard
+                                    food={food}
+                                    key={food.id}
+                                    updateSelectedFood={updateSelectedFood}
+                                />
+                            </>
+                        ) : null;
                     })}
                 </Row>
 
