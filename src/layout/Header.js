@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Layout.css";
 import { Button } from "antd";
-import { ReactComponent as LanguageLogo } from "../icons/Language.svg";
+import { ReactComponent as MovieLanguageLogo } from "../icons/Language.svg";
 import { ReactComponent as LocationLogo } from "../icons/Location.svg";
 import { ReactComponent as Logo } from "../icons/Logo.svg";
 
@@ -21,7 +21,7 @@ export default function Header() {
                     <span>Nur-Sultan</span>
                 </span>
                 <span>
-                    <LanguageLogo className={"logo"} />
+                    <MovieLanguageLogo className={"logo"} />
                     <span>Eng</span>
                 </span>
                 <Button type="primary" className={"button"}>
