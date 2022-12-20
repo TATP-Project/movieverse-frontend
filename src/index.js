@@ -7,13 +7,14 @@ import { store } from "./app/store";
 import "antd/dist/reset.css";
 import "./index.css";
 import { Provider } from "react-redux";
+import { store } from "./app/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <BrowserRouter>
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+      <App />
     </Provider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
