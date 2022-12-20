@@ -36,7 +36,9 @@ export default function Seat({
       </div>
       {showStatus && (
         <div className="seatDescriptionBox seatText">
-          {status.charAt(0) + status.slice(1).toLowerCase()}
+          {status === RESERVED
+            ? "Selected"
+            : status.charAt(0) + status.slice(1).toLowerCase()}
         </div>
       )}
     </div>

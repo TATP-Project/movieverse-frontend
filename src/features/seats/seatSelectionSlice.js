@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initseatSelection = [];
+const initSeatSelection = {
+  movieSessionId: "",
+  seats: [],
+};
 
 export const seatSelectionSlice = createSlice({
   name: "seatSelection",
-  initialState: initseatSelection,
+  initialState: initSeatSelection,
   reducers: {
     setSeatSelection(state, action) {
       return action.payload;

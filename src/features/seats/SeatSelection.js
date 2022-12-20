@@ -7,7 +7,7 @@ import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownFor
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
-import { setSeatSelection } from "./seatSelectionSlice";
+import { setSeatSelection, setMovieSessionId } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 
 const RESERVED = "RESERVED";
@@ -55,12 +55,15 @@ export default function SeatSelection() {
 
   const handleConfirmSeatClick = () => {
     dispatch(
-      setSeatSelection(seats.filter((seat) => seat.status === RESERVED))
+      setSeatSelection({
+        movieSessionId: "63a136f331d0f46035bd0ee4",
+        seats: seats.filter((seat) => seat.status === RESERVED),
+      })
     );
   };
 
   return (
-    <>
+    <div className="seatSelection">
       <Row justify="center">
         <Col>
           <MovieSessionDropdownTitleForSeat text="CINEMA" />
@@ -72,7 +75,7 @@ export default function SeatSelection() {
           <MovieSessionDropdownTitleForSeat text="TIME" />
         </Col>
       </Row>
-      <div className="seatSelection">
+      <div className="houseSeatBox">
         <Row justify="center">
           <Col>
             <MovieSessionDropdownForSeat text="YOHO Mall Cinema" />
@@ -108,12 +111,12 @@ export default function SeatSelection() {
             </Row>
           </Col>
         </Row>
-        <Row justify="center">
+      </div>
+      <Row justify="center">
           <Col>
             <ConfirmButton onClick={handleConfirmSeatClick} />
           </Col>
         </Row>
-      </div>
-    </>
+    </div>
   );
 }
