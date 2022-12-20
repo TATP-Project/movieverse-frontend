@@ -16,7 +16,7 @@ export default function SeatsInfoItem(props) {
 
     return (
         <div className="ticketInfoItem">
-            <div className={"tableHeader"}>{props.header}</div>
+            <div className={"ticketTableHeader"}>{props.header}</div>
             <div>
                 {rows.map((row) => {
                     var rowChar = String.fromCharCode(64 + parseInt(row));
