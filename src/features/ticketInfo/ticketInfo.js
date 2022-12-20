@@ -3,6 +3,7 @@ import TicketInfoItem from "./TicketInfoItem";
 import { useSelector } from "react-redux";
 import SeatsInfoItem from "./SeatsInfoItem";
 import FoodInfoItem from "./FoodInfoItem";
+import TotalAmount from "./TotalAmount";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
@@ -10,10 +11,20 @@ export default function TicketInfo() {
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
+    const calculateTotalAmount = () => {
+        var foodTotal = Object.keys(food).reduce((total, id) => {
+            var thisFood = food[id];
+            total += parseInt(thisFood.count) * parseInt(thisFood.price);
+            return total;
+        }, 0);
 
+        var seatTotal =
+            parseInt(session.price) * parseInt(Object.keys(seats).length);
+        return foodTotal + seatTotal;
+    };
     return (
         <div>
-            <div className={"foreground"}>
+            <div className="wrapper">
                 <div>
                     <img
                         className={"infoImage"}
@@ -46,6 +57,7 @@ export default function TicketInfo() {
                     <SeatsInfoItem header="Seats" seats={seats} />
                     <FoodInfoItem header="F&B" food={food} />
                 </div>
+                <TotalAmount amount={calculateTotalAmount()} />
             </div>
         </div>
     );
