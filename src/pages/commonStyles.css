@@ -1,0 +1,9 @@
+.title {
+    font-family: "Habibi";
+    font-size: 24px;
+    color: #ff6500;
+}
+.body {
+    display: grid;
+    justify-content: center;
+}

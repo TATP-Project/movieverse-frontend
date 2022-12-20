@@ -1,0 +1,45 @@
+.dropdownButton {
+    display: flex;
+    border: 2px solid #424549;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+.dropdownItem {
+    display: grid;
+    grid-template-columns: 400px 10px 60px;
+    grid-template-rows: 60px;
+}
+.dropdownBox {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border: 2px solid #424549;
+    align-items: center;
+    padding: 0 20px;
+}
+.dropdownBox div,
+.dropdownMenu div {
+    font-family: "Merriweather";
+    font-size: 22px;
+}
+.dropdownMenu {
+    position: absolute;
+    border: 2px solid #424549;
+    bottom: 60px;
+    background-color: #424549;
+    border: 2px solid white;
+    grid-row-gap: 1px;
+}
+.dropdownMenuItem {
+    width: 450px;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: auto auto auto 50px;
+    border-bottom: 1px dashed white;
+}
+.dropdownMenuItem:last-child {
+    border: 0px;
+}
+.listItem {
+    color: white;
+}

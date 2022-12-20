@@ -1,0 +1,52 @@
+.statusbar-container >span,p,div{
+    font-family: 'lato';
+}
+.ellipse{
+    background-color: black;
+    border: 1px solid white;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 5px;
+    margin: auto;
+    margin-bottom: 10px;    
+}
+.stage{
+    width: 100px;
+    align-content: center;
+    text-align: center; 
+}
+.statusbar{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+    max-width: 1400px;
+}
+
+.statusbar-line{
+    margin-top: 30px;
+    height: 4px;
+    width: 20%;
+    background-color: #ff8036;
+}
+.statusbar-container{
+    width: 1000px;
+    margin: auto;
+}
+
+.stage-uncomplete > .ellipse{
+    opacity: 30%;
+}
+
+.stage-uncomplete > p{
+    opacity: 30%;
+}
+
+.stage-uncomplete + .statusbar-line{
+    opacity: 30%;
+}
+.statusbar-line:has(+.stage-uncomplete){
+    opacity: 30%;
+}
