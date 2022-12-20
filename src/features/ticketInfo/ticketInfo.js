@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import SeatsInfoItem from "./SeatsInfoItem";
 import FoodInfoItem from "./FoodInfoItem";
 import TotalAmount from "./TotalAmount";
+import PaymentMethod from "./payment/PaymentMethod";
+import ConfirmButton from "../button/ConfirmButton";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
@@ -25,39 +27,55 @@ export default function TicketInfo() {
     return (
         <div>
             <div className="wrapper">
-                <div>
-                    <img
-                        className={"infoImage"}
-                        src={"data:image/png;base64," + movie.image.data}
-                        alt={movie.name}
-                    />
+                <div className={"movieTitle"} style={{ width: "100%" }}>
+                    {movie.name}
                 </div>
                 <div className={"ticketInfo"}>
-                    <div className={"movieTitle"}>{movie.name}</div>
-                    <hr />
-                    <TicketInfoItem
-                        header="Cinema"
-                        value={session.cinema.name}
-                    />
-                    <TicketInfoItem
-                        header="Date"
-                        value={
-                            date.getDate() +
-                            "/" +
-                            (date.getMonth() + 1) +
-                            "/" +
-                            date.getFullYear()
-                        }
-                    />
-                    <TicketInfoItem
-                        header="Time"
-                        value={date.getHours() + ":" + date.getMinutes()}
-                    />
-                    <TicketInfoItem header="House" value={session.house.name} />
-                    <SeatsInfoItem header="Seats" seats={seats} />
-                    <FoodInfoItem header="F&B" food={food} />
+                    <div>
+                        <img
+                            className={"ticketInfoImage"}
+                            src={"data:image/png;base64," + movie.image.data}
+                            alt={movie.name}
+                        />
+                    </div>
+                    <div className="ticketInfoTable">
+                        <TicketInfoItem
+                            header="Cinema"
+                            value={session.cinema.name}
+                        />
+                        <TicketInfoItem
+                            header="Date"
+                            value={
+                                date.getDate() +
+                                "/" +
+                                (date.getMonth() + 1) +
+                                "/" +
+                                date.getFullYear()
+                            }
+                        />
+                        <TicketInfoItem
+                            header="Time"
+                            value={date.getHours() + ":" + date.getMinutes()}
+                        />
+                        <TicketInfoItem
+                            header="House"
+                            value={session.house.name}
+                        />
+                        <SeatsInfoItem header="Seats" seats={seats} />
+                        <FoodInfoItem header="F&B" food={food} />
+                    </div>
                 </div>
                 <TotalAmount amount={calculateTotalAmount()} />
+                <PaymentMethod />
+                <div
+                    style={{
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "center",
+                    }}
+                >
+                    <ConfirmButton />
+                </div>
             </div>
         </div>
     );

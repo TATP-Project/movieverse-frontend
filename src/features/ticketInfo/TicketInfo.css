@@ -1,33 +1,41 @@
 .tableHeader {
     color: rgba(255, 255, 255, 0.5);
+    margin-left: 100px;
 }
 
 .ticketInfo {
-    padding-left: 50px;
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+}
+.ticketInfoImage {
+    height: 100%;
+}
+.ticketInfoTable {
+    flex: 1;
+    margin-left: 100px;
 }
 .ticketInfoItem {
-    margin-top: 30px;
+    margin-bottom: 30px;
     display: grid;
-    grid-template-columns: 350px 350px;
+    grid-template-columns: 300px auto;
     height: auto;
 }
 .ticketInfoItem * {
     font-family: "Lato";
-    font-size: 20px;
+    font-size: 24px;
 }
 .multipleRow {
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
-.multipleRow:first-child {
-    margin-top: 0;
+.multipleRow:last-child {
+    margin-bottom: 0;
 }
 .wrapper {
     position: relative;
     width: 1150px;
     padding: 50px;
     display: flex;
-    background-color: #36393e;
+    background-color: #282b30;
     flex-wrap: wrap;
 }
 .totalAmount {
