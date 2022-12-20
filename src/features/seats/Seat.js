@@ -1,6 +1,5 @@
 import React from "react";
 import "./Seat.css";
-const AVAILABLE = "AVAILABLE";
 const RESERVED = "RESERVED";
 const SOLD = "SOLD";
 

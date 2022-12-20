@@ -7,7 +7,7 @@ import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownFor
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
-import { setSeatSelection, setMovieSessionId } from "./seatSelectionSlice";
+import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 
 const RESERVED = "RESERVED";
