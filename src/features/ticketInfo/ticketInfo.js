@@ -67,15 +67,15 @@ export default function TicketInfo() {
                 </div>
                 <TotalAmount amount={calculateTotalAmount()} />
                 <PaymentMethod />
-                <div
-                    style={{
-                        display: "flex",
-                        width: "100%",
-                        justifyContent: "center",
-                    }}
-                >
-                    <ConfirmButton />
-                </div>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "center",
+                }}
+            >
+                <ConfirmButton />
             </div>
         </div>
     );
