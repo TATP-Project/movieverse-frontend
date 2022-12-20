@@ -1,5 +1,5 @@
 .statusbar-container >span,p,div{
-    font-family: 'Bebas Neue';
+    font-family: 'lato';
 }
 .ellipse{
     background-color: black;
@@ -9,9 +9,9 @@
     border-radius: 50%;
     font-size: 40px;
     text-align: center;
-    padding-top: 7px;
+    padding-top: 5px;
     margin: auto;
-    margin-bottom: 7px;    
+    margin-bottom: 10px;    
 }
 .stage{
     width: 100px;
@@ -27,7 +27,7 @@
 
 .statusbar-line{
     margin-top: 30px;
-    height: 1px;
+    height: 4px;
     width: 20%;
     background-color: #ff8036;
 }
