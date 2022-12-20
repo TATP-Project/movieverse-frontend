@@ -1,6 +1,5 @@
 .foodList{
     box-sizing: border-box;
-
     background: #282B30;
     border: 3px solid #36393E;
 }
@@ -31,9 +30,8 @@
 .foodMainList{
     display: block;
     position: relative;
-    left: 250px;
-    right: 250px;
-    max-width: 965px;
+
+    width: 965px;
     
     background: #282B30;
     border: 3px solid #36393E;

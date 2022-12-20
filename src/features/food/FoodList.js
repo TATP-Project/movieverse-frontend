@@ -3,19 +3,43 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import {getFoods}  from "../../api/foods";
 import { Col, Row, Card, Button } from 'antd';
+import { useDispatch } from "react-redux";
+import { setSelectedFood } from "./foodSlice";
 
 import FoodCard from "./FoodCard";
 import "./FoodList.css"
 
 export default function FoodPage(){
+    const dispatch = useDispatch();
     const [foods, setFoods] = useState([]);
+    const [selectedFood,setCurrentSelectedFood] = useState({})
     useEffect(() => {
         getFoods().then((response)=>{
             setFoods(response.data);
+            let templateSelectedFood = {}
+            response.data.forEach(food => {
+                templateSelectedFood[food.id] = {
+                    "name": food.name,
+                    "price": food.price,
+                    "count": 0
+                } 
+            });
+            setCurrentSelectedFood(templateSelectedFood)
         })
     }, []);
-
     
+    const updateSelectedFood = (id,amount) =>{
+        
+        let holder = selectedFood;
+        console.log(holder,id,amount)
+        holder[id]["count"] = amount
+        setCurrentSelectedFood(holder)
+    }
+
+    const onSubmitFoods = ()=>{
+        dispatch(setSelectedFood(selectedFood))
+    }
+
     return (
         <>
             <Card className="foodMainList" >
@@ -31,7 +55,7 @@ export default function FoodPage(){
                         {foods.map((food,index) => {
                             if(food.type==="hotdog"){
                                 return  <Col>
-                                            <FoodCard food={food} key={index} />
+                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                         </Col>  
                             }
                         })}
@@ -44,7 +68,7 @@ export default function FoodPage(){
                             if(food.type==="popcorn"){
                                 return  <>
                                             
-                                            <FoodCard food={food} key={index}/>
+                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                         </>  
                             }
                         })}
@@ -57,13 +81,13 @@ export default function FoodPage(){
                             if(food.type==="drink"){
                                 return  <>
                                             
-                                            <FoodCard food={food} key={index}/>
+                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                         </>  
                                     }
                         })}
                     </Row>
 
-                    <Button>Dummy Confirm Button</Button>
+                    <Button onClick={onSubmitFoods}>Dummy Confirm Button</Button>
             </Card>
         </>
     )

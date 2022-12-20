@@ -4,19 +4,25 @@ import { Col, Row, Card, Button, Input } from 'antd';
 import { UpOutlined, DownOutlined} from '@ant-design/icons';
 
 export default function FoodCard(props){
-    const {food, key} = props;
+    const {food, updateSelectedFood} = props;
     const [amount, setAmount] = useState(0);
 
     const addAmount =()=>{
-        setAmount(amount+1);
+        let newAmount = amount+1
+        setAmount(newAmount);
+        updateSelectedFood(food.id,newAmount);
     }
 
     const minusAmount =()=>{
-        setAmount(amount-1);
+        let newAmount = amount-1
+        setAmount(newAmount);
+        updateSelectedFood(food.id,newAmount);
     }
 
     const changeAmount =(event)=>{
-        setAmount(event.target.value)
+        let newAmount = event.target.value
+        setAmount(newAmount);
+        updateSelectedFood(food.id,newAmount);
     }
 
 
