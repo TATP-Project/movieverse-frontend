@@ -4,7 +4,7 @@ import CompletePage from "./pages/CompletePage";
 import ListOfMoviesPage from "./pages/ListOfMoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TicketInfoPage from "./pages/TicketInfoPage";
-import SeatSelection from "./features/seats/SeatSelection";
+import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ListOfMoviesPage />} />
-                    <Route path="/new-order" element={<SeatSelection />} />
+                    <Route path="/new-order" element={<SeatSelectionPage />} />
                     <Route
                         path="/movie-timeslots"
                         element={<MovieTimeslotsPage />}
