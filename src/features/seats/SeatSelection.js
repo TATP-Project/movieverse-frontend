@@ -29,7 +29,7 @@ export default function SeatSelection() {
     }, [movieSession.id]);
 
     const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
-    const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
+    // const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
 
     const seatsIn2DList = seats.reduce((seatLists, seat) => {
         if (seatLists.length === seat.row - 1) {
