@@ -5,6 +5,7 @@ import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
 import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
+import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu"
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
@@ -84,9 +85,9 @@ export default function SeatSelection() {
       <div className="houseSeatBox">
         <Row justify="center">
           <Col>
-            <MovieSessionDropdownForSeat text={movieSession.cinema.name} />
+            <MovieSessionDropdownMenu movieSession={movieSession} />
           </Col>
-          <Col>
+          {/* <Col>
             <MovieSessionDropdownForSeat
               text={`${dayjs(movieSessionDate).format("DD MMM YYYY (ddd)")}`}
             />
@@ -95,7 +96,7 @@ export default function SeatSelection() {
             <MovieSessionDropdownForSeat text={`${
               dayjs(movieSessionDate).format("HH:mm A")
             }`} />
-          </Col>
+          </Col> */}
         </Row>
         <Row justify="center">
           <Col>
