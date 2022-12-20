@@ -10,7 +10,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ListOfMoviesPage />} />
-                    <Route path="/test" element={<SelectingSeatPage />} />
+                    <Route path="/new-order" element={<SelectingSeatPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>

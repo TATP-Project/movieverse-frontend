@@ -4,7 +4,7 @@ import "./ConfirmSeatButton.css";
 
 export default function confirmSeatButton({ onClick }) {
   return (
-    <button className="button" onClick={onClick}>
+    <button className="confirmButton" onClick={onClick}>
       <span className="buttonText">Confirm</span>
       <span className="buttonIcon">
         <RightOutlined />

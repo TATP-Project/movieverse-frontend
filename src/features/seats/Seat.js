@@ -22,7 +22,7 @@ export default function Seat({ id, column, status, onSeatClick, className }) {
       } ${className}`}
       onClick={() => {handleSeatClick()}}
     >
-      {status === SOLD ? "x" : column}
+      {status === SOLD ? "X" : column}
     </div>
   );
 }

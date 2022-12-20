@@ -34,7 +34,7 @@ export default function SelectingSeatPage() {
           if (seat.status === AVAILABLE) {
             return {
               ...seat,
-              status: RESERVED,
+              status: "SOLD",
             };
           } else if (seat.status === RESERVED) {
             return {
@@ -55,7 +55,7 @@ export default function SelectingSeatPage() {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: "#1e2124"}}>
       <Row justify="center">
         <Col>
           <SeatTable
