@@ -2,11 +2,13 @@ import "./TicketInfo.css";
 import TicketInfoItem from "./TicketInfoItem";
 import { useSelector } from "react-redux";
 import SeatsInfoItem from "./SeatsInfoItem";
+import FoodInfoItem from "./FoodInfoItem";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
     const session = useSelector((state) => state.movieSession);
     const seats = useSelector((state) => state.seatSelection.seats);
+    const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
 
     return (
@@ -42,7 +44,7 @@ export default function TicketInfo() {
                     />
                     <TicketInfoItem header="House" value={session.house.name} />
                     <SeatsInfoItem header="Seats" seats={seats} />
-                    <TicketInfoItem header="F&B" value={"TBC"} />
+                    <FoodInfoItem header="F&B" food={food} />
                 </div>
             </div>
         </div>
