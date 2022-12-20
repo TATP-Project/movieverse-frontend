@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TimeslotDropdown from "./TimeslotDropdown";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { getMovieSessions } from "../../api/movies";
 import { useSelector } from "react-redux";
 import "./MovieSessions.css";
@@ -9,6 +9,15 @@ export default function MovieSessions() {
     const movieId = useSelector((state) => state.movie.id);
     const [movieSession, setMovieSession] = useState([]);
     const [uniqueCinemas, setUniqueCinemas] = useState([]);
+    const [selectedDropdown, setSelectedDropdown] = useState(0);
+
+    const wrapperSetSelectedDropdown = useCallback(
+        (val) => {
+            setSelectedDropdown(val);
+        },
+        [setSelectedDropdown]
+    );
+
     useEffect(() => {
         getMovieSessions(movieId).then((response) => {
             // response.data.filter(function(session){
@@ -29,7 +38,7 @@ export default function MovieSessions() {
             <div className="sessionTitle">Session</div>
             <div className="movieSessionGroup">
                 {" "}
-                {uniqueCinemas.map((cinema) => {
+                {uniqueCinemas.map((cinema, index) => {
                     var sessionList = movieSession.filter(
                         (movie) => movie.cinema.id === cinema.id
                     );
@@ -40,7 +49,12 @@ export default function MovieSessions() {
                             </div>
                             <div>{cinema.name}</div>
 
-                            <TimeslotDropdown sessions={sessionList} />
+                            <TimeslotDropdown
+                                sessions={sessionList}
+                                showMenu={index === selectedDropdown}
+                                setSelectedDropdown={wrapperSetSelectedDropdown}
+                                index={index}
+                            />
                         </>
                     );
                 })}

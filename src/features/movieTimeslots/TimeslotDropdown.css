@@ -21,3 +21,9 @@
     font-family: "Merriweather";
     font-size: 22px;
 }
+.dropdownMenu {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #424549;
+}
