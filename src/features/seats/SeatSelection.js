@@ -8,6 +8,7 @@ import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdo
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
+import * as dayjs from "dayjs";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
 
@@ -91,13 +92,20 @@ export default function SeatSelection() {
                     </Col>
                     <Col>
                         <MovieSessionDropdownForSeat
-                            text={movieSessionDateString}
+                            text={`${dayjs(movieSessionDate).format(
+                                "DD MMM YYYY (ddd)"
+                            )}`}
                         />
                     </Col>
                     <Col>
-                        <MovieSessionDropdownForSeat text={"05:00PM"} />
+                        <MovieSessionDropdownForSeat
+                            text={`${dayjs(movieSessionDate).format(
+                                "HH:mm A"
+                            )}`}
+                        />
                     </Col>
                 </Row>
+
                 <Row justify="center">
                     <Col>
                         <Row>

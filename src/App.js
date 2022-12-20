@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import TicketInfoPage from "./pages/TicketInfoPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
+import FoodPage from "./pages/FoodPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                         element={<MovieTimeslotsPage />}
                     />
                     <Route path="*" element={<NotFoundPage />} />
+                    <Route path="/food" element={<FoodPage />} />
                     <Route path="/complete" element={<CompletePage />} />
                     <Route path="/ticketinfo" element={<TicketInfoPage />} />
                 </Route>
