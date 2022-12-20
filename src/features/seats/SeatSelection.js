@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { getSeatsByMovieSessionId } from "../api/movieSessions";
-import SeatTable from "../features/seats/SeatTable";
-import ConfirmSeatButton from "../features/seats/ConfirmSeatButton";
+import { getSeatsByMovieSessionId } from "../../api/movieSessions";
+import SeatTable from "./SeatTable";
+import Seat from "./Seat";
+import ConfirmButton from "./ConfirmButton";
 import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
-import { setSeatSelection } from "../features/seats/seatSelectionSlice";
+import { setSeatSelection } from "./seatSelectionSlice";
+import "./SeatSelection.css";
 
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
+const SOLD = "SOLD";
 
-export default function SelectingSeatPage() {
+export default function SeatSelection() {
   const [seats, setSeats] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getSeatsByMovieSessionId("63a01924a773310c1b950d12").then((response) => {
+    getSeatsByMovieSessionId("63a136f331d0f46035bd0ee4").then((response) => {
       setSeats(response.data);
     });
   }, []);
@@ -55,18 +58,33 @@ export default function SelectingSeatPage() {
   };
 
   return (
-    <div style={{backgroundColor: "#1e2124"}}>
+    <div className="seatSelection">
       <Row justify="center">
         <Col>
-          <SeatTable
-            seatsIn2DList={seatsIn2DList}
-            onSeatClick={handleClickAvailbleSeat}
-          />
+          <Row>
+            <Col>
+              <SeatTable
+                seatsIn2DList={seatsIn2DList}
+                onSeatClick={handleClickAvailbleSeat}
+              />
+            </Col>
+          </Row>
+          <Row gutter={12.5} justify="end" className="seatDemoRow">
+            <Col>
+              <Seat status={AVAILABLE} column={1} showStatus />
+            </Col>
+            <Col>
+              <Seat status={RESERVED} column={1} showStatus />
+            </Col>
+            <Col>
+              <Seat status={SOLD} column={1} showStatus />
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row justify="center">
         <Col>
-          <ConfirmSeatButton onClick={handleConfirmSeatClick} />
+          <ConfirmButton onClick={handleConfirmSeatClick} />
         </Col>
       </Row>
     </div>

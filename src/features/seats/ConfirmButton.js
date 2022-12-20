@@ -1,6 +1,6 @@
 import React from "react";
 import { RightOutlined } from "@ant-design/icons";
-import "./ConfirmSeatButton.css";
+import "./ConfirmButton.css";
 
 export default function confirmSeatButton({ onClick }) {
   return (

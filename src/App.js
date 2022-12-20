@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import ListOfMoviesPage from "./pages/ListOfMoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import SelectingSeatPage from "./pages/SelectingSeatPage";
+import SeatSelection from "./features/seats/SeatSelection";
 
 function App() {
     return (
@@ -10,7 +10,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ListOfMoviesPage />} />
-                    <Route path="/new-order" element={<SelectingSeatPage />} />
+                    <Route path="/new-order" element={<SeatSelection />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
