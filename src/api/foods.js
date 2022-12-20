@@ -7,5 +7,5 @@ import axios from "axios";
 
 export const getFoods = () => {
     // return api.get("/movies");
-    return axios.get("food.json")
+    return axios.get("./food.json")
 };

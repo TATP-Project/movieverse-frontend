@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {getFoods}  from "../../api/foods";
-import { Col, Row, Card, Button } from 'antd';
+import { Col, Row, Card, Button, Space } from 'antd';
 import { useDispatch } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
 
@@ -43,19 +43,23 @@ export default function FoodPage(){
     return (
         <>
             <Card className="foodMainList" >
-                    <Row gutter={[16,26]} >
+                <Space direction="vertical" size="large" style={{display:"flex"}}>
+                    <Row >
                         <Col span={24}>
                             <div className="foodtitle">YOU MAY ALSO LIKE</div>
                         </Col>
                     </Row>
+                    
                     <Row >
                         <div className="foodSubTitle">Hog Dogs</div>
                     </Row>
                     <Row>
                         {foods.map((food,index) => {
                             if(food.type==="hotdog"){
-                                return  <Col>
-                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
+                                return  <Col span={8}>
+                                            <Row justify="end">
+                                                <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
+                                            </Row>
                                         </Col>  
                             }
                         })}
@@ -66,28 +70,31 @@ export default function FoodPage(){
                     <Row>
                         {foods.map((food,index)=>{
                             if(food.type==="popcorn"){
-                                return  <>
-                                            
-                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
-                                        </>  
+                                return  <Col span={8}>
+                                            <Row justify="end">
+                                                <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
+                                            </Row>
+                                        </Col> 
                             }
                         })}
                     </Row>
                     <Row>
-                        <div className="foodSubTitle">drink</div>
+                        <div className="foodSubTitle">Drink</div>
                     </Row>
                     <Row>
                         {foods.map((food,index)=>{
                             if(food.type==="drink"){
-                                return  <>
-                                            
-                                            <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
-                                        </>  
-                                    }
+                                return  <Col span={8}>
+                                            <Row justify="end">
+                                                <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
+                                            </Row>
+                                        </Col> 
+                                }
                         })}
                     </Row>
 
                     <Button onClick={onSubmitFoods}>Dummy Confirm Button</Button>
+                </Space>
             </Card>
         </>
     )
