@@ -25,6 +25,9 @@ export default function SeatSelection() {
     });
   }, [movieSession.id]);
 
+  const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
+  const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
+
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
     if (seatLists.length === seat.row - 1) {
       seatLists.push([]);
@@ -57,7 +60,7 @@ export default function SeatSelection() {
   const handleConfirmSeatClick = () => {
     dispatch(
       setSeatSelection({
-        movieSessionId: "63a136f331d0f46035bd0ee4",
+        movieSessionId: movieSession.id,
         seats: seats.filter((seat) => seat.status === RESERVED),
       })
     );
@@ -79,13 +82,13 @@ export default function SeatSelection() {
       <div className="houseSeatBox">
         <Row justify="center">
           <Col>
-            <MovieSessionDropdownForSeat text="YOHO Mall Cinema" />
+            <MovieSessionDropdownForSeat text={movieSession.cinema.name} />
           </Col>
           <Col>
-            <MovieSessionDropdownForSeat text="18 Dec 2022 (Sun)" />
+            <MovieSessionDropdownForSeat text={movieSessionDateString} />
           </Col>
           <Col>
-            <MovieSessionDropdownForSeat text="05:00 PM" />
+            <MovieSessionDropdownForSeat text={"05:00PM"} />
           </Col>
         </Row>
         <Row justify="center">
