@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getSeatsByMovieSessionId } from "../../api/movieSessions";
 import SeatTable from "./SeatTable";
 import Seat from "./Seat";
-import ConfirmButton from "./ConfirmButton";
+import ConfirmButton from "../button/ConfirmButton";
+import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
+import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
@@ -37,7 +39,7 @@ export default function SeatSelection() {
           if (seat.status === AVAILABLE) {
             return {
               ...seat,
-              status: "SOLD",
+              status: RESERVED,
             };
           } else if (seat.status === RESERVED) {
             return {
@@ -58,35 +60,60 @@ export default function SeatSelection() {
   };
 
   return (
-    <div className="seatSelection">
+    <>
       <Row justify="center">
         <Col>
-          <Row>
-            <Col>
-              <SeatTable
-                seatsIn2DList={seatsIn2DList}
-                onSeatClick={handleClickAvailbleSeat}
-              />
-            </Col>
-          </Row>
-          <Row gutter={12.5} justify="end" className="seatDemoRow">
-            <Col>
-              <Seat status={AVAILABLE} column={1} showStatus />
-            </Col>
-            <Col>
-              <Seat status={RESERVED} column={1} showStatus />
-            </Col>
-            <Col>
-              <Seat status={SOLD} column={1} showStatus />
-            </Col>
-          </Row>
+          <MovieSessionDropdownTitleForSeat text="CINEMA" />
         </Col>
-      </Row>
-      <Row justify="center">
         <Col>
-          <ConfirmButton onClick={handleConfirmSeatClick} />
+          <MovieSessionDropdownTitleForSeat text="DATE" />
+        </Col>
+        <Col>
+          <MovieSessionDropdownTitleForSeat text="TIME" />
         </Col>
       </Row>
-    </div>
+      <div className="seatSelection">
+        <Row justify="center">
+          <Col>
+            <MovieSessionDropdownForSeat text="YOHO Mall Cinema" />
+          </Col>
+          <Col>
+            <MovieSessionDropdownForSeat text="18 Dec 2022 (Sun)" />
+          </Col>
+          <Col>
+            <MovieSessionDropdownForSeat text="05:00 PM" />
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col>
+            <Row>
+              <Col>
+                <SeatTable
+                  seatsIn2DList={seatsIn2DList}
+                  onSeatClick={handleClickAvailbleSeat}
+                />
+              </Col>
+            </Row>
+            <Row gutter={12.5} justify="end" className="seatDemoRow">
+              <Col>
+                <Seat status={AVAILABLE} column={1} showStatus />
+              </Col>
+              <Col>
+                <Seat status={RESERVED} column={1} showStatus />
+              </Col>
+              <Col>
+                <Seat status={SOLD} column={1} showStatus />
+              </Col>
+              <Col span={1} />
+            </Row>
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col>
+            <ConfirmButton onClick={handleConfirmSeatClick} />
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 }

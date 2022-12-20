@@ -15,7 +15,7 @@ export default function SeatTable({ seatsIn2DList, onSeatClick }) {
       </Row>
       {seatsIn2DList.map((seatList, rowIndex) => {
         let verticalMarginClass = "";
-        if (rowIndex === 3) {
+        if (rowIndex === 2) {
           verticalMarginClass += "bottomMargin";
         }
 
@@ -30,10 +30,10 @@ export default function SeatTable({ seatsIn2DList, onSeatClick }) {
             </Col>
             {seatList.map((seat, columnIndex) => {
               let horizontalMarginClass = "";
-              if (columnIndex === 2 || columnIndex === 6 || columnIndex === 9) {
+              if (columnIndex === 1 || columnIndex === 9) {
                 horizontalMarginClass += "rightMargin";
               }
-              if (columnIndex === 0 || columnIndex === 3 || columnIndex === 7) {
+              if (columnIndex === 0 || columnIndex === 2 || columnIndex === 10) {
                 horizontalMarginClass += " leftMargin";
               }
               return (
