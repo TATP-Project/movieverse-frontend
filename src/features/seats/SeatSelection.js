@@ -36,6 +36,8 @@ export default function SeatSelection() {
     return seatLists;
   }, []);
 
+  const isConfirmButtonDisabled = !seats.some((seat) => seat.status === RESERVED)
+
   const handleClickAvailbleSeat = (seatId) => {
     setSeats(
       seats.map((seat) => {
@@ -122,7 +124,7 @@ export default function SeatSelection() {
       </div>
       <Row justify="center">
         <Col>
-          <ConfirmButton onClick={handleConfirmSeatClick} />
+          <ConfirmButton onClick={handleConfirmSeatClick} disabled={isConfirmButtonDisabled}/>
         </Col>
       </Row>
     </div>
