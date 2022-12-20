@@ -1,25 +1,41 @@
-.ticket-info{
-    
+/* .ticket-info {
     box-sizing: border-box;
-    
+
     position: absolute;
     width: 965px;
     height: 641px;
-    background: #282B30;
-    border: 3px solid #36393E;
+    background: #282b30;
+    border: 3px solid #36393e;
     padding: 47px;
-    }
-    
-    .movie-title{
-    
-        font-family: 'Bebas Neue';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 48px;
-        line-height: 58px;
-    
-        /* identical to box height */
-        letter-spacing: 0.07em;
-    
-        color: #FFFFFF;
-    }
+}
+
+.movie-title {
+    font-family: "Bebas Neue";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 58px;
+
+    letter-spacing: 0.07em;
+
+    color: #ffffff;
+} */
+
+.tableHeader {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ticketInfo {
+    padding-left: 50px;
+    flex-grow: 1;
+}
+.ticketInfoItem {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 350px 350px;
+    height: auto;
+}
+.ticketInfoItem * {
+    font-family: "Lato";
+    font-size: 20px;
+}
