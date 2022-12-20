@@ -1,9 +1,9 @@
 import React from 'react'
-
+import "./PaymentItem.css"
 export default function PaymentMethodItem(props) {
     return (
         <>
-            <div>
+            <div className="image">
                 <img src={props.logo} />
             </div>
         </>
