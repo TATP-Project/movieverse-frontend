@@ -6,7 +6,7 @@ import ConfirmButton from "../button/ConfirmButton";
 import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import { Row, Col } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 
@@ -16,13 +16,14 @@ const SOLD = "SOLD";
 
 export default function SeatSelection() {
   const [seats, setSeats] = useState([]);
+  const movieSession = useSelector((state) => state.movieSession);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getSeatsByMovieSessionId("63a136f331d0f46035bd0ee4").then((response) => {
+    getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
     });
-  }, []);
+  }, [movieSession.id]);
 
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
     if (seatLists.length === seat.row - 1) {
@@ -113,10 +114,10 @@ export default function SeatSelection() {
         </Row>
       </div>
       <Row justify="center">
-          <Col>
-            <ConfirmButton onClick={handleConfirmSeatClick} />
-          </Col>
-        </Row>
+        <Col>
+          <ConfirmButton onClick={handleConfirmSeatClick} />
+        </Col>
+      </Row>
     </div>
   );
 }
