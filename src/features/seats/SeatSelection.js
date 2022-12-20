@@ -19,7 +19,7 @@ export default function SeatSelection() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getSeatsByMovieSessionId("63a136f331d0f46035bd0ee4").then((response) => {
+    getSeatsByMovieSessionId("63a01924a773310c1b950d16").then((response) => {
       setSeats(response.data);
     });
   }, []);
