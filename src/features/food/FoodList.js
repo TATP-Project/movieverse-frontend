@@ -11,6 +11,7 @@ import "./FoodList.css"
 
 export default function FoodPage(){
     const dispatch = useDispatch();
+    const [price, setPrice] = useState(0);
     const [foods, setFoods] = useState([]);
     const [selectedFood,setCurrentSelectedFood] = useState({})
     useEffect(() => {
@@ -31,9 +32,15 @@ export default function FoodPage(){
     const updateSelectedFood = (id,amount) =>{
         
         let holder = selectedFood;
-        console.log(holder,id,amount)
         holder[id]["count"] = amount
         setCurrentSelectedFood(holder)
+
+        let countingPrice = 0;
+        Object.keys(selectedFood).forEach((id) => {
+            let item = selectedFood[id]
+            countingPrice += item["count"] * item["price"]
+        });
+        setPrice(countingPrice)
     }
 
     const onSubmitFoods = ()=>{
@@ -92,7 +99,7 @@ export default function FoodPage(){
                                 }
                         })}
                     </Row>
-
+                    <div className="foodtitle">Total Price: {price}</div>
                     <Button onClick={onSubmitFoods}>Dummy Confirm Button</Button>
                 </Space>
             </Card>
