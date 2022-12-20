@@ -5,6 +5,7 @@ import ListOfMoviesPage from "./pages/ListOfMoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
+import PaymentMethod from "./features/payment/PaymentMethod";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path="/movie-timeslots" element={<MovieTimeslotsPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/complete" element={<CompletePage />} />
+          <Route path="/payment" element={<PaymentMethod />} />
+
         </Route>
       </Routes>
     </div>
