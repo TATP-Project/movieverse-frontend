@@ -8,6 +8,7 @@ import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdo
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
+import * as dayjs from "dayjs";
 import "./SeatSelection.css";
 
 const RESERVED = "RESERVED";
@@ -26,7 +27,6 @@ export default function SeatSelection() {
   }, [movieSession.id]);
 
   const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
-  const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
 
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
     if (seatLists.length === seat.row - 1) {
@@ -85,10 +85,14 @@ export default function SeatSelection() {
             <MovieSessionDropdownForSeat text={movieSession.cinema.name} />
           </Col>
           <Col>
-            <MovieSessionDropdownForSeat text={movieSessionDateString} />
+            <MovieSessionDropdownForSeat
+              text={`${dayjs(movieSessionDate).format("DD MMM YYYY (ddd)")}`}
+            />
           </Col>
           <Col>
-            <MovieSessionDropdownForSeat text={"05:00PM"} />
+            <MovieSessionDropdownForSeat text={`${
+              dayjs(movieSessionDate).format("HH:mm A")
+            }`} />
           </Col>
         </Row>
         <Row justify="center">
