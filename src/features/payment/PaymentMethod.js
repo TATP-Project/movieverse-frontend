@@ -14,10 +14,10 @@ export default function PaymentMethod() {
   return (
     <div>
         <h2 className="payment-title">Payment</h2>
-        <div className="payment-method">
-        <Radio.Group onChange={onChange} value={value} className="radio">
+        <div>
+        <Radio.Group onChange={onChange} value={value} className="payment-method">
             <div>
-            <Radio value={"wecahatPay"}></Radio>
+            <Radio value={"wecahatPay"} class></Radio>
             <PaymentMethodItem
             logo={weChatPay}
             />
