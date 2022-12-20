@@ -67,7 +67,7 @@ export default function SeatSelection() {
                 seats: seats.filter((seat) => seat.status === RESERVED),
             })
         );
-        navigate("/ticketinfo");
+        navigate("/food");
     };
 
     return (
