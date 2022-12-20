@@ -9,7 +9,7 @@ export default function MovieSessions() {
     const movieId = useSelector((state) => state.movie.id);
     const [movieSession, setMovieSession] = useState([]);
     const [uniqueCinemas, setUniqueCinemas] = useState([]);
-    const [selectedDropdown, setSelectedDropdown] = useState(0);
+    const [selectedDropdown, setSelectedDropdown] = useState(-1);
 
     const wrapperSetSelectedDropdown = useCallback(
         (val) => {
