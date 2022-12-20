@@ -1,0 +1,25 @@
+.ticket-info{
+    
+    box-sizing: border-box;
+    
+    position: absolute;
+    width: 965px;
+    height: 641px;
+    background: #282B30;
+    border: 3px solid #36393E;
+    padding: 47px;
+    }
+    
+    .movie-title{
+    
+        font-family: 'Bebas Neue';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 58px;
+    
+        /* identical to box height */
+        letter-spacing: 0.07em;
+    
+        color: #FFFFFF;
+    }
