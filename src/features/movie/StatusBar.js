@@ -11,11 +11,16 @@ const StatusBar = (props) => {
                 <div className='statusbar-line' />
                 <div className={"stage "+(props.stage>=2?'stage-completed':'stage-uncomplete')}>
                     <div className="ellipse">2</div>
-                    <p>Order</p>
+                    <p>Food &amp; Beverage</p>
                 </div>
                 <div className='statusbar-line' />
                 <div className={"stage "+(props.stage>=3?'stage-completed':'stage-uncomplete')}>
                     <div className="ellipse">3</div>
+                    <p>Order</p>
+                </div>
+                <div className='statusbar-line' />
+                <div className={"stage "+(props.stage>=4?'stage-completed':'stage-uncomplete')}>
+                    <div className="ellipse">4</div>
                     <p>Complete</p>
                 </div>
             </div>

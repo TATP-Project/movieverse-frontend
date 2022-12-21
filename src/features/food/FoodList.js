@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
 import { useNavigate } from "react-router-dom";
 
+import TotalAmount from "../ticketInfo/TotalAmount";
+import ConfirmButton from "../button/ConfirmButton";
 import FoodCard from "./FoodCard";
 import "./FoodList.css";
 
@@ -17,7 +19,6 @@ export default function FoodPage() {
     const [selectedFood, setCurrentSelectedFood] = useState({});
     useEffect(() => {
         getFoods().then((response) => {
-            console.log(response)
             setFoods(response.data);
             let templateSelectedFood = {};
             response.data.forEach((food) => {
@@ -51,7 +52,7 @@ export default function FoodPage() {
 
     return (
         <>
-            <Card className="foodMainList" >
+            <Card className="foodMainList" style={{top: "50px"}} >
                 <Space direction="vertical" size="large" style={{display:"flex"}}>
                     <Row >
                         <Col span={24}>
@@ -101,10 +102,23 @@ export default function FoodPage() {
                                 }
                         })}
                     </Row>
-                    <div className="foodtitle">Total Price: {price}</div>
-                    <Button onClick={onSubmitFoods}>Dummy Confirm Button</Button>
+                    
+                    <TotalAmount amount={price} />
                 </Space>
+                
             </Card>
+            <div
+                style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "center",
+                    marginTop:"50px"
+                }}
+            >
+                <ConfirmButton onClick={onSubmitFoods} />
+            </div>
+            
+            
         </>
     );
 }
