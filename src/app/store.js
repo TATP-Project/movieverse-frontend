@@ -4,6 +4,8 @@ import movieReducer from "../features/movie/movieSlice";
 import movieSessionReducer from "../features/movieTimeslots/movieSessionSlice";
 import foodSelectionReducer from "../features/food/foodSlice";
 import loadingReducer from "../features/loading/loadingSlice";
+import ticketIdReducer from "../features/ticketInfo/ticketSlice";
+
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +14,6 @@ export const store = configureStore({
         seatSelection: seatSelectionReducer,
         foodSelection: foodSelectionReducer,
         loading: loadingReducer,
+        ticketId: ticketIdReducer,
     },
 });
