@@ -1,17 +1,13 @@
 import React from "react";
-import { setMovieSession } from "../movieTimeslots/movieSessionSlice";
-import { useDispatch } from "react-redux";
 import "./MovieSessionDropdown.css";
 
-export default function MovieSessionDropdownForSeat({ movieSession }) {
-  const dispatch = useDispatch();
+export default function MovieSessionDropdownForSeat({ text, onClick }) {
   const handleClick = () => {
-    dispatch(setMovieSession(movieSession));
+    onClick && onClick(text);
   };
-console.log(movieSession.cinema)
   return (
     <div className="dropdownBox dropdownBoxItem" onClick={handleClick}>
-      <span className="dropdownBoxText">{movieSession.cinema.name}</span>
+      <span className="dropdownBoxText">{text}</span>
     </div>
   );
 }
