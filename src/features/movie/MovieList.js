@@ -13,18 +13,33 @@ export default function MovieList(props) {
     }, []);
     return (
         <div className={"list"}>
-            {movies.filter((movie,index)=>{
-                if(props.filterTags.length===0){
-                    return true
-                }else{
-                    return movie.tags.filter(tag=>
-                        props.filterTags.includes(tag.name.toUpperCase())
-                    ).length==props.filterTags.length                    
-                }
-            })
-            .map((movie, index) => {
-                return <MovieCard movie={movie} key={index} />;
-            })}
+            {console.log(props.filterTags)}
+            {movies
+                //Filter by Genre (OR)
+                .filter((movie, index) => {
+                    if (props.filterTags.genre.length === 0) {
+                        return true
+                    } else {
+                        return movie.tags.filter(tag =>
+                            props.filterTags.genre.includes(tag.name.toUpperCase())
+                        ).length > 0
+                    }
+                })
+                //AND
+                //Filter by Type (OR)
+                .filter((movie, index) => {
+                    if (props.filterTags.type.length === 0) {
+                        return true
+                    } else {
+                        return movie.tags.filter(tag =>
+                            props.filterTags.type.includes(tag.name.toUpperCase())
+                        ).length>0
+                    }
+                })
+                //render card     
+                .map((movie, index) => {
+                    return <MovieCard movie={movie} key={index} />;
+                })}
         </div>
     );
 }

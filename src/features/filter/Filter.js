@@ -22,13 +22,13 @@ export default function Filter(props) {
                         <Col span={24}><h2>Genre</h2></Col>
                         {genreOption.map((genre) => {
                             return <Col key={genre} span={8}>
-                                <Checkbox value={genre}>{genre}</Checkbox>
+                                <Checkbox value={JSON.stringify({"key":"genre","value":genre})}>{genre}</Checkbox>
                             </Col>
                         })}
                         <Col span={24}><h2>Type</h2></Col>
                         {typeOption.map((type) => {
                             return <Col key={type} span={8}>
-                                <Checkbox key={type} value={type}>{type}</Checkbox>
+                                <Checkbox key={type} value={JSON.stringify({"key":"type","value":type})}>{type}</Checkbox>
                             </Col>
                         })}
                     </Row>

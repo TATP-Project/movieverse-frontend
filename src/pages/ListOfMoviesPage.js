@@ -16,6 +16,12 @@ export default function ListOfMoviesPage() {
     const onCheckChange=(filterTags)=>{
         setFilterTags(filterTags)
     }
+    const groupTagObjByKey=(filterTagObjs)=>{
+        return {
+            'genre':filterTagObjs.filter((filterTagObj)=>filterTagObj.key=='genre').map(filterTagObj=>filterTagObj.value.toUpperCase()),
+            'type':filterTagObjs.filter((filterTagObj)=>filterTagObj.key=='type').map(filterTagObj=>filterTagObj.value.toUpperCase())
+        }
+    }
     return (
         <>
             <div className={"title"} style={{ "paddingBottom": "32px" }} >
@@ -25,9 +31,8 @@ export default function ListOfMoviesPage() {
                 </Button>                            
             </div>
             {showFilter ? <div><Filter checkedBoxes={filterTags} onCheckChange={onCheckChange}/></div> : <></>}
-
             <div className={"body"}>
-                <MovieList filterTags={filterTags.map(tag=>tag.toString().toUpperCase())}/>
+                <MovieList filterTags={groupTagObjByKey(filterTags.map(tag=>JSON.parse(tag)))}/>
             </div>
         </>
     );
