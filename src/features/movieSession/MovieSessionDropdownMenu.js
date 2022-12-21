@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MovieSessionDropdownForSeat from "./MovieSessionDropdownForSeat";
 import { Dropdown, Row, Col } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { getMovieSessionsByMovieId } from "../../api/movieSessions";
 import { useDispatch } from "react-redux";
 import { setMovieSession } from "../movieTimeslots/movieSessionSlice";
@@ -82,6 +83,10 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
     });
   }, [movieSession]);
 
+  const dropdownIcon = <span className={`movieSessionDropdownIcon`}>
+        <DownOutlined />
+      </span>
+
   return (
     <Row>
       <Col>
@@ -112,6 +117,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
             onClick={() => {
               setIsCinemaOpen(true);
             }}
+            icon={dropdownIcon}
           />
         </Dropdown>
       </Col>
@@ -143,6 +149,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
             onClick={() => {
               setIsDateOpen(true);
             }}
+            icon={dropdownIcon}
           />
         </Dropdown>
       </Col>
@@ -161,7 +168,6 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
                     key={`${sessionId}-${index}`}
                     text={convertToTime(dateString)}
                     onClick={() => {
-                        console.log(movieSessionTimeObjects)
                       handleTimeObjectClick(sessionId, dateString);
                     }}
                   />
@@ -174,6 +180,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
             onClick={() => {
               setIsTimeObjectOpen(true);
             }}
+            icon={dropdownIcon}
           />
         </Dropdown>
       </Col>

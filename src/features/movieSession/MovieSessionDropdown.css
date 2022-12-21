@@ -8,6 +8,11 @@
 
 .dropdownBoxItem {
   cursor: pointer;
+  border: 1px solid black;
+}
+
+.dropdownBoxItem:hover {
+  background: #135c54;
 }
 
 .dropdownBoxText {
@@ -19,11 +24,10 @@
   margin-left: 30px;
 }
 
-
 .dropdownTitleBox {
   width: 367px;
   height: 60px;
-  background: #282B30;
+  background: #282b30;
   line-height: 60px;
   vertical-align: middle;
   padding-left: 30px;
@@ -36,4 +40,11 @@
   font-weight: 400;
   font-size: 28px;
   color: #ffffff;
+}
+
+.movieSessionDropdownIcon {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  background: #0d403a;
 }

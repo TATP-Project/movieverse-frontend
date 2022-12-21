@@ -1,13 +1,19 @@
 import React from "react";
+import { Row, Col } from "antd";
 import "./MovieSessionDropdown.css";
 
-export default function MovieSessionDropdownForSeat({ text, onClick }) {
+export default function MovieSessionDropdownForSeat({ text, onClick, icon }) {
   const handleClick = () => {
-    onClick && onClick(text);
+    onClick && onClick();
   };
   return (
-    <div className="dropdownBox dropdownBoxItem" onClick={handleClick}>
-      <span className="dropdownBoxText">{text}</span>
-    </div>
+    <Row
+      className="dropdownBox dropdownBoxItem"
+      justify="space-between"
+      onClick={handleClick}
+    >
+      <Col className="dropdownBoxText">{text}</Col>
+      <Col className="dropdownBoxText">{icon}</Col>
+    </Row>
   );
 }
