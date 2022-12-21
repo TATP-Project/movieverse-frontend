@@ -36,7 +36,7 @@ export default function MovieSessions() {
             setUniqueCinemas(uniqueCinemas);
             setMovieSession(response.data);
         }).finally(()=>{dispatch(toggleLoading(-1))});
-    }, [movieId]);
+    }, [movieId,dispatch]);
 
     return (
         <div className="movieSession">

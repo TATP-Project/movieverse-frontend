@@ -10,13 +10,12 @@ import { toggleLoading } from "../loading/loadingSlice";
 export default function MovieList(props) {
     const [movies, setMovies] = useState([]);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(toggleLoading(1))
         getMovies().then((response) => {            
             setMovies(response.data);
         }).finally(()=>{dispatch(toggleLoading(-1))});
-    }, []);
+    }, [dispatch]);
     return (
         <>
         <div className={"list"}>

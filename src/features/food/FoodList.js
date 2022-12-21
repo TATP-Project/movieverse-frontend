@@ -33,7 +33,7 @@ export default function FoodPage() {
             });
             setCurrentSelectedFood(templateSelectedFood);
         }).finally(()=>dispatch(toggleLoading(-1)));
-    }, []);
+    }, [dispatch]);
     
     const updateSelectedFood = (id,amount) =>{
         

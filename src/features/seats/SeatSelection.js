@@ -31,7 +31,7 @@ export default function SeatSelection() {
     getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
     }).finally(()=>{dispatch(toggleLoading(-1))});
-  }, [movieSession.id]);
+  }, [movieSession.id,dispatch]);
 
   const isConfirmButtonDisabled = !seats.some(
     (seat) => seat.status === RESERVED

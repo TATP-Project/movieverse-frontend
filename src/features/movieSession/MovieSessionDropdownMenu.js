@@ -89,7 +89,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
     getMovieSessionsByMovieId(movieSession.movie.id).then((response) => {
       setMovieSessions(response.data);
     }).finally(()=>{dispatch(toggleLoading(-1))});
-  }, [movieSession]);
+  }, [movieSession,dispatch]);
 
   const dropdownIcon = (
     <span className={`movieSessionDropdownIcon`}>
