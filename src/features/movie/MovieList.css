@@ -1,10 +1,30 @@
 .list {
     display: grid;
     grid-template-columns: auto auto;
-    /* justify-content: center; redundant */
     align-content: center;
 }
 
 .list * {
     font-family: "Habibi";
+}
+
+.justifyCenter{
+    justify-content: center; 
+}
+
+#noMovieFoundLogo{
+    width: 100%;
+    position: absolute;
+}
+#noMovieFoundLogoContainer{
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+    display: flex;
+    z-index: -999;
+}
+#noMovieFoundLogoContainer h1{
+    position: absolute;
+    bottom: -10%;
+    font-size: xxx-large;
 }
