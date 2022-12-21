@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getSeatsByMovieSessionId } from "../../api/movieSessions";
+import { getSeatsByMovieSessionId, updateSeatsByMovieSessionId } from "../../api/movieSessions";
 import SeatTable from "./SeatTable";
 import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 
+const SELECTED = "SELECTED";
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
 const SOLD = "SOLD";
@@ -22,6 +23,7 @@ export default function SeatSelection() {
   useEffect(() => {
     getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
+      console.log(response.data)
     });
   }, [movieSession.id]);
 
@@ -43,9 +45,9 @@ export default function SeatSelection() {
           if (seat.status === AVAILABLE) {
             return {
               ...seat,
-              status: RESERVED,
+              status: SELECTED,
             };
-          } else if (seat.status === RESERVED) {
+          } else if (seat.status === SELECTED) {
             return {
               ...seat,
               status: AVAILABLE,
@@ -58,12 +60,15 @@ export default function SeatSelection() {
   };
 
   const handleConfirmSeatClick = () => {
-    dispatch(
+    const reservedSeat = seats.filter((seat) => seat.status === SELECTED)
+      .map((seat) => seat.status = RESERVED)
+      console.log(reservedSeat)
+    updateSeatsByMovieSessionId(movieSession.id, reservedSeat).then((response) => {
       setSeatSelection({
         movieSessionId: movieSession.id,
         seats: seats.filter((seat) => seat.status === RESERVED),
       })
-    );
+    });
   };
 
   return (
@@ -104,6 +109,9 @@ export default function SeatSelection() {
             <Row gutter={12.5} justify="end" className="seatDemoRow">
               <Col>
                 <Seat status={AVAILABLE} column={1} showStatus />
+              </Col>
+              <Col>
+                <Seat status={SELECTED} column={1} showStatus />
               </Col>
               <Col>
                 <Seat status={RESERVED} column={1} showStatus />

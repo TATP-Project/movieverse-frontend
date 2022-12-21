@@ -4,13 +4,16 @@ import Seat from "./Seat";
 import SeatRowLabel from "./SeatRowLabel";
 import "./SeatTable.css";
 import Screen from "./Screen.png";
+import { useSelector } from "react-redux";
 
 export default function SeatTable({ seatsIn2DList, onSeatClick }) {
+  const movieSession = useSelector((state) => state.movieSession);
   return (
     <div>
       <Row justify="center" className="bottomMargin">
         <Col>
           <img src={Screen} width={313} height={82} alt="screen" />
+          {movieSession.house.name}
         </Col>
       </Row>
       {seatsIn2DList.map((seatList, rowIndex) => {

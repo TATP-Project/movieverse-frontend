@@ -1,7 +1,8 @@
 import React from "react";
 import "./Seat.css";
-const RESERVED = "RESERVED";
+const SELECTED = "SELECTED";
 const SOLD = "SOLD";
+const RESERVED ="RESERVED"
 
 export default function Seat({
   id,
@@ -24,6 +25,8 @@ export default function Seat({
           status === SOLD
             ? "seatSold"
             : status === RESERVED
+            ? "seatReserved"
+            : status === SELECTED
             ? "seatSelected"
             : "seatAvailable"
         }`}
@@ -31,11 +34,11 @@ export default function Seat({
           handleSeatClick();
         }}
       >
-        {status === SOLD ? "X" : column}
+        {status === SOLD ? "X" : status === RESERVED ? "R" :column}
       </div>
       {showStatus && (
         <div className="seatDescriptionBox seatText">
-          {status === RESERVED
+          {status === SELECTED
             ? "Selected"
             : status.charAt(0) + status.slice(1).toLowerCase()}
         </div>
