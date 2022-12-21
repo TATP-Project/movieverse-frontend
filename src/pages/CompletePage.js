@@ -47,8 +47,8 @@ export default function CompletePage() {
 
                 <div id="hideDivToPrint" style={
                     {
-                        // "dislay": "none",
-                        // "height": "0px",
+                        "dislay": "none",
+                        "height": "0px",
                         "position": "absolute",
                         "top": "100%",
                         "overflow": "hidden"
