@@ -1,6 +1,6 @@
-import { Alert } from 'antd';
-import {React,useSelector} from 'react'
-
+import React, { createContext } from 'react';
+import { Button, Modal} from 'antd';
+const ReachableContext = createContext(null);
 
 export default function UnavailableSeatMessage(props) {
   const seats = [{
@@ -10,6 +10,8 @@ export default function UnavailableSeatMessage(props) {
     row: 2,
     column: 1 
   }];
+  const [modal, contextHolder] = Modal.useModal();
+  
   var seatsInLetter = seats.map(seat => {
     var rowLetter = String.fromCharCode(64 + parseInt(seat.row));
     var seatsStr = rowLetter + seat.column;
@@ -18,17 +20,22 @@ export default function UnavailableSeatMessage(props) {
 
   return (
     <div> 
-        <Alert
-        message="Seat Not Available"
-        description= {
-          <code>
-            Seat {seatsInLetter} become unavailable when you selecting the seats. 
-            Please select other seat.
-          </code>
-        }
-        type="error"
-        showIcon
-        />
+        
+        <ReachableContext.Provider value="Light">
+        <Button
+          onClick={() => {
+            modal.error({title: 'Seat Not Available',
+            content: (
+              <>
+                Seat {seatsInLetter} become unavailable when you selecting the seats. 
+                <br/>
+                Please select other seat.
+              </>
+            ),});
+          }}
+        >Error</Button>
+        {contextHolder}
+        </ReachableContext.Provider>
   </div>
   )
 }
