@@ -5,12 +5,12 @@ import { Col, Row, Card, Space } from 'antd';
 import { useDispatch } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
 import { useNavigate } from "react-router-dom";
-
+import CountdownTimer from "../counter/CountdownTimer"
 import TotalAmount from "../ticketInfo/TotalAmount";
 import ConfirmButton from "../button/ConfirmButton";
 import FoodCard from "./FoodCard";
 import "./FoodList.css";
-
+import { setTimer } from "../counter/countdownTimerSlice"
 import { toggleLoading } from "../loading/loadingSlice";
 
 export default function FoodPage() {
@@ -19,6 +19,12 @@ export default function FoodPage() {
     const navigate = useNavigate();
     const [foods, setFoods] = useState([]);
     const [selectedFood, setCurrentSelectedFood] = useState({});
+
+    const TEN_MINS_IN_MS = 10 * 60 * 1000;
+    const NOW_IN_MS = new Date().getTime();
+    const targetDate = NOW_IN_MS + TEN_MINS_IN_MS;
+    dispatch(setTimer(targetDate))
+
     useEffect(() => {
         dispatch(toggleLoading(1))
         getFoods().then((response) => {
@@ -59,6 +65,9 @@ export default function FoodPage() {
             <Card className="foodMainList" style={{top: "50px"}} >
                 <Space direction="vertical" size="large" style={{display:"flex"}}>
                     <Row >
+                        <Col span={24}>
+                          <CountdownTimer targetDate={targetDate}/>
+                        </Col>
                         <Col span={24}>
                             <div className="foodtitle">YOU MAY ALSO LIKE</div>
                         </Col>

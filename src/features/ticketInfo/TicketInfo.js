@@ -9,7 +9,7 @@ import ConfirmButton from "../button/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
-
+import CountdownTimer from "../counter/CountdownTimer";
 
 export default function TicketInfo() {
     const navigate = useNavigate();
@@ -19,7 +19,8 @@ export default function TicketInfo() {
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
     const dispatch = useDispatch();
-
+    const targetDate = useSelector((state) => state.countdownTimer.targetDate);  
+    
     const calculateTotalAmount = () => {
         var foodTotal = Object.keys(food).reduce((total, id) => {
             var thisFood = food[id];
@@ -52,6 +53,7 @@ export default function TicketInfo() {
         <div>
             <div className="wrapper">
                 <div className={"movieTitle"} style={{ width: "100%" }}>
+                    <CountdownTimer targetDate={targetDate}/>
                     {movie.name}
                 </div>
                 <div className={"ticketInfo"}>

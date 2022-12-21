@@ -2,6 +2,7 @@ import React from "react";
 import "./Seat.css";
 const RESERVED = "RESERVED";
 const SOLD = "SOLD";
+const SELECTED="SELECTED"
 
 export default function Seat({
     id,
@@ -24,6 +25,8 @@ export default function Seat({
                     status === SOLD
                         ? "seatSold"
                         : status === RESERVED
+                        ? "seatReserved"
+                        : status === SELECTED
                         ? "seatSelected"
                         : "seatAvailable"
                 }`}
@@ -31,7 +34,7 @@ export default function Seat({
                     handleSeatClick();
                 }}
             >
-                {status === SOLD ? "X" : column}
+                {status === SOLD ? "X" : status === RESERVED ? "R" : column}
             </div>
             {showStatus && (
                 <div className="seatDescriptionBox seatText">
