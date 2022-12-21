@@ -18,7 +18,6 @@ export default function TicketInfo() {
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const calculateTotalAmount = () => {
