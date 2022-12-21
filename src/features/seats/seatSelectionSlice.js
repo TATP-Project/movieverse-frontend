@@ -10,10 +10,14 @@ export const seatSelectionSlice = createSlice({
   initialState: initSeatSelection,
   reducers: {
     setSeatSelection(state, action) {
-      return action.payload;
+      state.movieSessionId = action.payload.movieSessionId
+      state.seats = action.payload.seats
+    },
+    setSeatsStatus(state, action) {
+      state.seats.map((seat) => seat.status = action.payload)
     },
   },
 });
 
-export const { setSeatSelection } = seatSelectionSlice.actions;
+export const { setSeatSelection, setSeatsStatus } = seatSelectionSlice.actions;
 export default seatSelectionSlice.reducer;

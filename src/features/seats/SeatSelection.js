@@ -27,7 +27,6 @@ export default function SeatSelection() {
 
   useEffect(() => {
     dispatch(toggleLoading(1))
-    console.log('lad')
     getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
     }).finally(()=>{dispatch(toggleLoading(-1))});
@@ -72,10 +71,11 @@ export default function SeatSelection() {
     })
 
     updateSeatsByMovieSessionId(movieSession.id, seatToReserve).then((response) => {
-      setSeatSelection({
+      dispatch(setSeatSelection({
         movieSessionId: movieSession.id,
-        seats: seats.filter((seat) => seat.status === RESERVED),
-      })
+        seats: response.data,
+      }))
+
     });
 
     navigate("/food");
