@@ -48,7 +48,7 @@ export default function MovieInfo() {
                             logo={timeLogo}
                             alt="time"
                             header="Running Time"
-                            value={movie.runningTime + "Minutes"}
+                            value={movie.runningTime + " Minutes"}
                         />
                         <MovieInfoItem
                             logo={languageLogo}
