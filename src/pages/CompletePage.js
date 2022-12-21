@@ -6,8 +6,12 @@ import './completePage.css'
 import * as html2canvas from "html2canvas"
 import { jsPDF } from 'jspdf';
 import TicketInfo from '../features/ticketInfo/TicketInfo';
+import { useSelector } from "react-redux";
+
 export default function CompletePage() {
-    const ticketid = 'balaalalaalaalalaal'
+
+    const ticketid = useSelector((state) => state.ticketId)
+    const ticketIdError='no-ticket-id-not-found'
 
     const printDocument = () => {
         let input = document.getElementById('divToPrint')
@@ -32,7 +36,7 @@ export default function CompletePage() {
             }}>
                 <img src={CompleteLogo} alt={"Ticket Reservated"} />
                 <h1>Completed</h1>
-                <p className="ticketid">Your Ticket ID: {ticketid}</p>
+                <p className="ticketid">Your Ticket ID: {ticketid||ticketIdError}</p>
                 <DownloadButton onClick={printDocument} />
 
                 <div id="hideDivToPrint" style={
@@ -51,7 +55,7 @@ export default function CompletePage() {
                         "marginTop": "50px",
                     }}>
                         <TicketInfo />
-                        <p className="ticketid">Your Ticket ID: {ticketid}</p>
+                        <p className="ticketid">Your Ticket ID: {ticketid||ticketIdError}</p>
                     </div>
                 </div>
 
