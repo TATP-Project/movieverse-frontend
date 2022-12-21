@@ -1,0 +1,42 @@
+.foodList{
+    box-sizing: border-box;
+    background: #282B30;
+    border: 3px solid #36393E;
+}
+
+.foodSubTitle{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+
+    color: #FF8036;
+}
+.foodtitle{
+
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 58px;
+
+    letter-spacing: 0.07em;
+    color: #FFFFFF;
+
+}
+
+.foodMainList{
+    display: block;
+    position: relative;
+
+    width: 965px;
+    
+    background: #282B30;
+    border: 3px solid #36393E;
+    
+}
+
+
+

@@ -4,11 +4,12 @@ import SeatTable from "./SeatTable";
 import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
-import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu"
+import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu";
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
+import { useNavigate } from "react-router-dom";
 
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
@@ -18,12 +19,17 @@ export default function SeatSelection() {
   const [seats, setSeats] = useState([]);
   const movieSession = useSelector((state) => state.movieSession);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
     });
   }, [movieSession.id]);
+
+  const isConfirmButtonDisabled = !seats.some(
+    (seat) => seat.status === RESERVED
+  );
 
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
     if (seatLists.length === seat.row - 1) {
@@ -32,8 +38,6 @@ export default function SeatSelection() {
     seatLists[seat.row - 1].push(seat);
     return seatLists;
   }, []);
-
-  const isConfirmButtonDisabled = !seats.some((seat) => seat.status === RESERVED)
 
   const handleClickAvailbleSeat = (seatId) => {
     setSeats(
@@ -55,7 +59,6 @@ export default function SeatSelection() {
       })
     );
   };
-
   const handleConfirmSeatClick = () => {
     dispatch(
       setSeatSelection({
@@ -63,6 +66,7 @@ export default function SeatSelection() {
         seats: seats.filter((seat) => seat.status === RESERVED),
       })
     );
+    navigate("/food");
   };
 
   return (
@@ -111,7 +115,10 @@ export default function SeatSelection() {
       </div>
       <Row justify="center">
         <Col>
-          <ConfirmButton onClick={handleConfirmSeatClick} disabled={isConfirmButtonDisabled}/>
+          <ConfirmButton
+            onClick={handleConfirmSeatClick}
+            disabled={isConfirmButtonDisabled}
+          />
         </Col>
       </Row>
     </div>
