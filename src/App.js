@@ -7,6 +7,7 @@ import TicketInfoPage from "./pages/TicketInfoPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
 import FoodPage from "./pages/FoodPage";
+import UnavailableSeatMessage from "./features/error message/UnavailableSeatMessage";
 
 function App() {
     return (
@@ -23,6 +24,8 @@ function App() {
                     <Route path="/food" element={<FoodPage />} />
                     <Route path="/complete" element={<CompletePage />} />
                     <Route path="/ticketinfo" element={<TicketInfoPage />} />
+                    <Route path="/test" element={<UnavailableSeatMessage />} />
+
                 </Route>
             </Routes>
         </div>
