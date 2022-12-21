@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {getFoods}  from "../../api/foods";
-import { Col, Row, Card, Button, Space } from 'antd';
+import { Col, Row, Card, Space } from 'antd';
 import { useDispatch } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
 import { useNavigate } from "react-router-dom";
@@ -72,6 +72,8 @@ export default function FoodPage() {
                                                 <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                             </Row>
                                         </Col>  
+                            }else{
+                                return null;
                             }
                         })}
                     </Row>
@@ -86,6 +88,8 @@ export default function FoodPage() {
                                                 <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                             </Row>
                                         </Col> 
+                            }else{
+                                return null;
                             }
                         })}
                     </Row>
@@ -100,6 +104,8 @@ export default function FoodPage() {
                                                 <FoodCard food={food} key={food.id} updateSelectedFood={updateSelectedFood}/>
                                             </Row>
                                         </Col> 
+                                }else{
+                                    return null;
                                 }
                         })}
                     </Row>
