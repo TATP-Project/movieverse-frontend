@@ -45,7 +45,7 @@ export default function MovieList(props) {
                 
                 {filteredMovie.length > 0 ?
                     filteredMovie.map((movie, index) => <MovieCard movie={movie} key={index} />) :
-                    <div id="noMovieFoundLogoContainer"><img id="noMovieFoundLogo" src={NoMovieFoundLogo} /><h1>No movies found</h1></div>}
+                    <div id="noMovieFoundLogoContainer"><img id="noMovieFoundLogo" src={NoMovieFoundLogo} alt="ERROR"/><h1>No movies found</h1></div>}
             </div>
         </>
     );
