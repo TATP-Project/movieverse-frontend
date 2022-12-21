@@ -6,6 +6,7 @@ import FoodInfoItem from "./FoodInfoItem";
 import TotalAmount from "./TotalAmount";
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
+import { useNavigate } from "react-router-dom";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
@@ -13,6 +14,8 @@ export default function TicketInfo() {
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
+    const navigate = useNavigate();
+
     const calculateTotalAmount = () => {
         var foodTotal = Object.keys(food).reduce((total, id) => {
             var thisFood = food[id];
@@ -23,6 +26,10 @@ export default function TicketInfo() {
         var seatTotal =
             parseInt(session.price) * parseInt(Object.keys(seats).length);
         return foodTotal + seatTotal;
+    };
+
+    const handleConfirmTicketInfo = () => {
+        navigate("/complete");
     };
     return (
         <div>
@@ -75,7 +82,7 @@ export default function TicketInfo() {
                     justifyContent: "center",
                 }}
             >
-                <ConfirmButton />
+                <ConfirmButton onClick={handleConfirmTicketInfo} />
             </div>
         </div>
     );
