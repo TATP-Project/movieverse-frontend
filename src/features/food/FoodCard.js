@@ -37,7 +37,7 @@ export default function FoodCard(props){
                 <Row justify="center">
                     <div className="foodImage">
                         <img
-                                src={"data:image/png;base64," + food.image}
+                                src={"data:image/png;base64," + food.image.data}
                                 alt={food.name + " stretched"}
                             />
                     </div>

@@ -16,6 +16,7 @@ export default function FoodPage(){
     const [selectedFood,setCurrentSelectedFood] = useState({})
     useEffect(() => {
         getFoods().then((response)=>{
+            console.log(response)
             setFoods(response.data);
             let templateSelectedFood = {}
             response.data.forEach(food => {
