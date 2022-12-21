@@ -1,11 +1,14 @@
 import "./TicketInfo.css";
 import TicketInfoItem from "./TicketInfoItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SeatsInfoItem from "./SeatsInfoItem";
 import FoodInfoItem from "./FoodInfoItem";
 import TotalAmount from "./TotalAmount";
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
+import { useNavigate } from "react-router-dom";
+import { postTicket } from "../../api/ticketInfo";
+import { setTicketId } from "./ticketSlice";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
@@ -13,6 +16,9 @@ export default function TicketInfo() {
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const calculateTotalAmount = () => {
         var foodTotal = Object.keys(food).reduce((total, id) => {
             var thisFood = food[id];
@@ -23,6 +29,23 @@ export default function TicketInfo() {
         var seatTotal =
             parseInt(session.price) * parseInt(Object.keys(seats).length);
         return foodTotal + seatTotal;
+    };
+
+    const handleConfirmTicketInfo = () => {
+        var foodList = [];
+        Object.keys(food).forEach((id) => {
+            foodList = foodList.concat(Array(food[id].count).fill(id));
+        });
+        var ticketInfoJson = {
+            movieSessionId: session.id,
+            seats: seats,
+            food: foodList,
+        };
+        postTicket(ticketInfoJson).then((response) => {
+            dispatch(setTicketId(response.data));
+        });
+        console.log(ticketInfoJson);
+        navigate("/complete");
     };
     return (
         <div>
@@ -75,7 +98,7 @@ export default function TicketInfo() {
                     justifyContent: "center",
                 }}
             >
-                <ConfirmButton />
+                <ConfirmButton onClick={handleConfirmTicketInfo} />
             </div>
         </div>
     );

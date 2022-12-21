@@ -6,7 +6,7 @@ export default function PaymentMethod() {
     var weChatPay = require("./wechatpay.png");
     var applePay = require("./applepay.png");
     var alipay = require("./alipay.png");
-    const [paymentMethod, setPaymentMethod] = useState(1);
+    const [paymentMethod, setPaymentMethod] = useState("applePay");
     const onChange = (e) => {
         setPaymentMethod(e.target.value);
     };
