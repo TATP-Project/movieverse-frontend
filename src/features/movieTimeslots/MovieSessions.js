@@ -4,13 +4,15 @@ import { useEffect, useCallback } from "react";
 import { getMovieSessions } from "../../api/movies";
 import { useSelector } from "react-redux";
 import "./MovieSessions.css";
+import { useDispatch } from "react-redux";
+import { toggleLoading } from "../loading/loadingSlice";
 
 export default function MovieSessions() {
     const movieId = useSelector((state) => state.movie.id);
     const [movieSession, setMovieSession] = useState([]);
     const [uniqueCinemas, setUniqueCinemas] = useState([]);
     const [selectedDropdown, setSelectedDropdown] = useState(-1);
-
+    
     const wrapperSetSelectedDropdown = useCallback(
         (val) => {
             setSelectedDropdown(val);
@@ -18,7 +20,10 @@ export default function MovieSessions() {
         [setSelectedDropdown]
     );
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
+        dispatch(toggleLoading(1))
         getMovieSessions(movieId).then((response) => {
             // response.data.filter(function(session){
             //     session.cinema.id
@@ -30,8 +35,8 @@ export default function MovieSessions() {
             );
             setUniqueCinemas(uniqueCinemas);
             setMovieSession(response.data);
-        });
-    }, [movieId]);
+        }).finally(()=>{dispatch(toggleLoading(-1))});
+    }, [movieId,dispatch]);
 
     return (
         <div className="movieSession">

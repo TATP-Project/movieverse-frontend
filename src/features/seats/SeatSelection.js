@@ -11,6 +11,9 @@ import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
 
+import { toggleLoading } from "../loading/loadingSlice";
+
+
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
 const SOLD = "SOLD";
@@ -21,11 +24,14 @@ export default function SeatSelection() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   useEffect(() => {
+    dispatch(toggleLoading(1))
+    console.log('lad')
     getSeatsByMovieSessionId(movieSession.id).then((response) => {
       setSeats(response.data);
-    });
-  }, [movieSession.id]);
+    }).finally(()=>{dispatch(toggleLoading(-1))});
+  }, [movieSession.id,dispatch]);
 
   const isConfirmButtonDisabled = !seats.some(
     (seat) => seat.status === RESERVED

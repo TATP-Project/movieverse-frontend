@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setMovieSession } from "../movieTimeslots/movieSessionSlice";
 import * as dayjs from "dayjs";
 import "./MovieSessionDropdown.css";
+import { toggleLoading } from "../loading/loadingSlice";
 
 const BLANK = "------------";
 const INVALID_DATE = "Invalid Date";
@@ -84,10 +85,11 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
   };
 
   useEffect(() => {
+    dispatch(toggleLoading(1))
     getMovieSessionsByMovieId(movieSession.movie.id).then((response) => {
       setMovieSessions(response.data);
-    });
-  }, [movieSession]);
+    }).finally(()=>{dispatch(toggleLoading(-1))});
+  }, [movieSession,dispatch]);
 
   const dropdownIcon = (
     <span className={`movieSessionDropdownIcon`}>
