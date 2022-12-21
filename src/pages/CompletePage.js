@@ -1,6 +1,6 @@
 import React from 'react'
 import StatusBar from '../features/movie/StatusBar'
-import CompleteLogo from '../icons/CompleteLogo.png'
+// import CompleteLogo from '../icons/CompleteLogo.png'
 import DownloadButton from "../features/button/ReceiptButton";
 import './completePage.css'
 import * as html2canvas from "html2canvas"
