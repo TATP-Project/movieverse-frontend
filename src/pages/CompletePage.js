@@ -14,13 +14,15 @@ export default function CompletePage() {
     const ticketIdError='no-ticket-id-not-found'
 
     const printDocument = () => {
-        let input = document.getElementById('divToPrint')
+        const input = document.getElementById('divToPrint')
         html2canvas(input)
             .then((canvas) => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF();
-                pdf.addImage(imgData, 'JPEG', 0, 0);
-                pdf.output('dataurlnewwindow');
+                const width = pdf.internal.pageSize.getWidth();
+                const height = pdf.internal.pageSize.getHeight();
+                pdf.addImage(imgData, 'JPEG', 0, 0, width,height);
+                // pdf.output('dataurlnewwindow');
                 pdf.save("ticket.pdf");
             })
             ;
@@ -36,7 +38,8 @@ export default function CompletePage() {
             }}>
                 <img src={CompleteLogo} alt={"Ticket Reservated"} />
                 <h1>Completed</h1>
-                <p className="ticketid">Your Ticket ID: {ticketid||ticketIdError}</p>
+                {console.log(ticketid||ticketIdError)}
+                <p className="ticketid">Your Ticket ID: {typeof ticketid ==='string'?ticketid:ticketIdError}</p>
                 <DownloadButton onClick={printDocument} />
 
                 <div id="hideDivToPrint" style={
@@ -55,7 +58,7 @@ export default function CompletePage() {
                         "marginTop": "50px",
                     }}>
                         <TicketInfo />
-                        <p className="ticketid">Your Ticket ID: {ticketid||ticketIdError}</p>
+                        <p className="ticketid">Your Ticket ID: {typeof ticketid ==='string'?ticketid:ticketIdError}</p>
                     </div>
                 </div>
 
