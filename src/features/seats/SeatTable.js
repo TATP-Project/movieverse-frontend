@@ -14,6 +14,7 @@ export default function SeatTable({ seatsIn2DList, onSeatClick }) {
         <Col>
           <img src={Screen} width={313} height={82} alt="screen" />
           {movieSession.house.name}
+  
         </Col>
       </Row>
       {seatsIn2DList.map((seatList, rowIndex) => {

@@ -3,6 +3,7 @@ import seatSelectionReducer from "../features/seats/seatSelectionSlice";
 import movieReducer from "../features/movie/movieSlice";
 import movieSessionReducer from "../features/movieTimeslots/movieSessionSlice";
 import foodSelectionReducer from "../features/food/foodSlice";
+import countdownTimerReducer from "../features/counter/countdownTimerSlice"
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         movieSession: movieSessionReducer,
         seatSelection: seatSelectionReducer,
         foodSelection: foodSelectionReducer,
+        countdownTimer: countdownTimerReducer,
     },
 });

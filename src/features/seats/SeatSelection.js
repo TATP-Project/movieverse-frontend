@@ -6,7 +6,7 @@ import ConfirmButton from "../button/ConfirmButton";
 import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import { Row, Col } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
 import * as dayjs from "dayjs";
 import "./SeatSelection.css";
@@ -20,7 +20,6 @@ const SOLD = "SOLD";
 export default function SeatSelection() {
     const [seats, setSeats] = useState([]);
     const movieSession = useSelector((state) => state.movieSession);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,18 +62,19 @@ export default function SeatSelection() {
     };
 
     const handleConfirmSeatClick = () => {
-    const seatToReserve = seats.filter((seat) => seat.status === SELECTED)
-      .map((seat) => {
-        return {...seat, status : RESERVED}
-      })
-      console.log(seatToReserve)
-    updateSeatsByMovieSessionId(movieSession.id, seatToReserve).then((response) => {
-            setSeatSelection({
-                movieSessionId: movieSession.id,
-                seats: seats.filter((seat) => seat.status === RESERVED),
-            })
-    });
-        navigate("/food");
+      const seatToReserve = seats.filter((seat) => seat.status === SELECTED)
+        .map((seat) => {
+          return {...seat, status : RESERVED}
+        })
+
+      updateSeatsByMovieSessionId(movieSession.id, seatToReserve).then((response) => {
+        setSeatSelection({
+          movieSessionId: movieSession.id,
+          seats: seats.filter((seat) => seat.status === RESERVED),
+        })
+      });
+
+      navigate("/food");
     };
 
     return (

@@ -6,6 +6,7 @@ import FoodInfoItem from "./FoodInfoItem";
 import TotalAmount from "./TotalAmount";
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
+import CountdownTimer from "../counter/CountdownTimer";
 
 export default function TicketInfo() {
     const movie = useSelector((state) => state.movie);
@@ -13,6 +14,8 @@ export default function TicketInfo() {
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
+    const targetDate = useSelector((state) => state.countdownTimer.targetDate);  
+
     const calculateTotalAmount = () => {
         var foodTotal = Object.keys(food).reduce((total, id) => {
             var thisFood = food[id];
@@ -24,11 +27,13 @@ export default function TicketInfo() {
             parseInt(session.price) * parseInt(Object.keys(seats).length);
         return foodTotal + seatTotal;
     };
+    console.log(targetDate)
     return (
         <div>
             <div className="wrapper">
                 <div className={"movieTitle"} style={{ width: "100%" }}>
-                    {movie.name}
+                    <CountdownTimer targetDate={targetDate}/>
+                    {movie.name} 
                 </div>
                 <div className={"ticketInfo"}>
                     <div>
