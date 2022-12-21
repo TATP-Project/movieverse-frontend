@@ -63,10 +63,12 @@ export default function SeatSelection() {
     };
 
     const handleConfirmSeatClick = () => {
-    const reservedSeat = seats.filter((seat) => seat.status === SELECTED)
-      .map((seat) => seat.status = RESERVED)
-      console.log(reservedSeat)
-    updateSeatsByMovieSessionId(movieSession.id, reservedSeat).then((response) => {
+    const seatToReserve = seats.filter((seat) => seat.status === SELECTED)
+      .map((seat) => {
+        return {...seat, status : RESERVED}
+      })
+      console.log(seatToReserve)
+    updateSeatsByMovieSessionId(movieSession.id, seatToReserve).then((response) => {
             setSeatSelection({
                 movieSessionId: movieSession.id,
                 seats: seats.filter((seat) => seat.status === RESERVED),
@@ -128,10 +130,13 @@ export default function SeatSelection() {
                         >
                             <Col>
                                 <Seat
-              </Col>
-              <Col>
-                <Seat status={SELECTED} column={1} showStatus />
+                                    status={AVAILABLE}
+                                    column={1}
+                                    showStatus
                                 />
+                            </Col>
+                            <Col>
+                                <Seat status={SELECTED} column={1} showStatus />
                             </Col>
                             <Col>
                                 <Seat status={RESERVED} column={1} showStatus />
