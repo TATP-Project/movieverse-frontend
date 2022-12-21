@@ -1,33 +1,34 @@
-                
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {getFoods}  from "../../api/foods";
 import { Col, Row, Card, Button, Space } from 'antd';
 import { useDispatch } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
+import { useNavigate } from "react-router-dom";
 
 import FoodCard from "./FoodCard";
-import "./FoodList.css"
+import "./FoodList.css";
 
-export default function FoodPage(){
+export default function FoodPage() {
     const dispatch = useDispatch();
     const [price, setPrice] = useState(0);
+    const navigate = useNavigate();
     const [foods, setFoods] = useState([]);
-    const [selectedFood,setCurrentSelectedFood] = useState({})
+    const [selectedFood, setCurrentSelectedFood] = useState({});
     useEffect(() => {
-        getFoods().then((response)=>{
+        getFoods().then((response) => {
             console.log(response)
             setFoods(response.data);
-            let templateSelectedFood = {}
-            response.data.forEach(food => {
+            let templateSelectedFood = {};
+            response.data.forEach((food) => {
                 templateSelectedFood[food.id] = {
-                    "name": food.name,
-                    "price": food.price,
-                    "count": 0
-                } 
+                    name: food.name,
+                    price: food.price,
+                    count: 0,
+                };
             });
-            setCurrentSelectedFood(templateSelectedFood)
-        })
+            setCurrentSelectedFood(templateSelectedFood);
+        });
     }, []);
     
     const updateSelectedFood = (id,amount) =>{
@@ -105,5 +106,5 @@ export default function FoodPage(){
                 </Space>
             </Card>
         </>
-    )
+    );
 }
