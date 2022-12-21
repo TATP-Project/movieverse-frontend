@@ -54,6 +54,7 @@ export default function MovieSessions() {
                                 showMenu={index === selectedDropdown}
                                 setSelectedDropdown={wrapperSetSelectedDropdown}
                                 index={index}
+                                key={index}
                             />
                         </>
                     );

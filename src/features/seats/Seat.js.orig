@@ -18,6 +18,31 @@ export default function Seat({
         }
     };
 
+<<<<<<< HEAD
+  return (
+    <div className={`${className}`}>
+      <div
+        className={`seatBox seatText ${
+          status === SOLD
+            ? "seatSold"
+            : status === RESERVED
+            ? "seatReserved"
+            : status === SELECTED
+            ? "seatSelected"
+            : "seatAvailable"
+        }`}
+        onClick={() => {
+          handleSeatClick();
+        }}
+      >
+        {status === SOLD ? "X" : status === RESERVED ? "R" :column}
+      </div>
+      {showStatus && (
+        <div className="seatDescriptionBox seatText">
+          {status === SELECTED
+            ? "Selected"
+            : status.charAt(0) + status.slice(1).toLowerCase()}
+=======
     return (
         <div className={`${className}`}>
             <div
@@ -25,8 +50,6 @@ export default function Seat({
                     status === SOLD
                         ? "seatSold"
                         : status === RESERVED
-            ? "seatReserved"
-            : status === SELECTED
                         ? "seatSelected"
                         : "seatAvailable"
                 }`}
@@ -34,15 +57,16 @@ export default function Seat({
                     handleSeatClick();
                 }}
             >
-        {status === SOLD ? "X" : status === RESERVED ? "R" :column}
+                {status === SOLD ? "X" : column}
             </div>
             {showStatus && (
                 <div className="seatDescriptionBox seatText">
-          {status === SELECTED
+                    {status === RESERVED
                         ? "Selected"
                         : status.charAt(0) + status.slice(1).toLowerCase()}
                 </div>
             )}
+>>>>>>> origin/CI
         </div>
     );
 }
