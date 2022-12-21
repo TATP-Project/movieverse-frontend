@@ -40,7 +40,7 @@ export default function TimeslotDropdown(props) {
           </div>
         ) : null}
         <div className={"dropdownItem"}>
-          <div className={"sessionDropdownBox"}>
+          <div className={"sessionDropdownBox"} onClick={toggleMenu}>
             <div>{date.getDate() + "/" + (date.getMonth() + 1)}</div>
             <div>{date.getHours() + ":" + date.getMinutes()}</div>
             <div>{"$" + props.sessions[0].price}</div>
