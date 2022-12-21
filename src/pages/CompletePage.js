@@ -27,7 +27,7 @@ export default function CompletePage() {
     }
     return (
         <>
-            <StatusBar stage={3} />
+            <StatusBar stage={4} />
             <div style={{
                 "display": "flex",
                 "flexDirection": "column",

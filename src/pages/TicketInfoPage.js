@@ -5,7 +5,7 @@ import StatusBar from "../features/movie/StatusBar";
 export default function TicketInfoPage() {
     return (
         <div>
-            <StatusBar stage={2} />
+            <StatusBar stage={3} />
             <TicketInfo />
         </div>
     );

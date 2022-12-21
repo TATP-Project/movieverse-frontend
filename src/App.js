@@ -7,10 +7,13 @@ import TicketInfoPage from "./pages/TicketInfoPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
 import FoodPage from "./pages/FoodPage";
+import { useSelector } from "react-redux";
 
 function App() {
+    const spinCircle = useSelector((state) => state.loading)
     return (
         <div className="App">
+            {spinCircle?<span className="loading"/>:<></>}
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ListOfMoviesPage />} />

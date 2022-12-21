@@ -5,6 +5,6 @@ const api = axios.create({
     baseURL: "https://movieverse-backend-staging.up.railway.app/",
 });
 
-export const getFoods = () => {
-    return api.get("foods");
+export const postTicket = (ticket) => {
+    return api.post("/tickets", ticket);
 };

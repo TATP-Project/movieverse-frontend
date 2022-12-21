@@ -8,7 +8,7 @@
     display: flex;
 }
 .ticketInfoImage {
-    height: 100%;
+    height: 400px;
 }
 .ticketInfoTable {
     flex: 1;
@@ -52,10 +52,21 @@
 .totalAmount > * {
     font-family: "Lato";
 }
-.totalAmount > .amount {
-    font-size: 20px;
-}
+
 .totalAmount > .price {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
     font-size: 35px;
+    line-height: 42px;
     color: #ff8036;
+}
+.amountContent{
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }

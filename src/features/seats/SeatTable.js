@@ -24,7 +24,7 @@ export default function SeatTable({ seatsIn2DList, onSeatClick }) {
             key={`seat-list${rowIndex}`}
             justify="center"
             className={`row ${verticalMarginClass}`}
-          >
+          >            
             <Col>
               <SeatRowLabel index={rowIndex} />
             </Col>
