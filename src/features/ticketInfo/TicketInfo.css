@@ -8,7 +8,7 @@
     display: flex;
 }
 .ticketInfoImage {
-    height: 100%;
+    height: 400px;
 }
 .ticketInfoTable {
     flex: 1;
