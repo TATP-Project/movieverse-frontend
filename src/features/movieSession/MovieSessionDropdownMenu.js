@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import MovieSessionDropdownForSeat from "./MovieSessionDropdownForSeat";
 import { Dropdown, Row, Col } from "antd";
 import { getMovieSessionsByMovieId } from "../../api/movieSessions";
+import { useDispatch } from "react-redux";
+import { setMovieSession } from "../movieTimeslots/movieSessionSlice";
 import * as dayjs from "dayjs";
 import "./MovieSessionDropdown.css";
 
@@ -24,7 +26,8 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
   const [time, setTime] = useState(movieSession.timeslot.startDateTime);
   const [isCinemaOpen, setIsCinemaOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
-  const [isTimeOpen, setIsTimeOpen] = useState(false);
+  const [isTimeObjectOpen, setIsTimeObjectOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const movieSessionCinemas = Array.from(
     new Set(movieSessions.map((movieSession) => movieSession.cinema.name))
@@ -38,7 +41,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
     )
   );
 
-  const movieSessionTimes = Array.from(
+  const movieSessionTimeObjects = Array.from(
     movieSessions
       .filter(
         (movieSession) =>
@@ -46,7 +49,10 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
           convertToDate(movieSession.timeslot.startDateTime) ===
             convertToDate(date)
       )
-      .map((movieSession) => movieSession.timeslot.startDateTime)
+      .map((movieSession) => ({
+        sessionId: movieSession.id,
+        time: movieSession.timeslot.startDateTime,
+      }))
   );
 
   const handleCinemaClick = (cinemaName) => {
@@ -58,6 +64,16 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
   const handleDateClick = (dateString) => {
     setDate(dateString);
     setTime(BLANK);
+  };
+
+  const handleTimeObjectClick = (sessionId, dateString) => {
+    setTime(dateString);
+    const nextMovieSession = movieSessions.find(
+      (movieSession) => movieSession.id === sessionId
+    );
+    if (!!nextMovieSession) {
+      dispatch(setMovieSession(nextMovieSession));
+    }
   };
 
   useEffect(() => {
@@ -97,9 +113,6 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
               setIsCinemaOpen(true);
             }}
           />
-          {/* <div className="dropdownBox ">
-          <span className="dropdownBoxText">{cinema}</span>
-        </div> */}
         </Dropdown>
       </Col>
       <Col>
@@ -125,9 +138,6 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
             </div>
           )}
         >
-          {/* <div className="dropdownBox ">
-            <span className="dropdownBoxText">{convertToDate(date)}</span>
-          </div> */}
           <MovieSessionDropdownForSeat
             text={convertToDate(date)}
             onClick={() => {
@@ -138,34 +148,31 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
       </Col>
       <Col>
         <Dropdown
-          open={isTimeOpen}
+          open={isTimeObjectOpen}
           dropdownRender={() => (
             <div
               onMouseLeave={() => {
-                setIsTimeOpen(false);
+                setIsTimeObjectOpen(false);
               }}
             >
-              {movieSessionTimes
-                .filter((dateString) => dateString !== time)
-                .map((dateString, index) => (
+              {movieSessionTimeObjects
+                .map(({ sessionId, time: dateString }, index) => (
                   <MovieSessionDropdownForSeat
-                    key={`${dateString}-${index}`}
+                    key={`${sessionId}-${index}`}
                     text={convertToTime(dateString)}
                     onClick={() => {
-                      setTime(dateString);
+                        console.log(movieSessionTimeObjects)
+                      handleTimeObjectClick(sessionId, dateString);
                     }}
                   />
                 ))}
             </div>
           )}
         >
-          {/* <div className="dropdownBox">
-            <span className="dropdownBoxText">{convertToTime(date)}</span>
-          </div> */}
           <MovieSessionDropdownForSeat
             text={convertToTime(time)}
             onClick={() => {
-              setIsTimeOpen(true);
+              setIsTimeObjectOpen(true);
             }}
           />
         </Dropdown>
