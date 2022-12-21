@@ -1,0 +1,33 @@
+.ticketid{
+    font-size: 1.5em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid white;
+}
+#divToPrint{
+    width: 800px;
+    height: 1130px;
+    overflow: hidden;
+    background-color: #282b30;
+}
+#divToPrint *{
+    max-width: 800px;
+    max-height: 1130px;
+}
+#divToPrint img{
+    /* width: 100%; */
+    height: auto;
+}
+#divToPrint .wrapper .payment-title{
+    display: none;
+}
+#divToPrint .wrapper .ant-radio-group{
+    display: none;
+}
+
+#divToPrint > div:first-child .confirmButton {
+    display: none;
+}
+
+#divToPrint > div:first-child button {
+    display: none;
+}

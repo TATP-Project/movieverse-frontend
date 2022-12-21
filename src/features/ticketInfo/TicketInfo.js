@@ -6,8 +6,10 @@ import FoodInfoItem from "./FoodInfoItem";
 import TotalAmount from "./TotalAmount";
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
+import { useNavigate } from "react-router-dom";
 
 export default function TicketInfo() {
+    const navigate = useNavigate();
     const movie = useSelector((state) => state.movie);
     const session = useSelector((state) => state.movieSession);
     const seats = useSelector((state) => state.seatSelection.seats);
@@ -76,6 +78,7 @@ export default function TicketInfo() {
                 }}
             >
                 <ConfirmButton />
+                <button onClick={()=>navigate("/complete")}/>
             </div>
         </div>
     );
