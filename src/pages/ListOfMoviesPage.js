@@ -21,6 +21,7 @@ export default function ListOfMoviesPage() {
             'type':filterTagObjs.filter((filterTagObj)=>filterTagObj.key==='type').map(filterTagObj=>filterTagObj.value.toUpperCase())
         }
     }
+    
     return (
         <>
             <div className={"title"} style={{ "paddingBottom": "32px" }} >

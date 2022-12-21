@@ -11,6 +11,8 @@ import ConfirmButton from "../button/ConfirmButton";
 import FoodCard from "./FoodCard";
 import "./FoodList.css";
 
+import { toggleLoading } from "../loading/loadingSlice";
+
 export default function FoodPage() {
     const dispatch = useDispatch();
     const [price, setPrice] = useState(0);
@@ -18,6 +20,7 @@ export default function FoodPage() {
     const [foods, setFoods] = useState([]);
     const [selectedFood, setCurrentSelectedFood] = useState({});
     useEffect(() => {
+        dispatch(toggleLoading(1))
         getFoods().then((response) => {
             setFoods(response.data);
             let templateSelectedFood = {};
@@ -29,7 +32,7 @@ export default function FoodPage() {
                 };
             });
             setCurrentSelectedFood(templateSelectedFood);
-        });
+        }).finally(()=>dispatch(toggleLoading(-1)));
     }, []);
     
     const updateSelectedFood = (id,amount) =>{

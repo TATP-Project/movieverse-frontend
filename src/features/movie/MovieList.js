@@ -3,15 +3,22 @@ import { useState } from "react";
 import { getMovies } from "../../api/movies";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
+import { useDispatch } from "react-redux";
+import { toggleLoading } from "../loading/loadingSlice";
+
 
 export default function MovieList(props) {
     const [movies, setMovies] = useState([]);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        getMovies().then((response) => {
+        dispatch(toggleLoading(1))
+        getMovies().then((response) => {            
             setMovies(response.data);
-        });
+        }).finally(()=>{dispatch(toggleLoading(-1))});
     }, []);
     return (
+        <>
         <div className={"list"}>
             {movies
                 //Filter by Genre (OR)
@@ -40,5 +47,6 @@ export default function MovieList(props) {
                     return <MovieCard movie={movie} key={index} />;
                 })}
         </div>
+        </>
     );
 }
