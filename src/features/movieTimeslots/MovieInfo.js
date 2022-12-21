@@ -54,7 +54,7 @@ export default function MovieInfo() {
                             logo={languageLogo}
                             alt="language"
                             header="Language"
-                            value={movie.language}
+                            value={ movie.language + "  /  " + movie.subtitle + " Subtitle"}
                         />
                     </div>
                 </div>
