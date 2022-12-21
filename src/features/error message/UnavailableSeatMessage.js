@@ -1,8 +1,10 @@
 import React, { createContext } from 'react';
 import { Button, Modal} from 'antd';
+import ConfirmButton from '../button/ConfirmButton';
 const ReachableContext = createContext(null);
 
 export default function UnavailableSeatMessage(props) {
+  // const {seats} = props;
   const seats = [{
     row: 1,
     column: 1
@@ -10,6 +12,18 @@ export default function UnavailableSeatMessage(props) {
     row: 2,
     column: 1 
   }];
+  const config = (seatsInLetter) =>{
+    modal.error({title: 'Seat Not Available',
+            content: (
+              <>
+                Seat {seatsInLetter} become unavailable when you selecting the seats. 
+                <br/>
+                Please select other seat.
+              </>
+            ),});
+
+  }
+  
   const [modal, contextHolder] = Modal.useModal();
   
   var seatsInLetter = seats.map(seat => {
@@ -22,7 +36,7 @@ export default function UnavailableSeatMessage(props) {
     <div> 
         
         <ReachableContext.Provider value="Light">
-        <Button
+        <ConfirmButton
           onClick={() => {
             modal.error({title: 'Seat Not Available',
             content: (
@@ -33,7 +47,7 @@ export default function UnavailableSeatMessage(props) {
               </>
             ),});
           }}
-        >Error</Button>
+        />
         {contextHolder}
         </ReachableContext.Provider>
   </div>
