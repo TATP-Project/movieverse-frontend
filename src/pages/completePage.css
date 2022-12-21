@@ -1,7 +1,10 @@
 .ticketid{
     font-size: 1.5em;
-    padding-bottom: 0.2em;
+    padding-bottom: 1em;
+    width: 1000px;
+    text-align: center;
     border-bottom: 1px solid white;
+    margin-bottom: 0px;
 }
 #divToPrint{
     width: 800px;
@@ -35,7 +38,18 @@
 #divToPrint .show-counter{
     display: none;
 }
+#divToPrint .expired-notice{
+    display: none;
+}
 
 #divToPrint .ticketInfoTable{
     margin-left: 0px;
+}
+
+#qrCodeHeader {
+    color: #fa7e35;
+    font-size: xxx-large;
+}
+#react-qrcode-logo{
+    margin-bottom: 20px;
 }
