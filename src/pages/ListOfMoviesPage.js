@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MovieList from "../features/movie/MovieList";
 import "./commonStyles.css";
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import FilterLogo from '../icons/FilterLogo.png'
 import "./listOfMoviePage.css";
@@ -18,8 +17,8 @@ export default function ListOfMoviesPage() {
     }
     const groupTagObjByKey=(filterTagObjs)=>{
         return {
-            'genre':filterTagObjs.filter((filterTagObj)=>filterTagObj.key=='genre').map(filterTagObj=>filterTagObj.value.toUpperCase()),
-            'type':filterTagObjs.filter((filterTagObj)=>filterTagObj.key=='type').map(filterTagObj=>filterTagObj.value.toUpperCase())
+            'genre':filterTagObjs.filter((filterTagObj)=>filterTagObj.key==='genre').map(filterTagObj=>filterTagObj.value.toUpperCase()),
+            'type':filterTagObjs.filter((filterTagObj)=>filterTagObj.key==='type').map(filterTagObj=>filterTagObj.value.toUpperCase())
         }
     }
     return (
@@ -27,7 +26,7 @@ export default function ListOfMoviesPage() {
             <div className={"title"} style={{ "paddingBottom": "32px" }} >
                 <span style={{ "float": "left" }} >Now on cinemas</span>
                 <Button style={{ "float": "right", "backgroundColor": "#7289DA" }} type="primary" icon={<span>Filter</span>} size={2} onClick={toggleFilterModal}>
-                    <img id="filterIcon" src={FilterLogo} />                    
+                    <img id="filterIcon" src={FilterLogo} alt='filter' />                    
                 </Button>                            
             </div>
             {showFilter ? <div><Filter checkedBoxes={filterTags} onCheckChange={onCheckChange}/></div> : <></>}

@@ -5,7 +5,6 @@ import ListOfMoviesPage from "./pages/ListOfMoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SeatSelection from "./features/seats/SeatSelection";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
-import Filter from "./features/filter/Filter";
 
 function App() {
     return (

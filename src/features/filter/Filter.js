@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Filter.css'
 import FilterModal from '../../icons/FilterModal.png'
 import { Checkbox, Col, Row } from 'antd';
@@ -15,7 +15,7 @@ export default function Filter(props) {
     ]
     return (
         <div id='filterModalContainer'>
-            <img src={FilterModal} />
+            <img src={FilterModal} alt="error" />
             <div id='filterContentContainer'>
                 <Checkbox.Group style={{ width: '100%' }} defaultValue={props.checkedBoxes} onChange={props.onCheckChange}>
                     <Row>

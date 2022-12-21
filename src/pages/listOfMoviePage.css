@@ -8,12 +8,12 @@
 #filterModalContainer {
     right: 1%;
     height: 350px !important;
-
+    margin-right: 5px;
 }
 
 #filterModalContainer * {
     font-size: large !important;
-    margin-right: 6px;
+
 }
 
 .list {
