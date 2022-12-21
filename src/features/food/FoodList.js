@@ -48,6 +48,7 @@ export default function FoodPage() {
 
     const onSubmitFoods = ()=>{
         dispatch(setSelectedFood(selectedFood))
+        navigate("/ticketinfo");
     }
 
     return (
