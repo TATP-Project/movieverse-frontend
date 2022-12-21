@@ -15,8 +15,8 @@ const convertToDate = (dateString) => {
   return dateText === INVALID_DATE ? BLANK : dateText;
 };
 
-const convertToTime = (dateString) => {
-  const timeText = dayjs(dateString).format("hh:mm A");
+const convertToTime = (timeObject) => {
+  const timeText = dayjs(timeObject.time || timeObject).format("hh:mm A");
   return timeText === INVALID_DATE ? BLANK : timeText;
 };
 
@@ -24,7 +24,10 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
   const [movieSessions, setMovieSessions] = useState([]);
   const [cinema, setCinema] = useState(movieSession.cinema.name);
   const [date, setDate] = useState(movieSession.timeslot.startDateTime);
-  const [time, setTime] = useState(movieSession.timeslot.startDateTime);
+  const [timeObject, setTimeObject] = useState({
+    sessionId: movieSession.id,
+    time: movieSession.timeslot.startDateTime,
+  });
   const [isCinemaOpen, setIsCinemaOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [isTimeObjectOpen, setIsTimeObjectOpen] = useState(false);
@@ -59,16 +62,19 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
   const handleCinemaClick = (cinemaName) => {
     setCinema(cinemaName);
     setDate(BLANK);
-    setTime(BLANK);
+    setTimeObject({sessionId: "", time: ""});
   };
 
   const handleDateClick = (dateString) => {
     setDate(dateString);
-    setTime(BLANK);
+    setTimeObject({sessionId: "", time: ""});
   };
 
   const handleTimeObjectClick = (sessionId, dateString) => {
-    setTime(dateString);
+    setTimeObject({
+      sessionId,
+      time: dateString,
+    });
     const nextMovieSession = movieSessions.find(
       (movieSession) => movieSession.id === sessionId
     );
@@ -83,9 +89,11 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
     });
   }, [movieSession]);
 
-  const dropdownIcon = <span className={`movieSessionDropdownIcon`}>
-        <DownOutlined />
-      </span>
+  const dropdownIcon = (
+    <span className={`movieSessionDropdownIcon`}>
+      <DownOutlined />
+    </span>
+  );
 
   return (
     <Row>
@@ -163,6 +171,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
               }}
             >
               {movieSessionTimeObjects
+                .filter((timeObj) => timeObj.sessionId !== timeObject.sessionId)
                 .map(({ sessionId, time: dateString }, index) => (
                   <MovieSessionDropdownForSeat
                     key={`${sessionId}-${index}`}
@@ -176,7 +185,7 @@ export default function MovieSessionDropdownMenu({ movieSession }) {
           )}
         >
           <MovieSessionDropdownForSeat
-            text={convertToTime(time)}
+            text={convertToTime(timeObject)}
             onClick={() => {
               setIsTimeObjectOpen(true);
             }}

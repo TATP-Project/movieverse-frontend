@@ -3,13 +3,11 @@ import { getSeatsByMovieSessionId } from "../../api/movieSessions";
 import SeatTable from "./SeatTable";
 import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
-import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
 import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu"
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
-import * as dayjs from "dayjs";
 import "./SeatSelection.css";
 
 const RESERVED = "RESERVED";
@@ -26,8 +24,6 @@ export default function SeatSelection() {
       setSeats(response.data);
     });
   }, [movieSession.id]);
-
-  const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
 
   const seatsIn2DList = seats.reduce((seatLists, seat) => {
     if (seatLists.length === seat.row - 1) {
@@ -87,16 +83,6 @@ export default function SeatSelection() {
           <Col>
             <MovieSessionDropdownMenu movieSession={movieSession} />
           </Col>
-          {/* <Col>
-            <MovieSessionDropdownForSeat
-              text={`${dayjs(movieSessionDate).format("DD MMM YYYY (ddd)")}`}
-            />
-          </Col>
-          <Col>
-            <MovieSessionDropdownForSeat text={`${
-              dayjs(movieSessionDate).format("HH:mm A")
-            }`} />
-          </Col> */}
         </Row>
         <Row justify="center">
           <Col>
