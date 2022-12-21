@@ -1,5 +1,5 @@
 import React from 'react'
-import "./MovieSessionDropdownTitleForSeat.css"
+import "./MovieSessionDropdown.css"
 
 export default function MovieSessionDropdownTitleForSeat({
     text

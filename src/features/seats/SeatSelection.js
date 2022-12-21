@@ -3,12 +3,11 @@ import { getSeatsByMovieSessionId, updateSeatsByMovieSessionId } from "../../api
 import SeatTable from "./SeatTable";
 import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
-import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
+import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu";
 import { Row, Col } from "antd";
 import { useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
-import * as dayjs from "dayjs";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
 
@@ -18,19 +17,19 @@ const AVAILABLE = "AVAILABLE";
 const SOLD = "SOLD";
 
 export default function SeatSelection() {
-    const [seats, setSeats] = useState([]);
-    const movieSession = useSelector((state) => state.movieSession);
-    const navigate = useNavigate();
+  const [seats, setSeats] = useState([]);
+  const movieSession = useSelector((state) => state.movieSession);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        getSeatsByMovieSessionId(movieSession.id).then((response) => {
-            setSeats(response.data);
-      console.log(response.data)
-        });
-    }, [movieSession.id]);
+  useEffect(() => {
+    getSeatsByMovieSessionId(movieSession.id).then((response) => {
+      setSeats(response.data);
+    });
+  }, [movieSession.id]);
 
-    const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
-    // const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
+  const isConfirmButtonDisabled = !seats.some(
+    (seat) => seat.status === RESERVED
+  );
 
     const seatsIn2DList = seats.reduce((seatLists, seat) => {
         if (seatLists.length === seat.row - 1) {
@@ -77,18 +76,34 @@ export default function SeatSelection() {
       navigate("/food");
     };
 
-    return (
-        <div className="seatSelection">
-            <Row justify="center">
-                <Col>
-                    <MovieSessionDropdownTitleForSeat text="CINEMA" />
-                </Col>
-                <Col>
-                    <MovieSessionDropdownTitleForSeat text="DATE" />
-                </Col>
-                <Col>
-                    <MovieSessionDropdownTitleForSeat text="TIME" />
-                </Col>
+  return (
+    <div className="seatSelection">
+      <Row justify="center">
+        <Col>
+          <MovieSessionDropdownTitleForSeat text="CINEMA" />
+        </Col>
+        <Col>
+          <MovieSessionDropdownTitleForSeat text="DATE" />
+        </Col>
+        <Col>
+          <MovieSessionDropdownTitleForSeat text="TIME" />
+        </Col>
+      </Row>
+      <div className="houseSeatBox">
+        <Row justify="center">
+          <Col>
+            <MovieSessionDropdownMenu movieSession={movieSession} />
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col>
+            <Row>
+              <Col>
+                <SeatTable
+                  seatsIn2DList={seatsIn2DList}
+                  onSeatClick={handleClickAvailbleSeat}
+                />
+              </Col>
             </Row>
             <div className="houseSeatBox">
                 <Row justify="center">
@@ -154,6 +169,17 @@ export default function SeatSelection() {
                     <ConfirmButton onClick={handleConfirmSeatClick} />
                 </Col>
             </Row>
-        </div>
-    );
+          </Col>
+        </Row>
+      </div>
+      <Row justify="center">
+        <Col>
+          <ConfirmButton
+            onClick={handleConfirmSeatClick}
+            disabled={isConfirmButtonDisabled}
+          />
+        </Col>
+      </Row>
+    </div>
+  );
 }
