@@ -13,7 +13,6 @@ export default function MovieList(props) {
     }, []);
     return (
         <div className={"list"}>
-            {console.log(props.filterTags)}
             {movies
                 //Filter by Genre (OR)
                 .filter((movie, index) => {
