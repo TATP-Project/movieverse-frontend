@@ -1,19 +1,67 @@
 import React from 'react'
 import StatusBar from '../features/movie/StatusBar'
 import CompleteLogo from '../icons/CompleteLogo.png'
+import DownloadButton from "../features/button/ReceiptButton";
+import './completePage.css'
+import * as html2canvas from "html2canvas"
+import { jsPDF } from 'jspdf';
+import TicketInfo from '../features/ticketInfo/TicketInfo';
+import { useSelector } from "react-redux";
+
 export default function CompletePage() {
 
+    const ticketid = useSelector((state) => state.ticketId)
+    const ticketIdError='no-ticket-id-not-found'
+
+    const printDocument = () => {
+        const input = document.getElementById('divToPrint')
+        html2canvas(input)
+            .then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                const width = pdf.internal.pageSize.getWidth();
+                const height = pdf.internal.pageSize.getHeight();
+                pdf.addImage(imgData, 'JPEG', 0, 0, width,height);
+                // pdf.output('dataurlnewwindow');
+                pdf.save("ticket.pdf");
+            })
+            ;
+    }
     return (
         <>
             <StatusBar stage={4} />
             <div style={{
                 "display": "flex",
-                "flex-direction": "column",
-                "align-items": "center",
-                "margin-top": "50px"
+                "flexDirection": "column",
+                "alignItems": "center",
+                "marginTop": "50px"
             }}>
                 <img src={CompleteLogo} alt={"Ticket Reservated"} />
-                <h1 style={{ 'font-family': 'Bebas Neue' }}>Completed</h1>
+                <h1>Completed</h1>
+                {console.log(ticketid||ticketIdError)}
+                <p className="ticketid">Your Ticket ID: {typeof ticketid ==='string'?ticketid:ticketIdError}</p>
+                <DownloadButton onClick={printDocument} />
+
+                <div id="hideDivToPrint" style={
+                    {
+                        "dislay": "none",
+                        "height": "0px",
+                        "position": "absolute",
+                        "top": "100%",
+                        "overflow": "hidden"
+                    }
+                }>
+                    <div id="divToPrint" style={{
+                        "display": "flex",
+                        "flexDirection": "column",
+                        "alignItems": "center",
+                        "marginTop": "50px",
+                    }}>
+                        <TicketInfo />
+                        <p className="ticketid">Your Ticket ID: {typeof ticketid ==='string'?ticketid:ticketIdError}</p>
+                    </div>
+                </div>
+
             </div>
         </>
     )

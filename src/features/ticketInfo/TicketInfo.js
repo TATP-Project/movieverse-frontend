@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
 
+
 export default function TicketInfo() {
+    const navigate = useNavigate();
     const movie = useSelector((state) => state.movie);
     const session = useSelector((state) => state.movieSession);
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const calculateTotalAmount = () => {
@@ -98,7 +99,9 @@ export default function TicketInfo() {
                     justifyContent: "center",
                 }}
             >
+
                 <ConfirmButton onClick={handleConfirmTicketInfo} />
+
             </div>
         </div>
     );
