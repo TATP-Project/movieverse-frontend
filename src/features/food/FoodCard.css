@@ -1,0 +1,37 @@
+.foodImage{
+    align-content: center;
+}
+.foodName{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+.foodPrice{
+    font-family: 'Kameron';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+.foodAmount{
+    color: #FFFFFF;
+    border: 1px solid #36393E;
+    background-color: transparent;
+}
+.foodCard{
+    box-sizing: border-box;
+    background: #1E2124;
+    border: 1px solid #424549;
+}
+
+/* .imageTwo > img {
+    object-fit: cover;
+    height: 230px;
+} */

@@ -1,0 +1,10 @@
+.list {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.list * {
+    font-family: "Habibi";
+}

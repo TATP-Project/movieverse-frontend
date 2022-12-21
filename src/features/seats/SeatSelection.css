@@ -1,0 +1,13 @@
+.seatSelection {
+  width: 1420px;
+  height: 800px;
+}
+
+.houseSeatBox {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.seatDemoRow {
+    margin-top: 65px;
+    margin-bottom: 37px;
+}
