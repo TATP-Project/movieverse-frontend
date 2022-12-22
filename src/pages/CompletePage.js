@@ -13,7 +13,7 @@ import Logo from "../icons/PlainLogo.png";
 export default function CompletePage() {
 
     const ticketid = useSelector((state) => state.ticketId)
-    const ticketIdError='no-ticket-id-not-found'
+    const ticketIdError = 'no-ticket-id-not-found'
 
     const printDocument = () => {
         const input = document.getElementById('divToPrint')
@@ -23,7 +23,7 @@ export default function CompletePage() {
                 const pdf = new jsPDF();
                 const width = pdf.internal.pageSize.getWidth();
                 const height = pdf.internal.pageSize.getHeight();
-                pdf.addImage(imgData, 'JPEG', 0, 0, width,height);
+                pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
                 // pdf.output('dataurlnewwindow');
                 pdf.save("ticket.pdf");
             })
@@ -40,8 +40,8 @@ export default function CompletePage() {
             }}>
                 {/* <img src={CompleteLogo} alt={"Ticket Reservated"} /> */}
                 <h1 id="qrCodeHeader">Ticket QR Code</h1>
-                {console.log(ticketid||ticketIdError)}
-                <QRCode logoWidth={28} logoHeight={20} removeQrCodeBehindLogo={true} logoImage={Logo} value={"Movieverse Ticket id: "+(typeof ticketid ==='string'?ticketid:ticketIdError)} />
+                {console.log(ticketid || ticketIdError)}
+                <QRCode logoWidth={28} logoHeight={20} removeQrCodeBehindLogo={true} logoImage={Logo} value={"Movieverse Ticket id: " + (typeof ticketid === 'string' ? ticketid : ticketIdError)} />
                 <p className="ticketid">Please scan this QR code to enter the house.</p>
                 <DownloadButton onClick={printDocument} />
 
@@ -62,9 +62,8 @@ export default function CompletePage() {
                     }}>
                         <TicketInfo />
                         <h1 id="qrCodeHeader">Ticket QR Code</h1>
-                {console.log(ticketid||ticketIdError)}
-                <QRCode logoWidth={28} logoHeight={20} removeQrCodeBehindLogo={true} logoImage={Logo} value={"Movieverse Ticket id: "+(typeof ticketid ==='string'?ticketid:ticketIdError)} />
-                <p className="ticketid">Please scan this QR code to enter the house.</p>
+                        <QRCode logoWidth={28} logoHeight={20} removeQrCodeBehindLogo={true} logoImage={Logo} value={"Movieverse Ticket id: " + (typeof ticketid === 'string' ? ticketid : ticketIdError)} />
+                        <p className="ticketid">Please scan this QR code to enter the house.</p>
                     </div>
                 </div>
 
