@@ -13,11 +13,12 @@ export default function Header() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const seatSelection = useSelector((state) => state.seatSelection);
+    const history = useSelector((state) => state.history);
     return (
         <div className={"header"}>
             <div></div>
             <div className={"centerDiv"}>
-                <Link to="/"  onClick={()=>{cleanCacheAndRedirect(navigate,dispatch,seatSelection)}}>
+                <Link to="/"  onClick={()=>{cleanCacheAndRedirect(navigate,dispatch,seatSelection,history)}}>
                     <Logo />
                 </Link>
             </div>

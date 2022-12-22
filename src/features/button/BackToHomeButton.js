@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSeatsByMovieSessionId } from '../../api/movieSessions';
 import { toggleLoading } from '../loading/loadingSlice';
 
-export function cleanCacheAndRedirect(navigate, dispatch, seatSelection) {
+export function cleanCacheAndRedirect(navigate, dispatch, seatSelection,history) {
     const AVAILABLE = "AVAILABLE";
-    const history = useSelector((state) => state.history);
+    
     if ((seatSelection && seatSelection.seats && seatSelection.seats.length > 0) && (history!== "/complete")) {
         dispatch(toggleLoading(1))
         updateSeatsByMovieSessionId(
@@ -32,10 +32,11 @@ export default function BackToHomeButton() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const seatSelection = useSelector((state) => state.seatSelection);
+    const history = useSelector((state) => state.history);
     return (
         <div className="sessionExpired">
             <p>Session Not Found/Expired</p>
-            <Button className={"button"} onClick={() => cleanCacheAndRedirect(navigate, dispatch, seatSelection)}>
+            <Button className={"button"} onClick={() => cleanCacheAndRedirect(navigate, dispatch, seatSelection,history)}>
                 Back To Home
             </Button>
         </div>
