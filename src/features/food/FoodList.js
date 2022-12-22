@@ -65,11 +65,11 @@ export default function FoodPage() {
             <Card className="foodMainList" style={{top: "50px"}} >
                 <Space direction="vertical" size="large" style={{display:"flex"}}>
                     <Row >
-                        <Col span={24}>
-                          <CountdownTimer targetDate={targetDate}/>
-                        </Col>
-                        <Col span={24}>
+                        <Col span={12}>
                             <div className="foodtitle">YOU MAY ALSO LIKE</div>
+                        </Col>
+                        <Col span={12}>
+                          <CountdownTimer targetDate={targetDate}/>
                         </Col>
                     </Row>
                     

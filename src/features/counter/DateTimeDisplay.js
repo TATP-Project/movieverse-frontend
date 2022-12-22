@@ -1,10 +1,11 @@
 import React from 'react';
 
 const DateTimeDisplay = ({ value, type, isDanger }) => {
+  const padValue = ('0'+ value).slice(-2)
   return (
     <div className={isDanger ? 'countdown danger' : 'countdown'}>
-        <p>{value}</p>
-        <span>{type}</span>
+        <p>{padValue}</p>
+        {/* <span>{type}</span> */}
     </div>
   );
 };
