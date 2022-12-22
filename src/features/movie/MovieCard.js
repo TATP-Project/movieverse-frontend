@@ -3,6 +3,7 @@ import "./MovieCard.css";
 import { setSelectedMovie } from "./movieSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { pushHistory } from "../history/historySlice";
 
 export default function MovieCard(props) {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export default function MovieCard(props) {
     const { movie } = props;
     const selectMovie = () => {
         dispatch(setSelectedMovie(movie));
+        dispatch(pushHistory('/movie-timeslots'));
         navigate("/movie-timeslots");
     };
     return (
