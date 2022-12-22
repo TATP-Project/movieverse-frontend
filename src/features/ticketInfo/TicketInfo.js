@@ -84,7 +84,7 @@ export default function TicketInfo() {
                     <div>
                         <img
                             className={"ticketInfoImage"}
-                            src={"data:image/png;base64," + movie.image.data}
+                            src={movie.image}
                             alt={movie.name}
                         />
                     </div>

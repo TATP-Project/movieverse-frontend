@@ -17,13 +17,13 @@ export default function MovieCard(props) {
         <div className={"movieCard"} onClick={selectMovie}>
             <div className={"image imageOne"}>
                 <img
-                    src={"data:image/png;base64," + movie.image.data}
+                    src={movie.image}
                     alt={movie.name + " stretched"}
                 />
             </div>
             <div className={"image imageTwo"}>
                 <img
-                    src={"data:image/png;base64," + movie.image.data}
+                    src={movie.image}
                     alt={movie.name}
                 />
             </div>
