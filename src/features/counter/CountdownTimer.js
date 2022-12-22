@@ -5,7 +5,6 @@ import "./CountdownTimer.css";
 import Timer from "./timer.png";
 import { Row, Col } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
 import { setSeatsStatus } from "../seats/seatSelectionSlice";
 
 const ExpiredNotice = () => {
@@ -46,10 +45,6 @@ const CountdownTimer = ({ targetDate }) => {
 
     if (days + hours + minutes + seconds <= 0) {
         dispatch(setSeatsStatus(AVAILABLE));
-        updateSeatsByMovieSessionId(
-            seatSelection.movieSessionId,
-            seatSelection.seats
-        ).then((response) => {});
         return <ExpiredNotice />;
     } else {
         return <ShowCounter minutes={minutes} seconds={seconds} />;
