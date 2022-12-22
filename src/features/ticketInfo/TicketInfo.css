@@ -1,6 +1,5 @@
 .ticketTableHeader {
     color: rgba(255, 255, 255, 0.5);
-    margin-left: 100px;
 }
 
 .ticketInfo {
@@ -16,13 +15,17 @@
 }
 .ticketInfoItem {
     margin-bottom: 30px;
-    display: grid;
-    grid-template-columns: 300px auto;
     height: auto;
 }
 .ticketInfoItem * {
     font-family: "Lato";
     font-size: 24px;
+    margin-bottom: 20px;
+}
+.ordersInfoItem * {
+    font-family: "Lato";
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 .multipleRow {
     margin-bottom: 30px;
@@ -69,4 +72,26 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+}
+.orders-title {
+    /* position: absolute; */
+    /* width: 175px;
+height: 52px;
+left: 47px;
+top: 702px; */
+
+    font-family: "Habibi";
+    font-size: 36px;
+
+    color: #ff8036;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.orders-component {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    margin-left: 10px;
 }
