@@ -7,6 +7,7 @@ export default function TicketInfoPage() {
         <div>
             <StatusBar stage={3} />
             <TicketInfo />
+            
         </div>
     );
 }
