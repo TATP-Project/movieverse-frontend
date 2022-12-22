@@ -34,6 +34,7 @@
 .statusbar-container{
     width: 1000px;
     margin: auto;
+    white-space: nowrap;
 }
 
 .stage-uncomplete{
