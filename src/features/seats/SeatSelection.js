@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
-
 import { toggleLoading } from "../loading/loadingSlice";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const SELECTED = "SELECTED"; 
 const RESERVED = "RESERVED";
@@ -21,9 +21,9 @@ const SOLD = "SOLD";
 export default function SeatSelection() {
   const [seats, setSeats] = useState([]);
   const movieSession = useSelector((state) => state.movieSession);
+  const [isShown, setIsShown] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   useEffect(() => {
     dispatch(toggleLoading(1))
@@ -66,20 +66,23 @@ export default function SeatSelection() {
   };
   const handleConfirmSeatClick = () => {
     const selectedSeat = seats.filter((seat) => seat.status === SELECTED)
-    const seatToReserve = selectedSeat.map((seat) => {
+    const seatsToReserve = selectedSeat.map((seat) => {
       return {...seat, status : RESERVED}
     })
-
-    updateSeatsByMovieSessionId(movieSession.id, seatToReserve).then((response) => {
-      dispatch(setSeatSelection({
-        movieSessionId: movieSession.id,
-        seats: response.data,
-      }))
-
-    });
-
-    navigate("/food");
+    updateSeatsByMovieSessionId(movieSession.id, seatsToReserve)
+      .then((response) => {
+        dispatch(setSeatSelection({
+          movieSessionId: movieSession.id,
+          seats: response.data,
+        }))
+        navigate("/food");
+      })
+      .catch((error) => {
+        setIsShown(true)
+      });
   };
+
+
 
   return (
     <div className="seatSelection">
@@ -136,6 +139,11 @@ export default function SeatSelection() {
           />
         </Col>
       </Row>
+      {isShown && <ErrorMessage 
+        showError={true} 
+        context="Seat Not Available, Please select other seat." 
+        ok={()=>{ navigate("/")}} 
+      />}
     </div>
   );
 }
