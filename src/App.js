@@ -24,6 +24,7 @@ function App() {
                     <Route path="/food" element={<FoodPage />} />
                     <Route path="/complete" element={<CompletePage />} />
                     <Route path="/ticketinfo" element={<TicketInfoPage />} />
+                    <Route path="/test" element={<UnavailableSeatMessage />} />
                 
 
                 </Route>

@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
 import { Button, Modal} from 'antd';
 import ConfirmButton from '../button/ConfirmButton';
+import "./UnavailableSeatMessage.css";
 const ReachableContext = createContext(null);
 
 export default function UnavailableSeatMessage(props) {
@@ -36,7 +37,7 @@ export default function UnavailableSeatMessage(props) {
     <div> 
         
         <ReachableContext.Provider value="Light">
-        <ConfirmButton
+        <ConfirmButton className="message-box"
           onClick={() => {
             modal.error({title: 'Seat Not Available',
             content: (
