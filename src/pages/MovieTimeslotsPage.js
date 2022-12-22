@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import MovieInfo from "../features/movieTimeslots/MovieInfo";
 import MovieSessions from "../features/movieTimeslots/MovieSessions";
 import { useNavigate } from "react-router-dom";
+import BackToHomeButton from "../features/button/BackToHomeButton";
 
 export default function MovieTimeslotsPage() {
     const history = useSelector((state) => state.history);
@@ -21,5 +22,5 @@ export default function MovieTimeslotsPage() {
             </div>
         </>
     )
-    :<div className="sessionExpired"><p>Session Not Found/Expired</p><button onClick={()=>{navigate('/');navigate(0);}}>Back To Home</button></div> //incorrect history
+    :<BackToHomeButton/>//incorrect history
 }

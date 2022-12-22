@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
 import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
+import BackToHomeButton from "../features/button/BackToHomeButton";
 
 export default function CompletePage() {
 
@@ -110,6 +112,6 @@ export default function CompletePage() {
                 </div>
             </div>
         </>
-        )
-        : <div className="sessionExpired"><p>Session Not Found/Expired</p><button onClick={() => { navigate('/'); navigate(0); }}>Back To Home</button></div> //incorrect history
+        )//incorrect history
+        : <BackToHomeButton/>
 }
