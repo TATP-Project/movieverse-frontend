@@ -8,7 +8,7 @@ export default function downloadReceiptButton({ onClick }) {
     <button className="confirmButton" onClick={onClick}>
       <span id="receiptButton" className="buttonText">Receipt</span>
       <span className="buttonIcon">
-        <img src={ReceiptIcon} alt="V"/>
+        <img id="receiptIcon" src={ReceiptIcon} alt="V"/>
       </span>
     </button>
   );

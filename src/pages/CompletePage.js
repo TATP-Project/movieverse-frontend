@@ -11,6 +11,7 @@ import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
 
 export default function CompletePage() {
+
     const ticketid = useSelector((state) => state.ticketId);
     const ticketIdError = "no-ticket-id-not-found";
 
@@ -26,6 +27,7 @@ export default function CompletePage() {
             pdf.save("ticket.pdf");
         });
     };
+
     return (
         <>
             <StatusBar stage={4} />
@@ -39,6 +41,7 @@ export default function CompletePage() {
             >
                 {/* <img src={CompleteLogo} alt={"Ticket Reservated"} /> */}
                 <h1 id="qrCodeHeader">Ticket QR Code</h1>
+
                 <QRCode
                     logoWidth={28}
                     logoHeight={20}
@@ -54,6 +57,7 @@ export default function CompletePage() {
                 <p className="ticketid">
                     Please scan this QR code to enter the house.
                 </p>
+
                 <DownloadButton onClick={printDocument} />
 
                 <div
@@ -77,6 +81,7 @@ export default function CompletePage() {
                     >
                         <TicketInfo />
                         <h1 id="qrCodeHeader">Ticket QR Code</h1>
+
                         <QRCode
                             logoWidth={28}
                             logoHeight={20}
@@ -92,6 +97,7 @@ export default function CompletePage() {
                         <p className="ticketid">
                             Please scan this QR code to enter the house.
                         </p>
+
                     </div>
                 </div>
             </div>
