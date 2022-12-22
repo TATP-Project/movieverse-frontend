@@ -18,6 +18,10 @@
     align-items: center;
     padding: 0 20px;
     cursor: pointer;
+    color: white;
+}
+.dropdownSelected {
+    color: rgba(255, 255, 255, 0.5);
 }
 .sessionDropdownBox div,
 .dropdownMenu div {

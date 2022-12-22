@@ -3,15 +3,20 @@ import { setMovieSession } from "./movieSessionSlice";
 import "./TimeslotDropdown.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function TimeslotDropdown(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [dropdownBoxClass, setDropdownBoxClass] =
+        useState("sessionDropdownBox");
     const toggleMenu = () => {
         if (props.showMenu) {
             props.setSelectedDropdown(-1);
+            setDropdownBoxClass("sessionDropdownBox");
         } else {
             props.setSelectedDropdown(props.index);
+            setDropdownBoxClass("sessionDropdownBox dropdownSelected");
         }
     };
     const selectSession = (session) => {
@@ -49,7 +54,7 @@ export default function TimeslotDropdown(props) {
                     </div>
                 ) : null}
                 <div className={"dropdownItem"}>
-                    <div className={"sessionDropdownBox"} onClick={toggleMenu}>
+                    <div className={dropdownBoxClass} onClick={toggleMenu}>
                         <div>
                             {date.getDate() + "/" + (date.getMonth() + 1)}
                         </div>
