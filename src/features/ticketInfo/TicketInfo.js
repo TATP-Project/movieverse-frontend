@@ -13,6 +13,8 @@ import CountdownTimer from "../counter/CountdownTimer";
 import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
 import { pushHistory } from "../history/historySlice";
 
+import { Col, Row } from 'antd';
+
 export default function TicketInfo() {
     const navigate = useNavigate();
     const movie = useSelector((state) => state.movie);
@@ -84,7 +86,7 @@ export default function TicketInfo() {
                     <div>
                         <img
                             className={"ticketInfoImage"}
-                            src={"data:image/png;base64," + movie.image.data}
+                            src={movie.image}
                             alt={movie.name}
                         />
                     </div>
@@ -111,9 +113,21 @@ export default function TicketInfo() {
                             header="House"
                             value={houseWordToNumber(session.house.name)}
                         />
-                        <SeatsInfoItem header="Seats" seats={seats} />
-                        <FoodInfoItem header="F&B" food={food} />
+                        
                     </div>
+                </div>
+
+                <div className="orders-title">Orders</div>
+                <div className="orders-component">
+                    <Col>
+                        <Row justify="start" className="ordersInfoItem">
+                            <SeatsInfoItem header="Seats" seats={seats} price={session.price} />  
+                        </Row>
+                    
+                        <Row justify="start" className="ordersInfoItem">
+                            <FoodInfoItem header="F&amp;B" food={food}  price={session.price} />
+                        </Row>
+                    </Col>
                 </div>
                 <TotalAmount amount={calculateTotalAmount()} />
                 <PaymentMethod />

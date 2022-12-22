@@ -16,14 +16,14 @@ export default function MovieInfo() {
             {""}
             <img
                 className={"backgroundImage"}
-                src={"data:image/png;base64," + movie.image.data}
+                src={movie.image}
                 alt={movie.name}
             />
             <div className={"foreground"}>
                 <div>
                     <img
                         className={"infoImage"}
-                        src={"data:image/png;base64," + movie.image.data}
+                        src={movie.image}
                         alt={movie.name}
                     />
                 </div>
