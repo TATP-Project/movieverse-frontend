@@ -7,9 +7,9 @@ import BackToHomeButton from "../features/button/BackToHomeButton";
 const FOOD_PAGE_ID = "food";
 export default function ListOfMoviesPage() {
   const history = useSelector((state) => state.history);
-  useEffect(() => {
-    console.log(history);
-  }, [history]);
+  // useEffect(() => {
+  //   console.log(history);
+  // }, [history]);
 
   useEffect(() => {
     if (history === "/food") {
@@ -28,7 +28,7 @@ export default function ListOfMoviesPage() {
     return () => {
       window.onpopstate = null;
     };
-  }, []);
+  }, [history]);
 
   return history === "/food" ? (
     <div>

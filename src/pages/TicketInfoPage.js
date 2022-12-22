@@ -7,9 +7,9 @@ import BackToHomeButton from "../features/button/BackToHomeButton.js";
 const TICKET_PAGE_ID = "ticket";
 export default function TicketInfoPage() {
   const history = useSelector((state) => state.history);
-  useEffect(() => {
-    console.log(history);
-  }, [history]);
+  // useEffect(() => {
+  //   console.log(history);
+  // }, [history]);
 
   useEffect(() => {
     if (history === "/ticketinfo") {
@@ -28,7 +28,7 @@ export default function TicketInfoPage() {
     return () => {
       window.onpopstate = null;
     };
-  }, []);
+  }, [history]);
 
   return history === "/ticketinfo" ? (
     <div>
