@@ -3,7 +3,6 @@ import { Button } from 'antd';
 import './BackToHomeButton.css'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSeatsStatus } from '../seats/seatSelectionSlice';
 import { updateSeatsByMovieSessionId } from '../../api/movieSessions';
 import { toggleLoading } from '../loading/loadingSlice';
 
