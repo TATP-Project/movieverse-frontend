@@ -9,6 +9,8 @@ export default function MovieInfo() {
     var genreLogo = require("../../icons/movieTimeslots/Genre.png");
     var languageLogo = require("../../icons/movieTimeslots/Language.png");
     var timeLogo = require("../../icons/movieTimeslots/Time.png");
+    const capitalize = (s) =>
+        s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
     return (
         <div>
             {""}
@@ -48,13 +50,15 @@ export default function MovieInfo() {
                             logo={timeLogo}
                             alt="time"
                             header="Running Time"
-                            value={movie.runningTime + "Minutes"}
+                            value={movie.runningTime + " Minutes"}
                         />
                         <MovieInfoItem
                             logo={languageLogo}
                             alt="language"
                             header="Language"
-                            value={movie.language}
+                            value={`${capitalize(
+                                movie.language
+                            )} / ${capitalize(movie.subtitle)} Subtitle`}
                         />
                     </div>
                 </div>

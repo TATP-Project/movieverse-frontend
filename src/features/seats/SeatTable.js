@@ -2,15 +2,24 @@ import React from "react";
 import { Row, Col } from "antd";
 import Seat from "./Seat";
 import SeatRowLabel from "./SeatRowLabel";
-import "./SeatTable.css";
 import Screen from "./Screen.png";
+import { useSelector } from "react-redux";
+import "./SeatTable.css";
 
+const LOADED = 0;
 export default function SeatTable({ seatsIn2DList, onSeatClick }) {
+  const loading = useSelector((state) => state.loading !== LOADED);
+
   return (
-    <div>
+    <div className={loading ? "hideScreen" : ""}>
       <Row justify="center" className="bottomMargin">
         <Col>
-          <img src={Screen} width={313} height={82} alt="screen" />
+          <img
+            src={Screen}
+            width={313}
+            height={82}
+            alt="screen"
+          />
         </Col>
       </Row>
       {seatsIn2DList.map((seatList, rowIndex) => {
@@ -33,7 +42,11 @@ export default function SeatTable({ seatsIn2DList, onSeatClick }) {
               if (columnIndex === 1 || columnIndex === 9) {
                 horizontalMarginClass += "rightMargin";
               }
-              if (columnIndex === 0 || columnIndex === 2 || columnIndex === 10) {
+              if (
+                columnIndex === 0 ||
+                columnIndex === 2 ||
+                columnIndex === 10
+              ) {
                 horizontalMarginClass += " leftMargin";
               }
               return (

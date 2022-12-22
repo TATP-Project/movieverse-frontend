@@ -9,15 +9,17 @@ import ConfirmButton from "../button/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
+import CountdownTimer from "../counter/CountdownTimer";
 
 export default function TicketInfo() {
+    const navigate = useNavigate();
     const movie = useSelector((state) => state.movie);
     const session = useSelector((state) => state.movieSession);
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const targetDate = useSelector((state) => state.countdownTimer.targetDate);
 
     const calculateTotalAmount = () => {
         var foodTotal = Object.keys(food).reduce((total, id) => {
@@ -29,6 +31,21 @@ export default function TicketInfo() {
         var seatTotal =
             parseInt(session.price) * parseInt(Object.keys(seats).length);
         return foodTotal + seatTotal;
+    };
+    const houseWordToNumber = (houseWord) => {
+        var number = {
+            one: 1,
+            two: 2,
+            three: 3,
+            four: 4,
+            five: 5,
+            six: 6,
+            seven: 7,
+            eight: 8,
+            nine: 9,
+            ten: 10,
+        };
+        return number[houseWord.split(" ").pop().toLowerCase()];
     };
 
     const handleConfirmTicketInfo = () => {
@@ -44,13 +61,14 @@ export default function TicketInfo() {
         postTicket(ticketInfoJson).then((response) => {
             dispatch(setTicketId(response.data));
         });
-        console.log(ticketInfoJson);
+        // seats to sold
         navigate("/complete");
     };
     return (
         <div>
             <div className="wrapper">
                 <div className={"movieTitle"} style={{ width: "100%" }}>
+                    <CountdownTimer targetDate={targetDate} />
                     {movie.name}
                 </div>
                 <div className={"ticketInfo"}>
@@ -82,7 +100,7 @@ export default function TicketInfo() {
                         />
                         <TicketInfoItem
                             header="House"
-                            value={session.house.name}
+                            value={houseWordToNumber(session.house.name)}
                         />
                         <SeatsInfoItem header="Seats" seats={seats} />
                         <FoodInfoItem header="F&B" food={food} />
