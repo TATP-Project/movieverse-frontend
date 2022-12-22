@@ -11,19 +11,29 @@ import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
 
 export default function CompletePage() {
-
     const ticketid = useSelector((state) => state.ticketId);
     const ticketIdError = "no-ticket-id-not-found";
+    const movie = useSelector((state) => state.movie);
 
     const printDocument = () => {
         const input = document.getElementById("divToPrint");
         html2canvas(input).then((canvas) => {
             const imgData = canvas.toDataURL("image/png");
-            const pdf = new jsPDF();
-            const width = pdf.internal.pageSize.getWidth();
-            const height = pdf.internal.pageSize.getHeight();
-            pdf.addImage(imgData, "JPEG", 0, 0, width, height);
+            var imgWidth = 210;
+            var pageHeight = 295;
+            var imgHeight = (canvas.height * imgWidth) / canvas.width;
+            var heightLeft = imgHeight;
+            const pdf = new jsPDF("p", "mm");
+            var position = 10;
+            pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
             // pdf.output('dataurlnewwindow');
+            var img = document.createElement("img");
+            img.src = movie.image;
+            pdf.addImage(img, "JPEG", 13, 28, 60, 84);
+            // heightLeft -= pageHeight;
+            // pdf.addPage();
+            // pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
+
             pdf.save("ticket.pdf");
         });
     };
@@ -81,7 +91,7 @@ export default function CompletePage() {
                     >
                         <TicketInfo />
                         <h1 id="qrCodeHeader">Ticket QR Code</h1>
-
+                        <p class="html2pdf__page-break" />
                         <QRCode
                             logoWidth={28}
                             logoHeight={20}
@@ -97,7 +107,6 @@ export default function CompletePage() {
                         <p className="ticketid">
                             Please scan this QR code to enter the house.
                         </p>
-
                     </div>
                 </div>
             </div>

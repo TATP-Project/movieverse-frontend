@@ -12,7 +12,8 @@ import { setTicketId } from "./ticketSlice";
 import CountdownTimer from "../counter/CountdownTimer";
 import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
 
-import { Col, Row } from 'antd';
+import { Col, Row } from "antd";
+import { useEffect, useState } from "react";
 
 export default function TicketInfo() {
     const navigate = useNavigate();
@@ -73,6 +74,9 @@ export default function TicketInfo() {
             navigate("/complete");
         });
     };
+
+    const [url, setUrl] = useState("");
+
     return (
         <div>
             <div className="wrapper">
@@ -81,13 +85,23 @@ export default function TicketInfo() {
                     {movie.name}
                 </div>
                 <div className={"ticketInfo"}>
-                    <div>
+                    <div
+                        style={{
+                            background: `url("${movie.image}")`,
+                            width: "300px",
+                            backgroundSize: "cover",
+                        }}
+                    ></div>
+                    {/* <div>
                         <img
                             className={"ticketInfoImage"}
                             src={movie.image}
                             alt={movie.name}
+                            style={{
+                                background: `url("${movie.image}")`,
+                            }}
                         />
-                    </div>
+                    </div> */}
                     <div className="ticketInfoTable">
                         <TicketInfoItem
                             header="Cinema"
@@ -111,7 +125,6 @@ export default function TicketInfo() {
                             header="House"
                             value={houseWordToNumber(session.house.name)}
                         />
-                        
                     </div>
                 </div>
 
@@ -119,11 +132,19 @@ export default function TicketInfo() {
                 <div className="orders-component">
                     <Col>
                         <Row justify="start" className="ordersInfoItem">
-                            <SeatsInfoItem header="Seats" seats={seats} price={session.price} />  
+                            <SeatsInfoItem
+                                header="Seats"
+                                seats={seats}
+                                price={session.price}
+                            />
                         </Row>
-                    
+
                         <Row justify="start" className="ordersInfoItem">
-                            <FoodInfoItem header="F&amp;B" food={food}  price={session.price} />
+                            <FoodInfoItem
+                                header="F&amp;B"
+                                food={food}
+                                price={session.price}
+                            />
                         </Row>
                     </Col>
                 </div>
