@@ -8,8 +8,8 @@ import { toggleLoading } from '../loading/loadingSlice';
 
 export function cleanCacheAndRedirect(navigate, dispatch, seatSelection) {
     const AVAILABLE = "AVAILABLE";
-
-    if (seatSelection && seatSelection.seats && seatSelection.seats.length > 0) {
+    const history = useSelector((state) => state.history);
+    if ((seatSelection && seatSelection.seats && seatSelection.seats.length > 0) && (history!== "/complete")) {
         dispatch(toggleLoading(1))
         updateSeatsByMovieSessionId(
             seatSelection.movieSessionId,
