@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 export default function SeatSelectionPage() {
   const history = useSelector((state) => state.history);
   const navigate = useNavigate()
+  const criticalSection =['/food','/ticketinfo','/complete']
   useEffect(() => {
     console.log(history)
   }, [history])
-  return history === "/new-order" ?
+  return (!criticalSection.includes(history)) ?
     (
       <div className={"body"}>
         <StatusBar stage={1} />

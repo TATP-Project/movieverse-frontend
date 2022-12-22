@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StatusBar from "../features/movie/StatusBar";
 // import CompleteLogo from '../icons/CompleteLogo.png'
 import DownloadButton from "../features/button/ReceiptButton";
@@ -9,6 +9,7 @@ import TicketInfo from "../features/ticketInfo/TicketInfo";
 import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
+import { useNavigate } from "react-router-dom";
 
 export default function CompletePage() {
 
@@ -28,8 +29,15 @@ export default function CompletePage() {
         });
     };
 
-    return (
-        <>
+    const history = useSelector((state) => state.history);
+    const navigate = useNavigate()
+    useEffect(() => {
+        console.log(history)
+    }, [history])
+
+
+    return history === "/complete" ?
+        (<>
             <StatusBar stage={4} />
             <div
                 style={{
@@ -102,5 +110,6 @@ export default function CompletePage() {
                 </div>
             </div>
         </>
-    );
+        )
+        : <div className="sessionExpired"><p>Session Not Found/Expired</p><button onClick={() => { navigate('/'); navigate(0); }}>Back To Home</button></div> //incorrect history
 }

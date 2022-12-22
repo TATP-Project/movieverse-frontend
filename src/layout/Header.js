@@ -5,13 +5,16 @@ import { Button } from "antd";
 import { ReactComponent as MovieLanguageLogo } from "../icons/Language.svg";
 import { ReactComponent as LocationLogo } from "../icons/Location.svg";
 import { ReactComponent as Logo } from "../icons/Logo.svg";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Header() {
+    const navigate = useNavigate()
     return (
         <div className={"header"}>
             <div></div>
             <div className={"centerDiv"}>
-                <Link to="/">
+                <Link to="/"  onClick={()=>{navigate('/');navigate(0);}}>
                     <Logo />
                 </Link>
             </div>
