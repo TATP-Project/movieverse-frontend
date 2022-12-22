@@ -9,8 +9,6 @@ import TicketInfo from "../features/ticketInfo/TicketInfo";
 import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
-import { useNavigate } from "react-router-dom";
-import { Button } from "antd";
 import BackToHomeButton from "../features/button/BackToHomeButton";
 
 export default function CompletePage() {
@@ -32,7 +30,6 @@ export default function CompletePage() {
     };
 
     const history = useSelector((state) => state.history);
-    const navigate = useNavigate()
     useEffect(() => {
         console.log(history)
     }, [history])

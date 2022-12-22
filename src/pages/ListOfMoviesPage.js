@@ -5,14 +5,14 @@ import { Button } from "antd";
 import FilterLogo from "../icons/FilterLogo.png";
 import "./listOfMoviePage.css";
 import Filter from "../features/filter/Filter";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function ListOfMoviesPage() {
     const [showFilter, setShowFilter] = useState(false);
     const [filterTags, setFilterTags] = useState([]);
     const navigate = useNavigate()
-    const criticalSection =['/food','/ticketinfo','/complete']
+    const criticalSection = ['/food', '/ticketinfo', '/complete']
     const toggleFilterModal = () => {
         setShowFilter(!showFilter);
     };
@@ -34,7 +34,7 @@ export default function ListOfMoviesPage() {
         console.log(history)
     }, [history])
 
-    return (!criticalSection.includes(history))?        
+    return (!criticalSection.includes(history)) ?
         (<>
             <div style={{ paddingBottom: "32px", margin: "0 20px" }}>
                 <span className={"title"} style={{ float: "left" }}>
@@ -70,5 +70,5 @@ export default function ListOfMoviesPage() {
                 />
             </div>
         </>)
-        :<>{navigate(0)}</>
+        : <>{navigate(0)}</>
 }

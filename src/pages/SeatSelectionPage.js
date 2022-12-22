@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import StatusBar from "../features/movie/StatusBar";
 import SeatSelection from "../features/seats/SeatSelection";
-import { useNavigate } from "react-router-dom";
 import BackToHomeButton from "../features/button/BackToHomeButton";
 
 export default function SeatSelectionPage() {
   const history = useSelector((state) => state.history);
-  const navigate = useNavigate()
-  const criticalSection =['/food','/ticketinfo','/complete']
+  const criticalSection = ['/food', '/ticketinfo', '/complete']
   useEffect(() => {
     console.log(history)
   }, [history])
@@ -19,5 +17,5 @@ export default function SeatSelectionPage() {
         <SeatSelection />
       </div>
     )
-    :<BackToHomeButton/> //incorrect history
+    : <BackToHomeButton /> //incorrect history
 }
