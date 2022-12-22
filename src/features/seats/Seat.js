@@ -40,9 +40,9 @@ export default function Seat({
                 <div className="seatDescriptionBox seatText">
                     {   
                         status === RESERVED
-                        ? "RESERVED"
+                        ? "Reserved"
                         : status === SELECTED
-                        ? "SELECTED"
+                        ? "Selected"
                         : status.charAt(0) + status.slice(1).toLowerCase()
                     }
                 </div>
