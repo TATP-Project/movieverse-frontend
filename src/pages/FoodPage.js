@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import FoodList from "../features/food/FoodList";
 import StatusBar from "../features/movie/StatusBar";
-import { useNavigate } from "react-router-dom";
+import BackToHomeButton from "../features/button/BackToHomeButton";
 
 const FOOD_PAGE_ID = "food";
 export default function ListOfMoviesPage() {
   const history = useSelector((state) => state.history);
-  const navigate = useNavigate();
   useEffect(() => {
     console.log(history);
   }, [history]);
@@ -32,21 +31,11 @@ export default function ListOfMoviesPage() {
   }, []);
 
   return history === "/food" ? (
-    <div >
-      <StatusBar stage={2} id={FOOD_PAGE_ID}/>
+    <div>
+      <StatusBar stage={2} id={FOOD_PAGE_ID} />
       <FoodList />
     </div>
   ) : (
-    <div className="sessionExpired">
-      <p>Session Not Found/Expired</p>
-      <button
-        onClick={() => {
-          navigate("/");
-          navigate(0);
-        }}
-      >
-        Back To Home
-      </button>
-    </div>
+    <BackToHomeButton />
   ); //incorrect history
 }

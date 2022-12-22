@@ -9,6 +9,7 @@ import TicketInfo from "../features/ticketInfo/TicketInfo";
 import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
 import Logo from "../icons/PlainLogo.png";
+import BackToHomeButton from "../features/button/BackToHomeButton";
 
 const COMPLETE_PAGE_ID = "complete";
 export default function CompletePage() {
@@ -45,7 +46,12 @@ export default function CompletePage() {
     });
   };
 
-  return (
+  const history = useSelector((state) => state.history);
+  useEffect(() => {
+    console.log(history);
+  }, [history]);
+
+  return history === "/complete" ? (
     <>
       <StatusBar stage={4} id={COMPLETE_PAGE_ID} />
       <div
@@ -112,5 +118,7 @@ export default function CompletePage() {
         </div>
       </div>
     </>
+  ) : (
+    <BackToHomeButton />
   );
 }
