@@ -65,8 +65,10 @@ export default function SeatSelection() {
     );
   };
   const handleConfirmSeatClick = () => {
-    const seatToReserve = seats.filter((seat) => seat.status === SELECTED)
-    .map((seat) => {
+    const selectedSeat = seats.filter((seat) => seat.status === SELECTED)
+    const isSeatRserved = checkIfSeatAlreadyRserved(selectedSeat);
+    
+    const seatToReserve = selectedSeat.map((seat) => {
       return {...seat, status : RESERVED}
     })
 
@@ -79,6 +81,10 @@ export default function SeatSelection() {
     });
 
     navigate("/food");
+  };
+
+  const checkIfSeatAlreadyRserved = (selectedSeat) => {
+    
   };
 
   return (
