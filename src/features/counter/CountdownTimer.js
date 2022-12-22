@@ -46,18 +46,21 @@ const CountdownTimer = ({ targetDate }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const error = {
+      title: "Session Expired",
+      context: 'Your session has been expired' ,
+    }
+
     if (days + hours + minutes + seconds <= 0) {
         dispatch(setSeatsStatus(AVAILABLE));
         return (
           <>
             <ErrorMessage  
-                showError={true} 
-                context="Your session has been expired" 
+                error={error}
                 ok={()=>{navigate("/")}} 
             />
           </>
         )
-        // navigate("/test");
     } else {
         return <ShowCounter minutes={minutes} seconds={seconds} />;
     }
