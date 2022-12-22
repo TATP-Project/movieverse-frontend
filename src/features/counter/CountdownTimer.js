@@ -17,24 +17,34 @@ const ExpiredNotice = () => {
 };
 
 const ShowCounter = ({ minutes, seconds }) => {
-  return (
-    <div className="show-counter">
-        <Row>
-            <Col>
-              <Row>
-                <Col span={8} offset={8}>
-                  <img  className="clock" src={Timer} alt="timer" />
+    return (
+        <div className="show-counter">
+            <Row>
+                <Col>
+                    <Row>
+                        <Col span={8} offset={8}>
+                            <img className="clock" src={Timer} alt="timer" />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <DateTimeDisplay
+                                value={minutes}
+                                type={"Mins"}
+                                isDanger={false}
+                            />
+                            <p>:</p>
+                            <DateTimeDisplay
+                                value={seconds}
+                                type={"Seconds"}
+                                isDanger={false}
+                            />
+                        </div>
+                    </Row>
                 </Col>
-              </Row>
-              <Row>
-                <DateTimeDisplay value={minutes} type={'Mins'} isDanger={false} />
-                <p>:</p>
-                <DateTimeDisplay value={seconds} type={'Seconds'} isDanger={false} />
-              </Row>
-            </Col>
-        </Row>
-    </div>
-  );
+            </Row>
+        </div>
+    );
 };
 
 const AVAILABLE = "AVAILABLE";
