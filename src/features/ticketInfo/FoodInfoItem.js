@@ -5,7 +5,6 @@ export default function FoodInfoItem(props) {
     var noFoodSelected = Object.keys(props.food)
         .map((id) => props.food[id].count)
         .every((item) => item === 0);
-    console.log(noFoodSelected);
     return (
         <div className="ticketInfoItem">
             <div className={"ticketTableHeader"}>{props.header}</div>

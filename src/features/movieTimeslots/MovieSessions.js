@@ -12,7 +12,7 @@ export default function MovieSessions() {
     const [movieSession, setMovieSession] = useState([]);
     const [uniqueCinemas, setUniqueCinemas] = useState([]);
     const [selectedDropdown, setSelectedDropdown] = useState(-1);
-    
+
     const wrapperSetSelectedDropdown = useCallback(
         (val) => {
             setSelectedDropdown(val);
@@ -23,20 +23,24 @@ export default function MovieSessions() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(toggleLoading(1))
-        getMovieSessions(movieId).then((response) => {
-            // response.data.filter(function(session){
-            //     session.cinema.id
-            // })
-            var cinemas = response.data.map((session) => session.cinema);
-            var uniqueCinemas = cinemas.filter(
-                (value, index, self) =>
-                    index === self.findIndex((t) => t.id === value.id)
-            );
-            setUniqueCinemas(uniqueCinemas);
-            setMovieSession(response.data);
-        }).finally(()=>{dispatch(toggleLoading(-1))});
-    }, [movieId,dispatch]);
+        dispatch(toggleLoading(1));
+        getMovieSessions(movieId)
+            .then((response) => {
+                // response.data.filter(function(session){
+                //     session.cinema.id
+                // })
+                var cinemas = response.data.map((session) => session.cinema);
+                var uniqueCinemas = cinemas.filter(
+                    (value, index, self) =>
+                        index === self.findIndex((t) => t.id === value.id)
+                );
+                setUniqueCinemas(uniqueCinemas);
+                setMovieSession(response.data);
+            })
+            .finally(() => {
+                dispatch(toggleLoading(-1));
+            });
+    }, [movieId, dispatch]);
 
     return (
         <div className="movieSession">
@@ -48,7 +52,7 @@ export default function MovieSessions() {
                         (movie) => movie.cinema.id === cinema.id
                     );
                     return (
-                        <>
+                        <React.Fragment key={index}>
                             <div style={{ color: "orange" }}>
                                 {cinema.district}
                             </div>
@@ -61,7 +65,7 @@ export default function MovieSessions() {
                                 index={index}
                                 key={index}
                             />
-                        </>
+                        </React.Fragment>
                     );
                 })}
             </div>
