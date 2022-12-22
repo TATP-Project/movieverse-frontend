@@ -4,6 +4,10 @@
     font-family: 'lato';
     border: none;
    }
+
+   .sessionExpired > *:hover{
+    color: white !important;    
+   }
    
    .sessionExpired{
        display: flex;
