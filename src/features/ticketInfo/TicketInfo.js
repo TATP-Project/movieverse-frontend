@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
 import CountdownTimer from "../counter/CountdownTimer";
+import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
 
 export default function TicketInfo() {
     const navigate = useNavigate();
@@ -61,8 +62,14 @@ export default function TicketInfo() {
         postTicket(ticketInfoJson).then((response) => {
             dispatch(setTicketId(response.data));
         });
-        // seats to sold
-        navigate("/complete");
+
+        const seatToSell = seats.map((seat) => {
+            return { ...seat, status: "SOLD" };
+        });
+
+        updateSeatsByMovieSessionId(session.id, seatToSell).then((response) => {
+            navigate("/complete");
+        });
     };
     return (
         <div>
