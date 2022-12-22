@@ -78,11 +78,15 @@ export default function SeatSelection() {
         navigate("/food");
       })
       .catch((error) => {
+        console.log(seats)
         setIsShown(true)
       });
   };
 
-
+  const error = {
+    title: "Seat Not Available",
+    context: "Your selected Seat(s) have already become unavailable. Please choose other seat(s)." ,
+  }
 
   return (
     <div className="seatSelection">
@@ -140,9 +144,8 @@ export default function SeatSelection() {
         </Col>
       </Row>
       {isShown && <ErrorMessage 
-        showError={true} 
-        context="Seat Not Available, Please select other seat." 
-        ok={()=>{ navigate("/")}} 
+        error={error} 
+        ok={()=>{navigate("/")}} 
       />}
     </div>
   );
