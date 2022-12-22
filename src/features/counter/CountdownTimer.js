@@ -4,7 +4,7 @@ import { useCountdown } from "./useCountdown";
 import "./CountdownTimer.css";
 import Timer from "./timer.png";
 import { Row, Col } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSeatsStatus } from "../seats/seatSelectionSlice";
 
 const ExpiredNotice = () => {
@@ -40,7 +40,6 @@ const ShowCounter = ({ minutes, seconds }) => {
 const AVAILABLE = "AVAILABLE";
 const CountdownTimer = ({ targetDate }) => {
     const [days, hours, minutes, seconds] = useCountdown(targetDate);
-    const seatSelection = useSelector((state) => state.seatSelection);
     const dispatch = useDispatch();
 
     if (days + hours + minutes + seconds <= 0) {
