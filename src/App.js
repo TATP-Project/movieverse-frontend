@@ -7,7 +7,6 @@ import TicketInfoPage from "./pages/TicketInfoPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import MovieTimeslotsPage from "./pages/MovieTimeslotsPage";
 import FoodPage from "./pages/FoodPage";
-import Test from "./features/movie/Test";
 import { useSelector } from "react-redux";
 
 function App() {
