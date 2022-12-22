@@ -10,22 +10,20 @@ export default function ListOfMoviesPage() {
   // useEffect(() => {
   //   console.log(history);
   // }, [history]);
-
+  const seats = useSelector((state) => state.seatSelection.seats);
+  const session = useSelector((state) => state.movieSession);
+  const seatToAvailable = seats.map((seat) => {
+      return { ...seat, status: "AVAILABLE" };
+  });
+  window.addEventListener('beforeunload', function (e) {
+      e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
+  });
   useEffect(() => {
     if (history === "/food") {
       const url = new URL(window.location);
       const urlString = `${url.href}#${FOOD_PAGE_ID}`;
       window.history.pushState({}, "", urlString);
-    const seats = useSelector((state) => state.seatSelection.seats);
-    const session = useSelector((state) => state.movieSession);
-    const seatToAvailable = seats.map((seat) => {
-        return { ...seat, status: "AVAILABLE" };
-    });
-    window.addEventListener('beforeunload', function (e) {
-        e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
-    });
     
-   
       window.onpopstate = () => {
         if (window.confirm("Are you going back?")) {
           window.history.back();

@@ -11,18 +11,18 @@ export default function TicketInfoPage() {
   // useEffect(() => {
   //   console.log(history);
   // }, [history]);
-
+  const seats = useSelector((state) => state.seatSelection.seats);
+  const session = useSelector((state) => state.movieSession);
+  const seatToAvailable = seats.map((seat) => {
+      return { ...seat, status: "AVAILABLE" };
+  });
+  window.addEventListener('beforeunload', function (e) {
+      e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
+  });
+    
   useEffect(() => {
     if (history === "/ticketinfo") {
       const url = new URL(window.location);
-    const seats = useSelector((state) => state.seatSelection.seats);
-    const session = useSelector((state) => state.movieSession);
-    const seatToAvailable = seats.map((seat) => {
-        return { ...seat, status: "AVAILABLE" };
-    });
-    window.addEventListener('beforeunload', function (e) {
-        e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
-    });
       const urlString = `${url.href}#${TICKET_PAGE_ID}`;
       window.history.pushState({}, "", urlString);
       window.onpopstate = () => {
@@ -31,7 +31,7 @@ export default function TicketInfoPage() {
         } else {
           window.history.pushState({}, "", urlString);
         }
-      };
+      }; 
     }
 
     return () => {
