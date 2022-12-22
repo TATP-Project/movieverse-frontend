@@ -81,10 +81,6 @@ export default function SeatSelection() {
     navigate("/food");
   };
 
-  const checkIfSeatAlreadyRserved = (selectedSeat) => {
-    
-  };
-
   return (
     <div className="seatSelection">
       <Row justify="center">
