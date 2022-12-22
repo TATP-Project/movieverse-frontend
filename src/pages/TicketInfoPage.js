@@ -3,6 +3,7 @@ import TicketInfo from "../features/ticketInfo/TicketInfo.js";
 import StatusBar from "../features/movie/StatusBar";
 import { useSelector } from "react-redux";
 import BackToHomeButton from "../features/button/BackToHomeButton.js";
+import { updateSeatsByMovieSessionId } from "../api/movieSessions";
 
 const TICKET_PAGE_ID = "ticket";
 export default function TicketInfoPage() {
@@ -14,6 +15,14 @@ export default function TicketInfoPage() {
   useEffect(() => {
     if (history === "/ticketinfo") {
       const url = new URL(window.location);
+    const seats = useSelector((state) => state.seatSelection.seats);
+    const session = useSelector((state) => state.movieSession);
+    const seatToAvailable = seats.map((seat) => {
+        return { ...seat, status: "AVAILABLE" };
+    });
+    window.addEventListener('beforeunload', function (e) {
+        e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
+    });
       const urlString = `${url.href}#${TICKET_PAGE_ID}`;
       window.history.pushState({}, "", urlString);
       window.onpopstate = () => {
@@ -34,6 +43,7 @@ export default function TicketInfoPage() {
     <div>
       <StatusBar stage={3} id={TICKET_PAGE_ID} />
       <TicketInfo />
+            
     </div>
   ) : (
     <BackToHomeButton />
