@@ -17,5 +17,5 @@ export default function SeatSelectionPage() {
         <SeatSelection />
       </div>
     )
-    : <div className="sessionExpired"><p>Session expired</p><button onClick={() => {navigate('/');navigate(0);}}>Back To Home</button></div> //incorrect history:<div className="sessionExpired"><p>Session expired</p><button onClick={()=>{navigate('/');navigate(0);}}>Back To Home</button></div> //incorrect history
+    :<div className="sessionExpired"><p>Session Not Found/Expired</p><button onClick={()=>{navigate('/');navigate(0);}}>Back To Home</button></div> //incorrect history
 }

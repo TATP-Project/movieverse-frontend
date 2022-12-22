@@ -70,5 +70,5 @@ export default function ListOfMoviesPage() {
                 />
             </div>
         </>)
-        :<div className="sessionExpired"><p>Session expired</p><button onClick={()=>{navigate('/');navigate(0);}}>Back To Home</button></div> //incorrect history
+        :<>{navigate(0)}</>
 }
