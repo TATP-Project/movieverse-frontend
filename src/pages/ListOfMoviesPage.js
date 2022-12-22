@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MovieList from "../features/movie/MovieList";
 import "./commonStyles.css";
 import { Button } from "antd";
 import FilterLogo from "../icons/FilterLogo.png";
 import "./listOfMoviePage.css";
 import Filter from "../features/filter/Filter";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function ListOfMoviesPage() {
     const [showFilter, setShowFilter] = useState(false);
     const [filterTags, setFilterTags] = useState([]);
+    const navigate = useNavigate()
+    const criticalSection = ['/food', '/ticketinfo', '/complete']
     const toggleFilterModal = () => {
         setShowFilter(!showFilter);
     };
@@ -25,9 +29,13 @@ export default function ListOfMoviesPage() {
                 .map((filterTagObj) => filterTagObj.value.toUpperCase()),
         };
     };
+    const history = useSelector((state) => state.history);
+    useEffect(() => {
+        console.log(history)
+    }, [history])
 
-    return (
-        <>
+    return (!criticalSection.includes(history)) ?
+        (<>
             <div style={{ paddingBottom: "32px", margin: "0 20px" }}>
                 <span className={"title"} style={{ float: "left" }}>
                     Now on cinemas
@@ -42,16 +50,18 @@ export default function ListOfMoviesPage() {
                     <img id="filterIcon" src={FilterLogo} alt="filter" />
                 </Button>
             </div>
-            {showFilter ? (
-                <div>
-                    <Filter
-                        checkedBoxes={filterTags}
-                        onCheckChange={onCheckChange}
-                    />
-                </div>
-            ) : (
-                <></>
-            )}
+            {
+                showFilter ? (
+                    <div>
+                        <Filter
+                            checkedBoxes={filterTags}
+                            onCheckChange={onCheckChange}
+                        />
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className={"body"}>
                 <MovieList
                     filterTags={groupTagObjByKey(
@@ -59,6 +69,6 @@ export default function ListOfMoviesPage() {
                     )}
                 />
             </div>
-        </>
-    );
+        </>)
+        : <>{navigate(0)}</>
 }

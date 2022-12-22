@@ -4,6 +4,7 @@ import "./TimeslotDropdown.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { pushHistory } from "../history/historySlice";
 
 export default function TimeslotDropdown(props) {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function TimeslotDropdown(props) {
     };
     const selectSession = (session) => {
         dispatch(setMovieSession(session));
+        dispatch(pushHistory('/new-order'));
         navigate("/new-order");
     };
     var date = new Date(props.sessions[0].timeslot.startDateTime);

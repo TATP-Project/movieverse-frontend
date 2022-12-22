@@ -12,6 +12,7 @@ import FoodCard from "./FoodCard";
 import "./FoodList.css";
 import { setTimer } from "../counter/countdownTimerSlice";
 import { toggleLoading } from "../loading/loadingSlice";
+import { pushHistory } from "../history/historySlice";
 
 export default function FoodPage() {
     const dispatch = useDispatch();
@@ -58,6 +59,7 @@ export default function FoodPage() {
 
     const onSubmitFoods = () => {
         dispatch(setSelectedFood(selectedFood));
+        dispatch(pushHistory('/ticketinfo'));
         navigate("/ticketinfo");
     };
 

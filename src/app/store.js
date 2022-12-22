@@ -6,6 +6,7 @@ import foodSelectionReducer from "../features/food/foodSlice";
 import loadingReducer from "../features/loading/loadingSlice";
 import ticketIdReducer from "../features/ticketInfo/ticketSlice";
 import countdownTimerReducer from "../features/counter/countdownTimerSlice"
+import historyReducer from "../features/history/historySlice";
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         loading: loadingReducer,
         ticketId: ticketIdReducer,
         countdownTimer: countdownTimerReducer,
+        history: historyReducer
     },
 });

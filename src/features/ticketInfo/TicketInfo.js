@@ -11,6 +11,7 @@ import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
 import CountdownTimer from "../counter/CountdownTimer";
 import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
+import { pushHistory } from "../history/historySlice";
 
 import { Col, Row } from 'antd';
 
@@ -70,6 +71,7 @@ export default function TicketInfo() {
         });
 
         updateSeatsByMovieSessionId(session.id, seatToSell).then((response) => {
+            dispatch(pushHistory('/complete'))
             navigate("/complete");
         });
     };

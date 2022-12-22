@@ -11,7 +11,9 @@ import { setSeatSelection } from "./seatSelectionSlice";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
 import { toggleLoading } from "../loading/loadingSlice";
+import { pushHistory } from "../history/historySlice";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 
 const SELECTED = "SELECTED"; 
 const RESERVED = "RESERVED";
@@ -75,13 +77,13 @@ export default function SeatSelection() {
           movieSessionId: movieSession.id,
           seats: response.data,
         }))
+        dispatch(pushHistory('/food'));
         navigate("/food");
       })
       .catch((error) => {
         setIsShown(true)
       });
   };
-
 
 
   return (
