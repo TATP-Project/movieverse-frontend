@@ -13,13 +13,8 @@
 
 #filterModalContainer * {
     font-size: large !important;
-
 }
 
 .list {
     min-width: 1423px;
-}
-.title{
-    margin-left: 20px;
-    margin-right: 20px;
 }

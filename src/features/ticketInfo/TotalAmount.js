@@ -2,7 +2,6 @@ import React from "react";
 import "./TicketInfo.css";
 
 export default function TotalAmount(props) {
-    console.log(props.amount);
     return (
         <div className="totalAmount">
             <div></div>
