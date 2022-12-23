@@ -34,6 +34,11 @@
 .statusbar-container{
     width: 1000px;
     margin: auto;
+    white-space: nowrap;
+}
+
+.stage-uncomplete{
+    opacity: 30%;
 }
 
 .stage-uncomplete > .ellipse{
@@ -47,6 +52,6 @@
 .stage-uncomplete + .statusbar-line{
     opacity: 30%;
 }
-.statusbar-line:has(+.stage-uncomplete){
+/* .statusbar-line:has(+.stage-uncomplete){
     opacity: 30%;
-}
+} */

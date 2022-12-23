@@ -13,3 +13,16 @@
 .row {
     width: 100%;
 }
+
+.hideScreen {
+    visibility: hidden;
+}
+
+.ant-col .houseNumber{
+  margin-top: 1.25em;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+}

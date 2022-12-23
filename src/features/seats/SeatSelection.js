@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { getSeatsByMovieSessionId } from "../../api/movieSessions";
+import {
+    getSeatsByMovieSessionId,
+    updateSeatsByMovieSessionId,
+} from "../../api/movieSessions";
 import SeatTable from "./SeatTable";
 import Seat from "./Seat";
 import ConfirmButton from "../button/ConfirmButton";
-import MovieSessionDropdownForSeat from "../movieSession/MovieSessionDropdownForSeat";
 import MovieSessionDropdownTitleForSeat from "../movieSession/MovieSessionDropdownTitleForSeat ";
+import MovieSessionDropdownMenu from "../movieSession/MovieSessionDropdownMenu";
 import { Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeatSelection } from "./seatSelectionSlice";
-import * as dayjs from "dayjs";
 import "./SeatSelection.css";
 import { useNavigate } from "react-router-dom";
+import { toggleLoading } from "../loading/loadingSlice";
+import { pushHistory } from "../history/historySlice";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { setTimer } from "../counter/countdownTimerSlice";
 
+const SELECTED = "SELECTED";
 const RESERVED = "RESERVED";
 const AVAILABLE = "AVAILABLE";
 const SOLD = "SOLD";
@@ -19,17 +26,24 @@ const SOLD = "SOLD";
 export default function SeatSelection() {
     const [seats, setSeats] = useState([]);
     const movieSession = useSelector((state) => state.movieSession);
+    const [isShown, setIsShown] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        getSeatsByMovieSessionId(movieSession.id).then((response) => {
-            setSeats(response.data);
-        });
-    }, [movieSession.id]);
+        dispatch(toggleLoading(1));
+        getSeatsByMovieSessionId(movieSession.id)
+            .then((response) => {
+                setSeats(response.data);
+            })
+            .finally(() => {
+                dispatch(toggleLoading(-1));
+            });
+    }, [movieSession.id, dispatch]);
 
-    const movieSessionDate = new Date(movieSession.timeslot.startDateTime);
-    // const movieSessionDateString = `${movieSessionDate.getDate()} ${movieSessionDate.getMonth()} ${movieSessionDate.getFullYear()} (${movieSessionDate.getDay()})`;
+    const isConfirmButtonDisabled = !seats.some(
+        (seat) => seat.status === SELECTED
+    );
 
     const seatsIn2DList = seats.reduce((seatLists, seat) => {
         if (seatLists.length === seat.row - 1) {
@@ -46,9 +60,9 @@ export default function SeatSelection() {
                     if (seat.status === AVAILABLE) {
                         return {
                             ...seat,
-                            status: RESERVED,
+                            status: SELECTED,
                         };
-                    } else if (seat.status === RESERVED) {
+                    } else if (seat.status === SELECTED) {
                         return {
                             ...seat,
                             status: AVAILABLE,
@@ -59,15 +73,36 @@ export default function SeatSelection() {
             })
         );
     };
-
     const handleConfirmSeatClick = () => {
-        dispatch(
-            setSeatSelection({
-                movieSessionId: movieSession.id,
-                seats: seats.filter((seat) => seat.status === RESERVED),
+        const selectedSeat = seats.filter((seat) => seat.status === SELECTED);
+
+        const seatsToReserve = selectedSeat.map((seat) => {
+            return { ...seat, status: RESERVED };
+        });
+        updateSeatsByMovieSessionId(movieSession.id, seatsToReserve)
+            .then((response) => {
+                dispatch(
+                    setSeatSelection({
+                        movieSessionId: movieSession.id,
+                        seats: response.data,
+                    })
+                );
+                const TEN_MINS_IN_MS = 10 * 60 * 1000;
+                const NOW_IN_MS = new Date().getTime();
+                const targetDate = NOW_IN_MS + TEN_MINS_IN_MS;
+                dispatch(pushHistory("/food"));
+                dispatch(setTimer(targetDate));
+                navigate("/food");
             })
-        );
-        navigate("/food");
+            .catch((error) => {
+                setIsShown(true);
+            });
+    };
+
+    const error = {
+        title: "Seat Not Available",
+        context:
+            "Your selected Seat(s) have already become unavailable. Please choose other seat(s).",
     };
 
     return (
@@ -86,26 +121,9 @@ export default function SeatSelection() {
             <div className="houseSeatBox">
                 <Row justify="center">
                     <Col>
-                        <MovieSessionDropdownForSeat
-                            text={movieSession.cinema.name}
-                        />
-                    </Col>
-                    <Col>
-                        <MovieSessionDropdownForSeat
-                            text={`${dayjs(movieSessionDate).format(
-                                "DD MMM YYYY (ddd)"
-                            )}`}
-                        />
-                    </Col>
-                    <Col>
-                        <MovieSessionDropdownForSeat
-                            text={`${dayjs(movieSessionDate).format(
-                                "HH:mm A"
-                            )}`}
-                        />
+                        <MovieSessionDropdownMenu movieSession={movieSession} />
                     </Col>
                 </Row>
-
                 <Row justify="center">
                     <Col>
                         <Row>
@@ -129,6 +147,9 @@ export default function SeatSelection() {
                                 />
                             </Col>
                             <Col>
+                                <Seat status={SELECTED} column={1} showStatus />
+                            </Col>
+                            <Col>
                                 <Seat status={RESERVED} column={1} showStatus />
                             </Col>
                             <Col>
@@ -141,9 +162,20 @@ export default function SeatSelection() {
             </div>
             <Row justify="center">
                 <Col>
-                    <ConfirmButton onClick={handleConfirmSeatClick} />
+                    <ConfirmButton
+                        onClick={handleConfirmSeatClick}
+                        disabled={isConfirmButtonDisabled}
+                    />
                 </Col>
             </Row>
+            {isShown && (
+                <ErrorMessage
+                    error={error}
+                    ok={() => {
+                        navigate("/");
+                    }}
+                />
+            )}
         </div>
     );
 }

@@ -1,0 +1,25 @@
+
+.sessionExpired > *{
+    color: white;
+    font-family: 'lato';
+    border: none;
+   }
+
+   .sessionExpired > *:hover{
+    color: white !important;    
+   }
+   
+   .sessionExpired{
+       display: flex;
+       flex-direction: column;
+   }
+   .sessionExpired > *{
+    color: white;
+    font-family: 'lato';
+    border: none;
+   }
+   
+   .sessionExpired{
+       display: flex;
+       flex-direction: column;
+   }

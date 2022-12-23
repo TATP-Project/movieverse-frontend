@@ -1,0 +1,71 @@
+.ticketid {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    width: 1000px;
+    text-align: center;
+    border-bottom: 1px solid white;
+    margin-bottom: 0px;
+}
+#divToPrint {
+    width: 800px;
+    height: 1130px;
+    overflow: hidden;
+    background-color: #282b30;
+}
+#divToPrint * {
+    max-width: 800px;
+    max-height: 1130px;
+}
+#divToPrint img {
+    width: 100%;
+    height: auto;
+}
+#divToPrint .wrapper .payment-title {
+    display: none;
+}
+#divToPrint .wrapper .ant-radio-group {
+    display: none;
+}
+
+/* #divToPrint > div:first-child .confirmButton {
+    display: none;
+} */
+
+#divToPrint button {
+    display: none;
+}
+
+#divToPrint .show-counter {
+    display: none;
+}
+#divToPrint .expired-notice {
+    display: none;
+}
+#divToPrint > div:first-child .orders-title,
+#divToPrint > div:first-child .orders-component,
+#divToPrint > div:first-child .totalAmount {
+    display: none;
+}
+
+#divToPrint .ticketid {
+    border-bottom: 0px;
+}
+
+#qrCodeHeader {
+    color: #fa7e35;
+    font-size: xxx-large;
+}
+#react-qrcode-logo {
+    margin-bottom: 20px;
+}
+#secondPage {
+    width: 800px;
+    height: 1130px;
+    overflow: hidden;
+    background-color: #282b30;
+    padding: 50px;
+}
+#secondPage * {
+    max-width: 800px;
+    max-height: 1130px;
+}

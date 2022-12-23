@@ -3,6 +3,7 @@ import "./MovieCard.css";
 import { setSelectedMovie } from "./movieSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { pushHistory } from "../history/historySlice";
 
 export default function MovieCard(props) {
     const dispatch = useDispatch();
@@ -11,19 +12,20 @@ export default function MovieCard(props) {
     const { movie } = props;
     const selectMovie = () => {
         dispatch(setSelectedMovie(movie));
+        dispatch(pushHistory('/movie-timeslots'));
         navigate("/movie-timeslots");
     };
     return (
         <div className={"movieCard"} onClick={selectMovie}>
             <div className={"image imageOne"}>
                 <img
-                    src={"data:image/png;base64," + movie.image.data}
+                    src={movie.image}
                     alt={movie.name + " stretched"}
                 />
             </div>
             <div className={"image imageTwo"}>
                 <img
-                    src={"data:image/png;base64," + movie.image.data}
+                    src={movie.image}
                     alt={movie.name}
                 />
             </div>

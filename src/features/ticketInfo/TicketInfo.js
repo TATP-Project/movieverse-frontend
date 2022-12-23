@@ -1,43 +1,92 @@
 import "./TicketInfo.css";
 import TicketInfoItem from "./TicketInfoItem";
-import { useSelector } from "react-redux";
-import SeatsInfoItem from "./SeatsInfoItem";
-import FoodInfoItem from "./FoodInfoItem";
-import TotalAmount from "./TotalAmount";
+import { useDispatch, useSelector } from "react-redux";
+
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
+import { useNavigate } from "react-router-dom";
+import { postTicket } from "../../api/ticketInfo";
+import { setTicketId } from "./ticketSlice";
+import CountdownTimer from "../counter/CountdownTimer";
+import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
+import { pushHistory } from "../history/historySlice";
+import Orders from "./Orders";
 
 export default function TicketInfo() {
+    const navigate = useNavigate();
     const movie = useSelector((state) => state.movie);
     const session = useSelector((state) => state.movieSession);
     const seats = useSelector((state) => state.seatSelection.seats);
     const food = useSelector((state) => state.foodSelection);
     const date = new Date(session.timeslot.startDateTime);
-    const calculateTotalAmount = () => {
-        var foodTotal = Object.keys(food).reduce((total, id) => {
-            var thisFood = food[id];
-            total += parseInt(thisFood.count) * parseInt(thisFood.price);
-            return total;
-        }, 0);
+    const dispatch = useDispatch();
+    const targetDate = useSelector((state) => state.countdownTimer.targetDate);
 
-        var seatTotal =
-            parseInt(session.price) * parseInt(Object.keys(seats).length);
-        return foodTotal + seatTotal;
+    // const houseWordToNumber = (houseWord) => {
+    //     var number = {
+    //         one: 1,
+    //         two: 2,
+    //         three: 3,
+    //         four: 4,
+    //         five: 5,
+    //         six: 6,
+    //         seven: 7,
+    //         eight: 8,
+    //         nine: 9,
+    //         ten: 10,
+    //     };
+    //     return number[houseWord.split(" ").pop().toLowerCase()];
+    // };
+
+    const handleConfirmTicketInfo = () => {
+        var foodList = [];
+        Object.keys(food).forEach((id) => {
+            foodList = foodList.concat(Array(food[id].count).fill(id));
+        });
+        var ticketInfoJson = {
+            movieSessionId: session.id,
+            seats: seats,
+            food: foodList,
+        };
+        postTicket(ticketInfoJson).then((response) => {
+            dispatch(setTicketId(response.data));
+        });
+
+        const seatToSell = seats.map((seat) => {
+            return { ...seat, status: "SOLD" };
+        });
+
+        updateSeatsByMovieSessionId(session.id, seatToSell).then((response) => {
+            dispatch(pushHistory("/complete"));
+            navigate("/complete");
+        });
     };
+
     return (
         <div>
             <div className="wrapper">
                 <div className={"movieTitle"} style={{ width: "100%" }}>
+                    <CountdownTimer targetDate={targetDate} />
                     {movie.name}
                 </div>
                 <div className={"ticketInfo"}>
-                    <div>
+                    <div
+                        style={{
+                            background: `url("${movie.image}")`,
+                            width: "300px",
+                            backgroundSize: "cover",
+                        }}
+                    ></div>
+                    {/* <div>
                         <img
                             className={"ticketInfoImage"}
-                            src={"data:image/png;base64," + movie.image.data}
+                            src={movie.image}
                             alt={movie.name}
+                            style={{
+                                background: `url("${movie.image}")`,
+                            }}
                         />
-                    </div>
+                    </div> */}
                     <div className="ticketInfoTable">
                         <TicketInfoItem
                             header="Cinema"
@@ -59,13 +108,11 @@ export default function TicketInfo() {
                         />
                         <TicketInfoItem
                             header="House"
-                            value={session.house.name}
+                            value={session.house.name.split(" ").pop()}
                         />
-                        <SeatsInfoItem header="Seats" seats={seats} />
-                        <FoodInfoItem header="F&B" food={food} />
                     </div>
                 </div>
-                <TotalAmount amount={calculateTotalAmount()} />
+                <Orders food={food} seats={seats} session={session} />
                 <PaymentMethod />
             </div>
             <div
@@ -75,7 +122,7 @@ export default function TicketInfo() {
                     justifyContent: "center",
                 }}
             >
-                <ConfirmButton />
+                <ConfirmButton onClick={handleConfirmTicketInfo} />
             </div>
         </div>
     );

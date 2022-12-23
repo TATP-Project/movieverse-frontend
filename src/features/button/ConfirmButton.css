@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.disabledConfirmButton {
+  background: rgba(21, 105, 95, 0.3);
+}
+
 .buttonText {
   display: inline-block;
   text-align: center;
@@ -25,5 +29,9 @@
   display: inline-block;
   width: 60px;
   left: 160px;
+  background: #0d403a;
+}
+
+.disabledButtonIcon {
   background: #0d403a;
 }

@@ -29,6 +29,11 @@
     box-sizing: border-box;
     background: #1E2124;
     border: 1px solid #424549;
+    max-width: 240px;
+    max-height: 270px;
+}
+.buttonNoAnimate{
+    outline: none !important;
 }
 
 /* .imageTwo > img {
