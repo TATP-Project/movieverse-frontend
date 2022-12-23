@@ -87,7 +87,7 @@ export default function SeatSelection() {
                         seats: response.data,
                     })
                 );
-                const TEN_MINS_IN_MS = 10 * 60 * 1000;
+                const TEN_MINS_IN_MS = 15 * 1000;
                 const NOW_IN_MS = new Date().getTime();
                 const targetDate = NOW_IN_MS + TEN_MINS_IN_MS;
                 dispatch(pushHistory("/food"));
