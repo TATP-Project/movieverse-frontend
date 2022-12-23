@@ -9,19 +9,24 @@ import "./SeatTable.css";
 const LOADED = 0;
 export default function SeatTable({ seatsIn2DList, onSeatClick }) {
   const loading = useSelector((state) => state.loading !== LOADED);
-
+  const movieSession = useSelector((state) => state.movieSession);
   return (
     <div className={loading ? "hideScreen" : ""}>
       <Row justify="center" className="bottomMargin">
-        <Col>
+        <Col span={9}></Col>
+        <Col span={12}>
           <img
             src={Screen}
             width={313}
             height={82}
             alt="screen"
           />
+        </Col >
+        <Col className="houseNumber">
+          {movieSession.house.name}
         </Col>
       </Row>
+    
       {seatsIn2DList.map((seatList, rowIndex) => {
         let verticalMarginClass = "";
         if (rowIndex === 2) {
