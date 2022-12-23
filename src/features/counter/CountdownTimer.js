@@ -51,17 +51,14 @@ const CountdownTimer = ({ targetDate }) => {
       context: 'Your session has been expired' ,
     }
 
-    if (days + hours + minutes + seconds <= 0) {
+    if (days + hours + minutes + seconds === 0) {
         dispatch(setSeatsStatus(AVAILABLE));
-        return (
-          <>
-            <ErrorMessage  
+        return <ErrorMessage  
                 error={error}
                 ok={()=>{navigate("/")}} 
             />
-          </>
-        )
-    } else {
+          
+    } else if(days + hours + minutes + seconds > 0) {
         return <ShowCounter minutes={minutes} seconds={seconds} />;
     }
 };
