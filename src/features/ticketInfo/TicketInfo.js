@@ -108,7 +108,7 @@ export default function TicketInfo() {
                         />
                         <TicketInfoItem
                             header="House"
-                            value={houseWordToNumber(session.house.name)}
+                            value={session.house.name.split(" ").pop()}
                         />
                     </div>
                 </div>
