@@ -40,6 +40,7 @@ export default function ListOfMoviesPage() {
 
     return () => {
       window.onpopstate = null;
+      window.onbeforeunload = null;
     };
   }, [history]);
 

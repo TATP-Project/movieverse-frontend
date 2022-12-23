@@ -7,6 +7,7 @@ import { updateSeatsByMovieSessionId } from '../../api/movieSessions';
 import { toggleLoading } from '../loading/loadingSlice';
 
 export function cleanCacheAndRedirect(navigate, dispatch, seatSelection,history) {
+    window.onbeforeunload = null;
     const AVAILABLE = "AVAILABLE";
     
     if ((seatSelection && seatSelection.seats && seatSelection.seats.length > 0) && (history!== "/complete")) {
