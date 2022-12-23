@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { toggleLoading } from "../loading/loadingSlice";
 import { pushHistory } from "../history/historySlice";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { setTimer } from "../counter/countdownTimerSlice";
 
 
 const SELECTED = "SELECTED"; 
@@ -68,6 +69,8 @@ export default function SeatSelection() {
   };
   const handleConfirmSeatClick = () => {
     const selectedSeat = seats.filter((seat) => seat.status === SELECTED)
+   
+
     const seatsToReserve = selectedSeat.map((seat) => {
       return {...seat, status : RESERVED}
     })
@@ -77,7 +80,11 @@ export default function SeatSelection() {
           movieSessionId: movieSession.id,
           seats: response.data,
         }))
+        const TEN_MINS_IN_MS = 10 * 1000;
+        const NOW_IN_MS = new Date().getTime();
+        const targetDate = NOW_IN_MS + TEN_MINS_IN_MS;
         dispatch(pushHistory('/food'));
+        dispatch(setTimer(targetDate));
         navigate("/food");
       })
       .catch((error) => {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getFoods } from "../../api/foods";
 import { Col, Row, Card, Space } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedFood } from "./foodSlice";
 import { useNavigate } from "react-router-dom";
 import CountdownTimer from "../counter/CountdownTimer";
@@ -10,9 +10,9 @@ import TotalAmount from "../ticketInfo/TotalAmount";
 import ConfirmButton from "../button/ConfirmButton";
 import FoodCard from "./FoodCard";
 import "./FoodList.css";
-import { setTimer } from "../counter/countdownTimerSlice";
 import { toggleLoading } from "../loading/loadingSlice";
 import { pushHistory } from "../history/historySlice";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 export default function FoodPage() {
     const dispatch = useDispatch();
@@ -20,12 +20,11 @@ export default function FoodPage() {
     const navigate = useNavigate();
     const [foods, setFoods] = useState([]);
     const [selectedFood, setCurrentSelectedFood] = useState({});
+    const timer = useSelector((state) => state.countdownTimer);
+    const targetDate = timer.targetDate
+    const isExpired = timer.isExpired;
 
-    const TEN_MINS_IN_MS = 10 * 60 * 1000;
-    const NOW_IN_MS = new Date().getTime();
-    const targetDate = NOW_IN_MS + TEN_MINS_IN_MS;
-    dispatch(setTimer(targetDate));
-
+   
     useEffect(() => {
         dispatch(toggleLoading(1));
         getFoods()
@@ -63,6 +62,10 @@ export default function FoodPage() {
         navigate("/ticketinfo");
     };
 
+    const error = {
+        title: "Session Expired",
+        context: 'Your session has been expired' ,
+    }
     return (
         <>
             <Card className="foodMainList" style={{top: "50px"}} >
@@ -72,7 +75,13 @@ export default function FoodPage() {
                             <div className="foodtitle">YOU MAY ALSO LIKE</div>
                         </Col>
                         <Col span={12}>
-                          <CountdownTimer targetDate={targetDate}/>
+                          <CountdownTimer targetDate={targetDate} />
+                          {isExpired && 
+                            <ErrorMessage  
+                                error={error}
+                                ok={()=>{navigate("/");navigate(0);}} 
+                            />
+                          }
                         </Col>
                     </Row>
 
