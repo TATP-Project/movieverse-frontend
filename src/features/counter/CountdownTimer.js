@@ -6,8 +6,7 @@ import Timer from "./timer.png";
 import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { setSeatsStatus } from "../seats/seatSelectionSlice";
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
-import { useNavigate } from "react-router-dom";
+import { setTimerExpired } from "./countdownTimerSlice"
 
 const ShowCounter = ({ minutes, seconds }) => {
     return (
@@ -44,20 +43,10 @@ const AVAILABLE = "AVAILABLE";
 const CountdownTimer = ({ targetDate }) => {
     const [days, hours, minutes, seconds] = useCountdown(targetDate);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const error = {
-      title: "Session Expired",
-      context: 'Your session has been expired' ,
-    }
 
     if (days + hours + minutes + seconds === 0) {
         dispatch(setSeatsStatus(AVAILABLE));
-        return <ErrorMessage  
-                error={error}
-                ok={()=>{navigate("/")}} 
-            />
-          
+        dispatch(setTimerExpired(true));
     } else if(days + hours + minutes + seconds > 0) {
         return <ShowCounter minutes={minutes} seconds={seconds} />;
     }

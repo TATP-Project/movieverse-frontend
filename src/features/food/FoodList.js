@@ -12,6 +12,7 @@ import FoodCard from "./FoodCard";
 import "./FoodList.css";
 import { toggleLoading } from "../loading/loadingSlice";
 import { pushHistory } from "../history/historySlice";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 export default function FoodPage() {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function FoodPage() {
     const [selectedFood, setCurrentSelectedFood] = useState({});
     const timer = useSelector((state) => state.countdownTimer);
     const targetDate = timer.targetDate
+    const isExpired = timer.isExpired;
 
    
     useEffect(() => {
@@ -60,6 +62,10 @@ export default function FoodPage() {
         navigate("/ticketinfo");
     };
 
+    const error = {
+        title: "Session Expired",
+        context: 'Your session has been expired' ,
+    }
     return (
         <>
             <Card className="foodMainList" style={{top: "50px"}} >
@@ -70,6 +76,12 @@ export default function FoodPage() {
                         </Col>
                         <Col span={12}>
                           <CountdownTimer targetDate={targetDate} />
+                          {isExpired && 
+                            <ErrorMessage  
+                                error={error}
+                                ok={()=>{navigate("/");navigate(0);}} 
+                            />
+                          }
                         </Col>
                     </Row>
 
