@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e232e4ce.css",
+    "main.js": "/static/js/main.bc3fe8b2.js",
+    "static/js/703.1173dabd.chunk.js": "/static/js/703.1173dabd.chunk.js",
+    "static/js/598.95b56cd1.chunk.js": "/static/js/598.95b56cd1.chunk.js",
+    "static/js/787.14199621.chunk.js": "/static/js/787.14199621.chunk.js",
+    "static/media/Logo.svg": "/static/media/Logo.3d24fc2c90e37cccea5df472b2e4b793.svg",
+    "static/media/NoMovieFoundLogo.png": "/static/media/NoMovieFoundLogo.89df9c906a03cb28adc7.png",
+    "static/media/wechatpay.png": "/static/media/wechatpay.c2e3f0d4f0cf3c330d2b.png",
+    "static/media/alipay.png": "/static/media/alipay.ee6166b16ed931960faa.png",
+    "static/media/Language.svg": "/static/media/Language.2a5f588741354936414e066a6b8f8749.svg",
+    "index.html": "/index.html",
+    "static/media/Location.svg": "/static/media/Location.b54a86e6425b09e6a5a9059929ce547c.svg",
+    "main.e232e4ce.css.map": "/static/css/main.e232e4ce.css.map",
+    "main.bc3fe8b2.js.map": "/static/js/main.bc3fe8b2.js.map",
+    "703.1173dabd.chunk.js.map": "/static/js/703.1173dabd.chunk.js.map",
+    "598.95b56cd1.chunk.js.map": "/static/js/598.95b56cd1.chunk.js.map",
+    "787.14199621.chunk.js.map": "/static/js/787.14199621.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e232e4ce.css",
+    "static/js/main.bc3fe8b2.js"
+  ]
+}
