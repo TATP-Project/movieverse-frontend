@@ -60,9 +60,6 @@ export default function CompletePage() {
     }, []);
 
     const history = useSelector((state) => state.history);
-    useEffect(() => {
-        console.log(history);
-    }, [history]);
 
     return history === "/complete" ? (
         <>

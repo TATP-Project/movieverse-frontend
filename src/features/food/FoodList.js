@@ -21,10 +21,9 @@ export default function FoodPage() {
     const [foods, setFoods] = useState([]);
     const [selectedFood, setCurrentSelectedFood] = useState({});
     const timer = useSelector((state) => state.countdownTimer);
-    const targetDate = timer.targetDate
+    const targetDate = timer.targetDate;
     const isExpired = timer.isExpired;
 
-   
     useEffect(() => {
         dispatch(toggleLoading(1));
         getFoods()
@@ -58,30 +57,37 @@ export default function FoodPage() {
 
     const onSubmitFoods = () => {
         dispatch(setSelectedFood(selectedFood));
-        dispatch(pushHistory('/ticketinfo'));
+        dispatch(pushHistory("/ticketinfo"));
         navigate("/ticketinfo");
     };
 
     const error = {
         title: "Session Expired",
-        context: 'Your session has been expired' ,
-    }
+        context: "Your session has been expired",
+    };
     return (
         <>
-            <Card className="foodMainList" style={{top: "50px"}} >
-                <Space direction="vertical" size="large" style={{display:"flex"}}>
-                    <Row >
+            <Card className="foodMainList" style={{ top: "50px" }}>
+                <Space
+                    direction="vertical"
+                    size="large"
+                    style={{ display: "flex" }}
+                >
+                    <Row>
                         <Col span={12}>
                             <div className="foodtitle">YOU MAY ALSO LIKE</div>
                         </Col>
                         <Col span={12}>
-                          <CountdownTimer targetDate={targetDate} />
-                          {isExpired && 
-                            <ErrorMessage  
-                                error={error}
-                                ok={()=>{navigate("/");navigate(0);}} 
-                            />
-                          }
+                            <CountdownTimer targetDate={targetDate} />
+                            {isExpired && (
+                                <ErrorMessage
+                                    error={error}
+                                    ok={() => {
+                                        navigate("/");
+                                        navigate(0);
+                                    }}
+                                />
+                            )}
                         </Col>
                     </Row>
 
@@ -116,7 +122,7 @@ export default function FoodPage() {
                         {foods.map((food, index) => {
                             if (food.type === "popcorn") {
                                 return (
-                                    <Col span={8}>
+                                    <Col span={8} key={index}>
                                         <Row justify="end">
                                             <FoodCard
                                                 food={food}
@@ -140,7 +146,7 @@ export default function FoodPage() {
                         {foods.map((food, index) => {
                             if (food.type === "drink") {
                                 return (
-                                    <Col span={8}>
+                                    <Col span={8} key={index}>
                                         <Row justify="end">
                                             <FoodCard
                                                 food={food}

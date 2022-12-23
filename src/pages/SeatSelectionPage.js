@@ -5,17 +5,17 @@ import SeatSelection from "../features/seats/SeatSelection";
 import BackToHomeButton from "../features/button/BackToHomeButton";
 
 export default function SeatSelectionPage() {
-  const history = useSelector((state) => state.history);
-  const criticalSection = ['/food', '/ticketinfo', '/complete']
-  useEffect(() => {
-    console.log(history)
-  }, [history])
-  return (!criticalSection.includes(history)) ?
-    (
-      <div className={"body"}>
-        <StatusBar stage={1} />
-        <SeatSelection />
-      </div>
-    )
-    : <BackToHomeButton /> //incorrect history
+    const history = useSelector((state) => state.history);
+    const criticalSection = ["/food", "/ticketinfo", "/complete"];
+    useEffect(() => {
+        //(history)
+    }, [history]);
+    return !criticalSection.includes(history) ? (
+        <div className={"body"}>
+            <StatusBar stage={1} />
+            <SeatSelection />
+        </div>
+    ) : (
+        <BackToHomeButton />
+    ); //incorrect history
 }
