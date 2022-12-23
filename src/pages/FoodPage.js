@@ -22,7 +22,7 @@ export default function ListOfMoviesPage() {
             window.onbeforeunload = null;
         }
     })
-  }, []);
+  }, [session.id,seatToAvailable]);
   useEffect(() => {
     if (history === "/food") {
       const url = new URL(window.location);

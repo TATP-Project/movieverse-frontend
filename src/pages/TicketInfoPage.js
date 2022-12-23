@@ -23,7 +23,7 @@ export default function TicketInfoPage() {
             window.onbeforeunload = null;
         }
     })
-  }, []);
+  }, [session.id,seatToAvailable]);
     
   useEffect(() => {
     if (history === "/ticketinfo") {
