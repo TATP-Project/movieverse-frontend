@@ -16,9 +16,14 @@ export default function TicketInfoPage() {
   const seatToAvailable = seats.map((seat) => {
       return { ...seat, status: "AVAILABLE" };
   });
-  window.addEventListener('beforeunload', function (e) {
-      e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
-  });
+  useEffect(() => {
+    window.addEventListener('beforeunload', function (e) {
+        e.returnValue = updateSeatsByMovieSessionId(session.id, seatToAvailable);
+        return () => {
+            window.onbeforeunload = null;
+        }
+    })
+  }, []);
     
   useEffect(() => {
     if (history === "/ticketinfo") {
