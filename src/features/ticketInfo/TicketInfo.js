@@ -1,9 +1,7 @@
 import "./TicketInfo.css";
 import TicketInfoItem from "./TicketInfoItem";
 import { useDispatch, useSelector } from "react-redux";
-import SeatsInfoItem from "./SeatsInfoItem";
-import FoodInfoItem from "./FoodInfoItem";
-import TotalAmount from "./TotalAmount";
+
 import PaymentMethod from "./payment/PaymentMethod";
 import ConfirmButton from "../button/ConfirmButton";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +9,7 @@ import { postTicket } from "../../api/ticketInfo";
 import { setTicketId } from "./ticketSlice";
 import CountdownTimer from "../counter/CountdownTimer";
 import { updateSeatsByMovieSessionId } from "../../api/movieSessions";
-
-import { Col, Row } from "antd";
-import { useEffect, useState } from "react";
+import Orders from "./Orders";
 
 export default function TicketInfo() {
     const navigate = useNavigate();
@@ -25,17 +21,6 @@ export default function TicketInfo() {
     const dispatch = useDispatch();
     const targetDate = useSelector((state) => state.countdownTimer.targetDate);
 
-    const calculateTotalAmount = () => {
-        var foodTotal = Object.keys(food).reduce((total, id) => {
-            var thisFood = food[id];
-            total += parseInt(thisFood.count) * parseInt(thisFood.price);
-            return total;
-        }, 0);
-
-        var seatTotal =
-            parseInt(session.price) * parseInt(Object.keys(seats).length);
-        return foodTotal + seatTotal;
-    };
     const houseWordToNumber = (houseWord) => {
         var number = {
             one: 1,
@@ -74,8 +59,6 @@ export default function TicketInfo() {
             navigate("/complete");
         });
     };
-
-    const [url, setUrl] = useState("");
 
     return (
         <div>
@@ -127,28 +110,7 @@ export default function TicketInfo() {
                         />
                     </div>
                 </div>
-
-                <div className="orders-title">Orders</div>
-                <div className="orders-component">
-                    <Col>
-                        <Row justify="start" className="ordersInfoItem">
-                            <SeatsInfoItem
-                                header="Seats"
-                                seats={seats}
-                                price={session.price}
-                            />
-                        </Row>
-
-                        <Row justify="start" className="ordersInfoItem">
-                            <FoodInfoItem
-                                header="F&amp;B"
-                                food={food}
-                                price={session.price}
-                            />
-                        </Row>
-                    </Col>
-                </div>
-                <TotalAmount amount={calculateTotalAmount()} />
+                <Orders food={food} seats={seats} session={session} />
                 <PaymentMethod />
             </div>
             <div
