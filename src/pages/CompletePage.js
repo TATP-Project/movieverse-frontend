@@ -17,23 +17,23 @@ export default function CompletePage() {
 
     const printDocument = () => {
         const input = document.getElementById("divToPrint");
-        html2canvas(input).then((canvas) => {
+        html2canvas(input,{useCORS:true}).then((canvas) => {
             const imgData = canvas.toDataURL("image/png");
             var imgWidth = 210;
             var pageHeight = 295;
             var imgHeight = (canvas.height * imgWidth) / canvas.width;
             var heightLeft = imgHeight;
             const pdf = new jsPDF("p", "mm");
+            
             var position = 10;
             pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-            // pdf.output('dataurlnewwindow');
+
+            pdf.addPage();
             var img = document.createElement("img");
             img.src = movie.image;
             pdf.addImage(img, "JPEG", 13, 28, 60, 84);
-            // heightLeft -= pageHeight;
-            // pdf.addPage();
-            // pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-
+            pdf.setFillColor(204, 204,204,0);
+            pdf.rect(10, 10, 150, 160, "F");
             pdf.save("ticket.pdf");
         });
     };
@@ -73,8 +73,8 @@ export default function CompletePage() {
                 <div
                     id="hideDivToPrint"
                     style={{
-                        dislay: "none",
-                        height: "0px",
+                        // dislay: "none",
+                        // height: "0px",
                         position: "absolute",
                         top: "100%",
                         overflow: "hidden",

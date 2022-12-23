@@ -8,13 +8,13 @@
 }
 #divToPrint{
     width: 800px;
-    height: 1130px;
+    /* height: 1130px; */
     overflow: hidden;
     background-color: #282b30;
 }
 #divToPrint *{
     max-width: 800px;
-    max-height: 1130px;
+    /* max-height: 1130px; */
 }
 #divToPrint img{
     width: 100%;
