@@ -22,7 +22,7 @@ export default function TimeslotDropdown(props) {
     };
     const selectSession = (session) => {
         dispatch(setMovieSession(session));
-        dispatch(pushHistory('/new-order'));
+        dispatch(pushHistory("/new-order"));
         navigate("/new-order");
     };
     var date = new Date(props.sessions[0].timeslot.startDateTime);
@@ -32,6 +32,9 @@ export default function TimeslotDropdown(props) {
                 {props.showMenu ? (
                     <div className="dropdownMenu">
                         {props.sessions.map((session, index) => {
+                            const date = new Date(
+                                session.timeslot.startDateTime
+                            );
                             return (
                                 <div
                                     className="dropdownMenuItem"
